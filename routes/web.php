@@ -16,7 +16,9 @@ Route::group(['middleware' => ['auth', 'check_role:admin,mandor']], function () 
     Route::get('/data-user', [UserController::class, 'index'])->name('user.index');
     Route::post('/data-user', [UserController::class, 'store'])->name('user.store');
 
-    Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
+    Route::put('/user/{id}/update', [UserController::class, 'update'])->name('user.update');
+    Route::delete('/user/{id}/delete', [UserController::class, 'destroy'])->name('user.destroy');
 
+    Route::post('/user/{id}/aktif', [UserController::class, 'aktif'])->name('user.aktif');
     Route::post('/user/{id}/nonaktif', [UserController::class, 'nonaktif'])->name('user.nonaktif');
 });

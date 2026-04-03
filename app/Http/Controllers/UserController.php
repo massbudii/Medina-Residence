@@ -39,7 +39,7 @@ class UserController extends Controller
             'role' => $request->role,
         ];
 
-        // jika pw diisi update kalau engga kosonh
+        // jika pw diisi update kalau engga tidak terupdate
         if($request->password) {
             $data['password'] = Hash::make($request->password);
         }
@@ -60,5 +60,52 @@ class UserController extends Controller
       if ($user->id == Auth::id()) {
         return back()->with('error', 'Tidak bisa nonaktifkan diri sendiri');
       }
+
+
+      if ($user->id == 1){
+        return back()->with('error', 'admin utama tidak bisa di nonaktifkan');
+      }
+
+      $adminAktif = User::where('role', 'admin')
+            ->where('status', 'aktif')
+            ->count();
+
+     if ($user->role == 'admin' && $adminAktif <= 1){
+        return back()->with('error', 'Minimal 1 admin harus aktif');
+     }
+
+     $user->update([
+        'status' => 'nonaktif'
+     ]);
+
+     return back()->with('success', 'User bisa di nonaktifkan');
+    }
+
+    // aktifkan user
+
+    public function aktif($id)
+    {
+        $user = User::findOrFail($id);
+        $user ->update([
+            'status' => 'aktif'
+        ]);
+
+        return back()->with('success'. 'User berhasil diaktifkan');
+    }
+
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
+
+        if(Auth::id() !=1){
+            return back()->with('error', 'Hanya admin utama yang boleh menghapus user');
+        }
+
+        if($user->id == Auth::id()) {
+            return back()->with('error', 'Tidak bisa menghapus akun sendiri');
+        }
+
+        $user->delete();
+        return back()->with('success', 'User berhasil dihapus');
     }
 }

@@ -34,12 +34,12 @@
                     <table class="table table-bordered mb-0">
                         <thead>
                             <tr>
-                                <th scope="col">No</th>
+                                <th scope="col" style="width: 4%">No</th>
                                 <th scope="col">Nama</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">Role</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Aksi</th>
+                                <th scope="col" style="width: 10%">Role</th>
+                                <th scope="col" style="width: 5%">Status</th>
+                                <th style="width:1%" class="text-center">Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -56,11 +56,40 @@
                                             <span class="badge bg-secondary">Nonaktif</span>
                                         @endif
                                     </td>
-                                    <td>
+                                    <td class="text-nowrap">
                                         <button class="btn btn-info btn-sm" data-bs-toggle="modal"
                                             data-bs-target="#edit-modal{{ $user->id }}">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </button>
+                                        @if (auth()->id() == 1)
+                                            <form action="{{ route('user.destroy', $user->id) }}" method="POST"
+                                                style="display:inline;">
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger btn-sm""
+                                                    onclick="return confirm('Yakin hapus user ini?')">
+
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </form>
+                                        @endif
+
+                                        @if ($user->status == 'aktif')
+                                            <form action="{{ route('user.nonaktif', $user->id) }}" method="POST"
+                                                style="display:inline;">
+                                                @csrf
+                                                <button class="btn btn-warning btn-sm" title="Nonaktifkan user">
+                                                    <i class="fa-solid fa-user-slash"></i>
+                                                </button>
+                                            </form>
+                                        @else
+                                            <form action="{{ route('user.aktif', $user->id) }}" method="POST"
+                                                style="display:inline;">
+                                                @csrf
+                                                <button class="btn btn-success btn-sm" title="Aktifkan user">
+                                                    <i class="fa-solid fa-user-check"></i>
+                                                </button>
+                                            </form>
+                                        @endif
                                     </td>
                                 </tr>
 
