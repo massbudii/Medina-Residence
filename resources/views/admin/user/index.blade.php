@@ -31,7 +31,7 @@
 
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered mb-0">
+                    <table class="table table-bordered mb-0" id="table">
                         <thead>
                             <tr>
                                 <th scope="col" style="width: 4%">No</th>
