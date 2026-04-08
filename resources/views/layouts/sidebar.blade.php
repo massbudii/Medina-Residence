@@ -45,7 +45,7 @@
                 </li>
 
                 <li>
-                    <a href="{{ route ('') }}" >
+                    <a href="{{ route('type.index') }}" class="nav-links {{ (request()->is('type.index')) ? 'active' : '' }} " >
                         <i class="fa-solid fa-layer-group"></i>
                         <span> Type Unit </span>
 
