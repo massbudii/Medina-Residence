@@ -4,24 +4,39 @@
     <div class="col">
 
         @if (session('success'))
-            <div class="alert alert-success alert-dismissible fade show mt-2" role="alert">
+            <div class="alert alert-success mt-2" id="success-alert" role="alert">
                 {{ session('success') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
 
         @if (session('error'))
-            <div class="alert alert-danger alert-dismissible fade show mt-2" role="alert">
+            <div class="alert alert-danger  mt-2" id="danger-alert" role="alert">
                 {{ session('error') }}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
+
+        <div class="modal fade" id="alert-admin" tabindex="-1">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+
+                    <div class="modal-header bg-danger text-white">
+                        <h5 class="modal-title">Peringatan</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body">
+                        Admin utama tidak bisa diedit.
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
         <div class="card mt-3">
 
             <!-- Default Modals -->
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h5 class="card-title mb-0">Data user</h5>
+                <h2 class="card-title mb-0">Data User</h2>
 
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#standard-modal">
                     Tambah User
@@ -34,7 +49,7 @@
                     <table class="table table-bordered mb-0" id="table">
                         <thead>
                             <tr>
-                                <th scope="col" style="width: 4%">No</th>
+                                <th scope="col" style="width: 1%">No</th>
                                 <th scope="col">Nama</th>
                                 <th scope="col">Email</th>
                                 <th scope="col" style="width: 10%">Role</th>
@@ -57,20 +72,18 @@
                                         @endif
                                     </td>
                                     <td class="text-nowrap">
+
+
                                         <button class="btn btn-info btn-sm" data-bs-toggle="modal"
                                             data-bs-target="#edit-modal{{ $user->id }}">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </button>
-                                        @if (auth()->id() == 1)
-                                            <form action="{{ route('user.destroy', $user->id) }}" method="POST"
-                                                style="display:inline;">
-                                                @csrf
-                                                <button type="submit" class="btn btn-danger btn-sm""
-                                                    onclick="return confirm('Yakin hapus user ini?')">
 
-                                                    <i class="bi bi-trash"></i>
-                                                </button>
-                                            </form>
+                                        @if (auth()->id() == 1)
+                                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#deleteModal{{ $user->id }}">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
                                         @endif
 
                                         @if ($user->status == 'aktif')
@@ -107,20 +120,35 @@
                                             <form action="{{ route('user.update', $user->id) }}" method="POST">
                                                 @method('PUT')
                                                 @csrf
+                                                <input type="hidden" name="modal" value="edit-{{ $user->id }}">
                                                 <div class="modal-body">
 
                                                     <div class="row g-3">
 
                                                         <div class="">
                                                             <label class="form-label">Nama</label>
-                                                            <input type="text" class="form-control" name="nama"
-                                                                placeholder="nama" value="{{ $user->nama }}">
+                                                            <input type="text" name="nama" placeholder="Nama"
+                                                                class="form-control @error('nama')
+                                                                    is-invalid
+                                                                @enderror"
+                                                                value="{{ $user->nama }}" id="nama">
+
+                                                            @error('nama')
+                                                                <small class="text-danger">{{ $message }}</small>
+                                                            @enderror
                                                         </div>
 
                                                         <div class="">
                                                             <label class="form-label">Email</label>
-                                                            <input type="text" class="form-control" name="email"
-                                                                placeholder="email" value="{{ $user->email }}">
+                                                            <input type="text" name="email" placeholder="Email"
+                                                                class="form-control @error('email')
+                                                                    is-invalid
+                                                                @enderror"
+                                                                value="{{ $user->email }}" id="email">
+
+                                                            @error('email')
+                                                                <small class="text-danger">{{ $message }}</small>
+                                                            @enderror
                                                         </div>
 
                                                         <div class="">
@@ -131,7 +159,11 @@
 
                                                         <div>
                                                             <label for="" class="form-label">Role</label>
-                                                            <select name="role" id="" class="form-control">
+                                                            <select name="role" id=""
+                                                                class="form-control @error('role')
+                                                                is-invalid
+                                                            @enderror">
+                                                                <option value="">--Pilih Role--</option>
                                                                 <option value="admin"
                                                                     {{ $user->role == 'admin' ? 'selected' : '' }}>Admin
                                                                 </option>
@@ -139,6 +171,10 @@
                                                                     {{ $user->role == 'mandor' ? 'selected' : '' }}>Mandor
                                                                 </option>
                                                             </select>
+
+                                                            @error('role')
+                                                                <small class="text-danger">{{ $message }}</small>
+                                                            @enderror
                                                         </div>
 
                                                     </div>
@@ -146,11 +182,43 @@
                                                 </div>
 
                                                 <div class="modal-footer">
-                                                    <button class="btn btn-light" data-bs-dismiss="modal">Batal</button>
+                                                  <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
                                                     <button class="btn btn-primary">Update</button>
                                                 </div>
 
                                             </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {{-- modal hapus --}}
+                                <div class="modal fade" id="deleteModal{{ $user->id }}" tabindex="-1">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Konfirmasi Hapus</h5>
+                                                <button type="button" class="btn-close"
+                                                    data-bs-dismiss="modal"></button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                Apakah anda yakin ingin menghapus user <b>{{ $user->nama }}</b> ?
+                                            </div>
+
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
+
+                                                <form action="{{ route('user.destroy', $user->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+
+                                                    <button type="submit" class="btn bg-danger btn-danger">
+                                                        Hapus
+                                                    </button>
+                                                </form>
+                                            </div>
 
                                         </div>
                                     </div>
@@ -173,33 +241,62 @@
                                 <form action="{{ route('user.store') }}" method="POST">
                                     @csrf
                                     <div class="modal-body">
-
+                                        <input type="hidden" name="modal" value="tambah">
                                         <div class="row g-3">
 
                                             <div class="">
                                                 <label class="form-label">Nama</label>
-                                                <input type="text" class="form-control" name="nama"
-                                                    placeholder="nama">
+                                                <input type="text" name="nama" placeholder="Nama"
+                                                    class="form-control @error('nama')
+                                                        is-invalid
+                                                    @enderror"
+                                                    value="{{ old('nama') }}" id="nama">
+
+                                                @error('nama')
+                                                    <small class="text-danger">{{ $message }}</small>
+                                                @enderror
                                             </div>
 
                                             <div class="">
                                                 <label class="form-label">Email</label>
-                                                <input type="text" class="form-control" name="email"
-                                                    placeholder="email">
+                                                <input type="text" name="email" placeholder="Email"
+                                                    class="form-control @error('email')
+                                                        is-invalid
+                                                    @enderror"
+                                                    value="{{ old('email') }}" id="email">
+
+                                                @error('email')
+                                                    <small class="text-danger">{{ $message }}</small>
+                                                @enderror
                                             </div>
 
                                             <div class="">
                                                 <label class="form-label">Password</label>
-                                                <input type="password" class="form-control" name="Password"
-                                                    placeholder="password">
+                                                <input type="password" name="password" placeholder="Password"
+                                                    class="form-control @error('password')
+                                                        is-invalid
+                                                    @enderror ">
+
+                                                @error('password')
+                                                    <small class="text-danger">{{ $message }}</small>
+                                                @enderror
                                             </div>
 
                                             <div>
                                                 <label for="" class="form-label">Role</label>
-                                                <select name="role" id="" class="form-control">
-                                                    <option value="admin">Admin</option>
-                                                    <option value="mandor">Mandor</option>
+                                                <select name="role" id=""
+                                                    class="form-control @error('role')
+                                                    is-invalid
+                                                @enderror">
+                                                    <option value="">--Pilih Role--</option>
+                                                    <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>
+                                                        Admin</option>
+                                                    <option value="mandor"
+                                                        {{ old('role') == 'mandor' ? 'selected' : '' }}>Mandor</option>
                                                 </select>
+                                                @error('role')
+                                                    <small class="text-danger">{{ $message }}</small>
+                                                @enderror
                                             </div>
 
                                         </div>
@@ -207,7 +304,7 @@
                                     </div>
 
                                     <div class="modal-footer">
-                                        <button class="btn btn-light" data-bs-dismiss="modal">Batal</button>
+                                       <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
                                         <button class="btn btn-primary">Simpan</button>
                                     </div>
 
@@ -220,3 +317,22 @@
             </div>
         </div>
     @endsection
+
+    @if ($errors->any())
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+
+                let modal = "{{ old('modal') }}";
+
+                if (modal === "tambah") {
+                    new bootstrap.Modal(document.getElementById('standard-modal')).show();
+                }
+
+                if (modal.startsWith("edit-")) {
+                    let id = modal.replace("edit-", "");
+                    new bootstrap.Modal(document.getElementById('edit-modal' + id)).show();
+                }
+
+            });
+        </script>
+    @endif

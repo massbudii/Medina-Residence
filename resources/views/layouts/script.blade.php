@@ -9,16 +9,31 @@
 
  <!-- App js-->
  <script src="{{ asset('assets/js/app.js') }}"></script>
-<script>
-    $(document).ready(function() {
-        new DataTable('#table', {
-            pageLength: 10
-        });
+ <script>
+     $(document).ready(function() {
+         new DataTable('#table', {
+             pageLength: 10
+         });
 
 
 
-        $("#success-alert").fadeTo(2000, 500).slideUp(500, function() {
-            $("#success-alert").slideUp(500);
-        });
-    });
-</script>
+         $("#success-alert").fadeTo(2000, 500).slideUp(500, function() {
+             $("#success-alert").slideUp(500);
+         });
+
+         $("#danger-alert").fadeTo(2000, 500).slideUp(500, function() {
+             $("#danger-alert").slideUp(500);
+         });
+     });
+
+     function cekAdmin(id) {
+
+         if (id == 1) {
+             alert('Admin utama tidak bisa diedit');
+             return false;
+         }
+
+         return true;
+
+     }
+ </script>

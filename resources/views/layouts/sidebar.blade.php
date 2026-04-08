@@ -6,18 +6,18 @@
         <div class="logo-box">
             <a href="index.html" class="logo logo-light">
                 <span class="logo-sm">
-                    <img src="{{ asset('assets/images/logo-medina.jpg') }}" alt="" height="80">
+                    <img src="{{ asset('assets/images/logo-medina-new.png') }}" alt="" height="80">
                 </span>
                 <span class="logo-lg">
-                    <img src="{{ asset('assets/images/logo-medina.jpg') }}" alt="" height="80">
+                    <img src="{{ asset('assets/images/logo-medina-new.png') }}" alt="" height="80">
                 </span>
             </a>
             <a href="index.html" class="logo logo-dark">
                 <span class="logo-sm">
-                    <img src="{{ asset('assets/images/logo-medina.jpg') }}" alt="" height="80">
+                    <img src="{{ asset('assets/images/logo-medina-new.png') }}" alt="" height="80">
                 </span>
                 <span class="logo-lg">
-                    <img src="{{ asset('assets/images/logo-medina.jpg') }}" alt="" height="80">
+                    <img src="{{ asset('assets/images/logo-medina-new.png') }}" alt="" height="80">
                 </span>
             </a>
         </div>
@@ -45,7 +45,7 @@
                 </li>
 
                 <li>
-                    <a href= >
+                    <a href="{{ route ('') }}" >
                         <i class="fa-solid fa-layer-group"></i>
                         <span> Type Unit </span>
 
@@ -106,16 +106,7 @@
 
                 </a>
             </li>
-
-
-
-
-
-
-
-
         </ul>
-
     </div>
     <!-- End Sidebar -->
 

@@ -17,20 +17,21 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'nama' => 'required',
-            'email' => 'required | email',
+            'email' => 'required|email',
             'password' => 'required',
             'role' => 'required'
-        ]);
-        User::create([
-            'nama' => $request->nama,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'role' => $request->role,
-            'status' => 'aktif'
+        ], [
+            'nama.required' => 'Nama wajib diisi',
+            'email.required' => 'Email wajib diisi',
+            'password.required' => 'Password wajib diisi',
+            'role.required' => 'Role wajib diisi',
         ]);
 
+        $validated['password'] = Hash::make($validated['password']);
+        $validated['status'] = 'aktif';
+        User::create($validated);
         return back()->with('success', 'User berhasil ditambahkan');
     }
 
@@ -38,53 +39,58 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
-        // data utama
-        $data = [
-            'nama' => $request->nama,
-            'email' => $request->email,
-            'role' => $request->role,
-        ];
+        if ($user->id == 1) {
+            return back()->with('error', 'Admin utama tidak bisa diedit');
+        }
 
-        // jika pw diisi update kalau engga tidak terupdate
-        if($request->password) {
+        $request->validate([
+            'nama' => 'required',
+            'email' => 'required|email',
+            'role' => 'required'
+        ], [
+            'nama.required' => 'Nama wajib diisi',
+            'email.required' => 'Email wajib diisi',
+            'role.required' => 'Role wajib dipilih',
+        ]);
+
+        $data = $request->only(['nama', 'email', 'role']);
+
+        if ($request->password) {
             $data['password'] = Hash::make($request->password);
         }
 
         $user->update($data);
 
         return back()->with('success', 'User berhasil diupdate');
-
-
     }
-
     // nonaktifkan user
 
     public function nonaktif($id)
     {
         $user = User::findOrFail($id);
 
-      if ($user->id == Auth::id()) {
-        return back()->with('error', 'Tidak bisa nonaktifkan diri sendiri');
-      }
+        if ($user->id == Auth::id()) {
+            return back()->with('error', 'Tidak bisa nonaktifkan diri sendiri');
+        }
 
 
-      if ($user->id == 1){
-        return back()->with('error', 'admin utama tidak bisa di nonaktifkan');
-      }
+        if ($user->id == 1) {
+            return back()->with('error', 'admin utama tidak bisa di nonaktifkan');
+        }
 
-      $adminAktif = User::where('role', 'admin')
+        $adminAktif = User::where('role', 'admin')
             ->where('status', 'aktif')
             ->count();
 
-     if ($user->role == 'admin' && $adminAktif <= 1){
-        return back()->with('error', 'Minimal 1 admin harus aktif');
-     }
+        if ($user->role == 'admin' && $adminAktif <= 1) {
+            return back()->with('error', 'Minimal 1 admin harus aktif');
+        }
 
-     $user->update([
-        'status' => 'nonaktif'
-     ]);
+        $user->update([
+            'status' => 'Nonaktif',
+        ]);
 
-     return back()->with('success', 'User bisa di nonaktifkan');
+        return back()->with('success', 'User berhasil di nonaktifkan');
     }
 
     // aktifkan user
@@ -92,22 +98,22 @@ class UserController extends Controller
     public function aktif($id)
     {
         $user = User::findOrFail($id);
-        $user ->update([
+        $user->update([
             'status' => 'aktif'
         ]);
 
-        return back()->with('success'. 'User berhasil diaktifkan');
+        return back()->with('success', 'User berhasil diaktifkan');
     }
 
     public function destroy($id)
     {
         $user = User::findOrFail($id);
 
-        if(Auth::id() !=1){
+        if (Auth::id() != 1) {
             return back()->with('error', 'Hanya admin utama yang boleh menghapus user');
         }
 
-        if($user->id == Auth::id()) {
+        if ($user->id == Auth::id()) {
             return back()->with('error', 'Tidak bisa menghapus akun sendiri');
         }
 
