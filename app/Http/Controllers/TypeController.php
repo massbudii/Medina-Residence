@@ -21,7 +21,7 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.type.index');
     }
 
     /**
@@ -29,7 +29,22 @@ class TypeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'nama_type' => 'required',
+            'luas_bangunan' => 'required|integer',
+            'luas_tanah' => 'required|integer',
+            'harga_rumah' => 'required|decimal:0,2'
+
+        ], [
+            'nama_type.required' => 'Kolom waib diisi',
+            'luas_bangunan.required' => 'Kolom waib diisi',
+            'luas_tanah.required' => 'Kolom waib diisi',
+            'harga_rumah.required' => 'Kolom waib diisi',
+
+        ]);
+
+            TypeUnit::create($validated);
+            return back()->with('success', 'Data berhasil ditambahkan');
     }
 
     /**
