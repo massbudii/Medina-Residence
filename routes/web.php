@@ -34,6 +34,9 @@ Route::group(['middleware' => ['auth', 'check_role:admin,mandor']], function () 
         Route::get('/data-type', [TypeController::class, 'index'])->name('type.index');
         Route::get('/data-type/create', [TypeController::class, 'create'])->name('type.create');
         Route::post('/data-type/store', [TypeController::class, 'store'])->name('type.store');
+        Route::put('/data-type/{id}/update', [TypeController::class,'update'])->name('type.update');
 
     });
+
+
 });

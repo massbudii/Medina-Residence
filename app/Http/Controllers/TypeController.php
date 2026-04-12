@@ -16,13 +16,7 @@ class TypeController extends Controller
         return view('admin.type.index', compact('type'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('admin.type.index');
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -47,28 +41,33 @@ class TypeController extends Controller
             return back()->with('success', 'Data berhasil ditambahkan');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'nama_type' => 'required',
+            'luas_bangunan' => 'required|integer',
+            'luas_tanah' => 'required|integer',
+            'harga_rumah' => 'required|decimal:0,2'
+        ], [
+            'nama_type.required' => 'Kolom waib diisi',
+            'luas_bangunan.required' => 'Kolom waib diisi',
+            'luas_tanah.required' => 'Kolom waib diisi',
+            'harga_rumah.required' => 'Kolom waib diisi',
+
+        ]);
+
+        $type = TypeUnit::findOrFail($id);
+
+        $type->update($validated);
+        return back()->with('success', 'Data berhasil di update');
+
     }
 
     /**
@@ -76,6 +75,11 @@ class TypeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $type= TypeUnit::findOrFail($id);
+        $type->delete();
+
+        return back()->with('success', 'Data berhasil dihapus');
+
     }
+
 }

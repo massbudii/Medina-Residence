@@ -3,18 +3,6 @@
 @section('content')
     <div class="col">
 
-        @if (session('success'))
-            <div class="alert alert-success mt-2" id="success-alert" role="alert">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        @if (session('error'))
-            <div class="alert alert-danger  mt-2" id="danger-alert" role="alert">
-                {{ session('error') }}
-            </div>
-        @endif
-
         <div class="modal fade" id="alert-admin" tabindex="-1">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
@@ -182,7 +170,8 @@
                                                 </div>
 
                                                 <div class="modal-footer">
-                                                  <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
+                                                    <button type="button" class="btn btn-light"
+                                                        data-bs-dismiss="modal">Batal</button>
                                                     <button class="btn btn-primary">Update</button>
                                                 </div>
 
@@ -208,7 +197,8 @@
                                             </div>
 
                                             <div class="modal-footer">
-                                              <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
+                                                <button type="button" class="btn btn-light"
+                                                    data-bs-dismiss="modal">Batal</button>
 
                                                 <form action="{{ route('user.destroy', $user->id) }}" method="POST">
                                                     @csrf
@@ -304,7 +294,8 @@
                                     </div>
 
                                     <div class="modal-footer">
-                                       <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
+                                        <button type="button" class="btn btn-light"
+                                            data-bs-dismiss="modal">Batal</button>
                                         <button class="btn btn-primary">Simpan</button>
                                     </div>
 

@@ -14,16 +14,6 @@
          new DataTable('#table', {
              pageLength: 10
          });
-
-
-
-         $("#success-alert").fadeTo(2000, 500).slideUp(500, function() {
-             $("#success-alert").slideUp(500);
-         });
-
-         $("#danger-alert").fadeTo(2000, 500).slideUp(500, function() {
-             $("#danger-alert").slideUp(500);
-         });
      });
 
      function cekAdmin(id) {
@@ -37,3 +27,26 @@
 
      }
  </script>
+
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ @if (session('success'))
+     <script>
+         Swal.fire({
+             title: "Berhasil",
+             text: "{{ session('success') }}",
+             icon: "success"
+         });
+     </script>
+ @endif
+
+
+ @if (session('error'))
+     <script>
+         Swal.fire({
+             icon: "error",
+             title: "Gagal",
+             text: "{{ session('error') }}",
+             
+         });
+     </script>
+ @endif
