@@ -53,7 +53,7 @@
                 </li>
 
                 <li>
-                    <a href= >
+                    <a href="{{ route('kawasan.index') }}" class="nav-links {{ (request()->is('kawasan.index')) ? 'active' : '' }}">
                        <i class="fa-solid fa-map-location-dot"></i>
                         <span> Kawasan</span>
 

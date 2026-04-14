@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KawasanController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
 
@@ -36,6 +37,14 @@ Route::group(['middleware' => ['auth', 'check_role:admin,mandor']], function () 
         Route::post('/data-type/store', [TypeController::class, 'store'])->name('type.store');
         Route::put('/data-type/{id}/update', [TypeController::class,'update'])->name('type.update');
         Route::delete('/data-type/{id}/delete', [TypeController::class,'destroy'])->name('type.delete');
+
+    });
+
+    // kawasan
+    Route::prefix('kawasan')->group(function () {
+
+       Route::get('/data-kawasan', [KawasanController::class, 'index'])->name('kawasan.index');
+
 
     });
 
