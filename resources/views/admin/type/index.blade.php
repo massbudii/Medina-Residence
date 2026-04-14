@@ -2,9 +2,6 @@
 @section('content')
     <div class="col">
 
-
-
-
         <div class="card mt-3">
 
             <div class="card-header d-flex justify-content-between align-items-center">
@@ -48,7 +45,7 @@
 
                                         <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                             data-bs-target="#deleteModal1{{ $item->id }}">
-                                            <i class="fa-solid fa-trash"></i>
+                                           <i class="fa-solid fa-trash"></i>
                                         </button>
 
                                     </td>
@@ -74,7 +71,10 @@
                                                     <div class="mb-3">
                                                         <label class="form-label">Nama Type</label>
 
-                                                        <input type="text" name="nama_type" class="form-control"
+                                                        <input type="text" name="nama_type"
+                                                            class="form-control @error('nama_type')
+                                                            is-invalid
+                                                        @enderror"
                                                             value="{{ $item->nama_type }}">
 
                                                         @error('nama_type')
@@ -84,21 +84,37 @@
 
                                                     <div class="mb-3">
                                                         <label class="form-label">Luas Bangunan</label>
-                                                        <input type="number" name="luas_bangunan" class="form-control"
+                                                        <input type="number" name="luas_bangunan"
+                                                            class="form-control @error('luas_bangunan')
+                                                            is-invalid
+                                                        @enderror"
                                                             value="{{ $item->luas_bangunan }}">
+                                                        @error('luas_bangunan')
+                                                            <small class="text-danger">{{ $message }}</small>
+                                                        @enderror
                                                     </div>
 
                                                     <div class="mb-3">
                                                         <label class="form-label">Luas Tanah</label>
-                                                        <input type="number" name="luas_tanah" class="form-control"
+                                                        <input type="number" name="luas_tanah"
+                                                            class="form-control  @error('luas_tanah')
+                                                            is-invalid
+                                                        @enderror"
                                                             value="{{ $item->luas_tanah }}">
+
+                                                        @error('luas_tanah')
+                                                            <small class="text-danger">{{ $message }}</small>
+                                                        @enderror
                                                     </div>
 
                                                     <div>
                                                         <label class="form-label">Harga Rumah</label>
                                                         <div class="input-group">
                                                             <span class="input-group-text">Rp</span>
-                                                            <input type="number" name="harga_rumah" class="form-control"
+                                                            <input type="number" name="harga_rumah"
+                                                                class="form-control  @error('harga_rumah')
+                                                            is-invalid
+                                                        @enderror"
                                                                 value="{{ $item->harga_rumah }}">
                                                         </div>
                                                         @error('harga_rumah')
@@ -135,7 +151,7 @@
                                             </div>
 
                                             <div class="modal-body">
-                                                Apakah anda yakin ingin menghapus  <b>{{ $item->nama_type }}</b> ?
+                                                Apakah anda yakin ingin menghapus <b>{{ $item->nama_type }}</b> ?
                                             </div>
 
                                             <div class="modal-footer">
@@ -177,8 +193,11 @@
 
                                             <div>
                                                 <label class="form-label">Nama Type</label>
-                                                <input type="text" class="form-control" name="nama_type"
-                                                    placeholder="Contoh: Type 45">
+                                                <input type="text" name="nama_type" placeholder="Contoh: Type 45"
+                                                    class="form-control @error('nama_type')
+                                                        is-invalid
+                                                    @enderror"
+                                                    value="{{ old('nama_type') }}" id="nama_type">
 
                                                 @error('nama_type')
                                                     <small class="text-danger">{{ $message }}</small>
@@ -187,8 +206,11 @@
 
                                             <div>
                                                 <label class="form-label">Luas Bangunan</label>
-                                                <input type="text" class="form-control" name="luas_bangunan">
-
+                                                <input type="text" name="luas_bangunan"
+                                                    class="form-control @error('luas_bangunan')
+                                                    is-invalid
+                                                @enderror"
+                                                    value="{{ old('luas_bangunan') }}">
                                                 @error('luas_bangunan')
                                                     <small class="text-danger">{{ $message }}</small>
                                                 @enderror
@@ -196,8 +218,11 @@
 
                                             <div>
                                                 <label class="form-label">Luas Tanah</label>
-                                                <input type="number" class="form-control" name="luas_tanah">
-
+                                                <input type="number" name="luas_tanah"
+                                                    class="form-control @error('luas_tanah')
+                                                is-invalid
+                                                @enderror"
+                                                    value="{{ old('luas_tanah') }}">
                                                 @error('luas_tanah')
                                                     <small class="text-danger">{{ $message }}</small>
                                                 @enderror
@@ -207,7 +232,11 @@
                                                 <label class="form-label">Harga Rumah</label>
                                                 <div class="input-group">
                                                     <span class="input-group-text">Rp</span>
-                                                    <input type="number" name="harga_rumah" class="form-control">
+                                                    <input type="number" name="harga_rumah"
+                                                        class="form-control @error('harga_rumah')
+                                                        is-invalid
+                                                    @enderror"
+                                                        value="{{ old('harga_rumah') }}">
                                                 </div>
                                                 @error('harga_rumah')
                                                     <small class="text-danger">{{ $message }}</small>
@@ -249,7 +278,7 @@
 
                 setTimeout(function() {
                     $('#table').DataTable().columns.adjust();
-                }, 300);
+                }, 100);
             }
 
             if (modal && modal.startsWith("edit-")) {
@@ -259,7 +288,7 @@
 
                 setTimeout(function() {
                     $('#table').DataTable().columns.adjust();
-                }, 300);
+                }, 100);
             }
 
         });

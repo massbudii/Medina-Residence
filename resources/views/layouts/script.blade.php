@@ -46,7 +46,7 @@
              icon: "error",
              title: "Gagal",
              text: "{{ session('error') }}",
-             
+
          });
      </script>
  @endif

@@ -70,7 +70,7 @@
                                         @if (auth()->id() == 1)
                                             <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                                 data-bs-target="#deleteModal{{ $user->id }}">
-                                                <i class="bi bi-trash"></i>
+                                               <i class="fa-solid fa-trash"></i>
                                             </button>
                                         @endif
 
