@@ -75,10 +75,12 @@ class TypeController extends Controller
      */
     public function destroy(string $id)
     {
-        $type= TypeUnit::findOrFail($id);
-        $type->delete();
+      $type = TypeUnit::findOrFail($id);
 
-        return back()->with('success', 'Data berhasil dihapus');
+      $type->delete();
+      return back()->with('success', 'Data berhasil di hapus');
+
+
 
     }
 

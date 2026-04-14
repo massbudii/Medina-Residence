@@ -2,7 +2,7 @@
 @section('content')
     <div class="col">
 
-       
+
 
 
         <div class="card mt-3">
@@ -98,7 +98,8 @@
                                                         <label class="form-label">Harga Rumah</label>
                                                         <div class="input-group">
                                                             <span class="input-group-text">Rp</span>
-                                                            <input type="number" name="harga_rumah" class="form-control" value="{{ $item->harga_rumah }}">
+                                                            <input type="number" name="harga_rumah" class="form-control"
+                                                                value="{{ $item->harga_rumah }}">
                                                         </div>
                                                         @error('harga_rumah')
                                                             <small class="text-danger">{{ $message }}</small>
@@ -123,8 +124,8 @@
                                     </div>
                                 </div>
 
-                                <!-- MODAL DELETE -->
-                                <div class="modal fade" id="deleteModal1" tabindex="-1">
+                                <!-- MODAL HAPUS -->
+                                <div class="modal fade" id="deleteModal1{{ $item->id }}" tabindex="-1">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
 
@@ -134,16 +135,21 @@
                                             </div>
 
                                             <div class="modal-body">
-                                                Apakah anda yakin ingin menghapus user <b>Admin Utama</b> ?
+                                                Apakah anda yakin ingin menghapus  <b>{{ $item->nama_type }}</b> ?
                                             </div>
 
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-light"
                                                     data-bs-dismiss="modal">Batal</button>
 
-                                                <button class="btn btn-danger">
-                                                    Hapus
-                                                </button>
+                                                <form action="{{ route('type.delete', $item->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button class="btn btn-danger">
+                                                        Hapus
+                                                    </button>
+
+                                                </form>
                                             </div>
 
                                         </div>
@@ -201,7 +207,7 @@
                                                 <label class="form-label">Harga Rumah</label>
                                                 <div class="input-group">
                                                     <span class="input-group-text">Rp</span>
-                                                    <input type="number" name="harga" class="form-control">
+                                                    <input type="number" name="harga_rumah" class="form-control">
                                                 </div>
                                                 @error('harga_rumah')
                                                     <small class="text-danger">{{ $message }}</small>
