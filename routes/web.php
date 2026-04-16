@@ -35,18 +35,16 @@ Route::group(['middleware' => ['auth', 'check_role:admin,mandor']], function () 
         Route::get('/data-type', [TypeController::class, 'index'])->name('type.index');
         Route::get('/data-type/create', [TypeController::class, 'create'])->name('type.create');
         Route::post('/data-type/store', [TypeController::class, 'store'])->name('type.store');
-        Route::put('/data-type/{id}/update', [TypeController::class,'update'])->name('type.update');
-        Route::delete('/data-type/{id}/delete', [TypeController::class,'destroy'])->name('type.delete');
-
+        Route::put('/data-type/{id}/update', [TypeController::class, 'update'])->name('type.update');
+        Route::delete('/data-type/{id}/delete', [TypeController::class, 'destroy'])->name('type.delete');
     });
 
     // kawasan
     Route::prefix('kawasan')->group(function () {
 
-       Route::get('/data-kawasan', [KawasanController::class, 'index'])->name('kawasan.index');
-
-
+        Route::get('/kawasan', [KawasanController::class, 'index'])->name('kawasan.index');
+        Route::post('/kawasan', [KawasanController::class, 'store'])->name('kawasan.store');
+        Route::post('/kawasan/{id}/update', [KawasanController::class, 'update'])->name('kawasan.update');
+        Route::post('/kawasan/{id}/delete', [KawasanController::class, 'destroy'])->name('kawasan.delete');
     });
-
-
 });
