@@ -1,4 +1,5 @@
 @extends('app')
+@section('title', 'Data User')
 
 @section('content')
     <div class="col">
