@@ -61,6 +61,14 @@
                 </li>
 
                 <li>
+                    <a href="{{ route('supplier.index') }}" class="nav-links{{ (request()->is('supplier.index')) ? 'active' : '' }}">
+                       <i class="fa-solid fa-map-location-dot"></i>
+                        <span> Supplier</span>
+
+                    </a>
+                </li>
+
+                <li>
                     <a href= >
                        <i class="fa-solid fa-boxes-stacked"></i>
                         <span> Material </span>

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KawasanController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
 
@@ -48,5 +49,10 @@ Route::group(['middleware' => ['auth', 'check_role:admin,mandor']], function () 
         Route::delete('/kawasan/{id}/delete', [KawasanController::class, 'destroy'])->name('kawasan.delete');
         Route::post('/{id}/aktif', [KawasanController::class, 'aktif'])->name('kawasan.aktif');
         Route::post('/{id}/selesai', [KawasanController::class, 'selesai'])->name('kawasan.selesai');
+    });
+
+    Route::prefix('supplier')->group(function () {
+
+        Route::get('/supplier', [SupplierController::class, 'index'])->name('supplier.index');
     });
 });
