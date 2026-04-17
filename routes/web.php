@@ -44,7 +44,9 @@ Route::group(['middleware' => ['auth', 'check_role:admin,mandor']], function () 
 
         Route::get('/kawasan', [KawasanController::class, 'index'])->name('kawasan.index');
         Route::post('/kawasan', [KawasanController::class, 'store'])->name('kawasan.store');
-        Route::post('/kawasan/{id}/update', [KawasanController::class, 'update'])->name('kawasan.update');
-        Route::post('/kawasan/{id}/delete', [KawasanController::class, 'destroy'])->name('kawasan.delete');
+        Route::put('/kawasan/{id}/update', [KawasanController::class, 'update'])->name('kawasan.update');
+        Route::delete('/kawasan/{id}/delete', [KawasanController::class, 'destroy'])->name('kawasan.delete');
+        Route::post('/{id}/aktif', [KawasanController::class, 'aktif'])->name('kawasan.aktif');
+        Route::post('/{id}/selesai', [KawasanController::class, 'selesai'])->name('kawasan.selesai');
     });
 });

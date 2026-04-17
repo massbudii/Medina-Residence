@@ -6,6 +6,9 @@
  <script src="{{ asset('assets/libs/jquery.counterup/jquery.counterup.min.js') }}"></script>
  <script src="{{ asset('assets/libs/feather-icons/feather.min.js') }}"></script>
  <script src="https://cdn.datatables.net/2.3.7/js/dataTables.min.js"></script>
+ <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
  <!-- App js-->
  <script src="{{ asset('assets/js/app.js') }}"></script>

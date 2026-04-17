@@ -18,14 +18,27 @@ class KawasanController extends Controller
 
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'nama_kawasan' => 'required',
+            'alamat' => 'required',
+            'status' => 'required',
+            'type_unit_id' => 'required|array'
+        ], [
+            'nama_kawasan.required' => 'Nama kawasan wajib diisi',
+            'alamat.required' => 'Alamat wajib diisi',
+            'status.required' => 'Status wajib dipilih',
+            'type_unit_id.required' => 'Type unit wajib dipilih',
+        ]);
+
+        // simpan kawasan
         $kawasan = Kawasan::create([
-            'nama_kawasan' => $request->nama_kawasan,
-            'alamat' => $request->alamat,
-            'status' => $request->status,
+            'nama_kawasan' => $validated['nama_kawasan'],
+            'alamat' => $validated['alamat'],
+            'status' => $validated['status'],
         ]);
 
         // simpan relasi
-        $kawasan->typeUnits()->attach($request->type_unit_id);
+        $kawasan->typeUnits()->attach($validated['type_unit_id']);
 
         return back()->with('success', 'Kawasan berhasil ditambahkan');
     }
@@ -34,22 +47,66 @@ class KawasanController extends Controller
     {
         $kawasan = Kawasan::findOrFail($id);
 
+        $validated = $request->validate([
+            'nama_kawasan' => 'required',
+            'alamat' => 'required',
+            'status' => 'required',
+            'type_unit_id' => 'required|array'
+        ], [
+            'nama_kawasan.required' => 'Nama kawasan wajib diisi',
+            'alamat.required' => 'Alamat wajib diisi',
+            'status.required' => 'Status wajib dipilih',
+            'type_unit_id.required' => 'Type unit wajib dipilih',
+        ]);
+
+        // update data utama
         $kawasan->update([
-            'nama_kawasan' => $request->nama_kawasan,
-            'alamat' => $request->alamat,
-            'status' => $request->status,
+            'nama_kawasan' => $validated['nama_kawasan'],
+            'alamat' => $validated['alamat'],
+            'status' => $validated['status'],
         ]);
 
         // update relasi
-        $kawasan->typeUnits()->sync($request->type_unit_id);
+        $kawasan->typeUnits()->sync($validated['type_unit_id']);
 
         return back()->with('success', 'Kawasan berhasil diupdate');
     }
 
     public function destroy($id)
     {
-        Kawasan::findOrFail($id)->delete();
+        $kawasan = Kawasan::findOrFail($id);
+
+        // hapus relasi dulu
+        $kawasan->typeUnits()->detach();
+
+        $kawasan->delete();
 
         return back()->with('success', 'Kawasan berhasil dihapus');
+    }
+
+    public function aktif($id)
+    {
+        $kawasan = Kawasan::findOrFail($id);
+
+        if ($kawasan->status !== 'aktif') {
+            $kawasan->update([
+                'status' => 'aktif'
+            ]);
+        }
+
+        return back()->with('success', 'Kawasan berhasil diaktifkan');
+    }
+
+    public function selesai($id)
+    {
+        $kawasan = Kawasan::findOrFail($id);
+
+        if ($kawasan->status !== 'selesai') {
+            $kawasan->update([
+                'status' => 'selesai'
+            ]);
+        }
+
+        return back()->with('success', 'Kawasan telah selesai pengerjaan');
     }
 }
