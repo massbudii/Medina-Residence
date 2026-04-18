@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class SupplierController extends Controller
 {
@@ -35,8 +36,8 @@ class SupplierController extends Controller
     {
         $supplier = Supplier::findOrFail($id);
 
-        $request->validate([
-            'nama_supplier' => 'required|unique:suppliers,nama_supplier,' . $id,
+        $validated = $request->validate([
+            'nama_supplier' => ['required', Rule::unique('suppliers', 'nama_supplier')->ignore($id)],
             'alamat_supplier' => 'required',
             'no_hp' => 'required'
         ], [
@@ -46,39 +47,10 @@ class SupplierController extends Controller
             'no_hp.required' => 'No HP wajib diisi',
         ]);
 
-        $supplier->update($request->all());
+        $supplier->update($validated);
 
-        return back()->with('success', 'Supplier berhasil diupdate');
-    }
+        return back()->with('success', 'Supplier berhasil diudpate');
 
-    public function nonaktif($id)
-    {
-        $supplier = Supplier::findOrFail($id);
 
-        $supplier->update([
-            'status' => 'nonaktif'
-        ]);
-
-        return back()->with('success', 'Supplier berhasil dinonaktifkan');
-    }
-
-    public function aktif($id)
-    {
-        $supplier = Supplier::findOrFail($id);
-
-        $supplier->update([
-            'status' => 'aktif'
-        ]);
-
-        return back()->with('success', 'Supplier berhasil diaktifkan');
-    }
-
-    public function destroy($id)
-    {
-        $supplier = Supplier::findOrFail($id);
-
-        $supplier->delete();
-
-        return back()->with('success', 'Supplier berhasil dihapus');
     }
 }

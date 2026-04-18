@@ -53,13 +53,13 @@ Route::group(['middleware' => ['auth', 'check_role:admin,mandor']], function () 
 
 
     Route::prefix('supplier')->group(function () {
-        Route::get('/supplier', [SupplierController::class, 'index'])->name('supplier.index');
-        Route::post('/store', [SupplierController::class, 'store'])->name('supplier.store');
-        Route::put('/update/{id}', [SupplierController::class, 'update'])->name('supplier.update');
+        Route::get('/data-supplier', [SupplierController::class, 'index'])->name('supplier.index');
+        Route::post('/supplier/store', [SupplierController::class, 'store'])->name('supplier.store');
+        Route::put('/suplier/{id}/update', [SupplierController::class, 'update'])->name('supplier.update');
 
         Route::put('/nonaktif/{id}', [SupplierController::class, 'nonaktif'])->name('supplier.nonaktif');
-        Route::put('/aktif/{id}', [SupplierController::class, 'aktif'])->name('supplier.aktif');
+        Route::put('/supplier/{id}aktif', [SupplierController::class, 'aktif'])->name('supplier.aktif');
 
-        Route::delete('/delete/{id}', [SupplierController::class, 'destroy'])->name('supplier.delete');
+        Route::delete('/supplier/{id}/delete', [SupplierController::class, 'destroy'])->name('supplier.delete');
     });
 });

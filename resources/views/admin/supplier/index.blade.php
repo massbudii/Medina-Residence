@@ -27,7 +27,7 @@
                                 <th style=" width: 1%">No</th>
                                 <th class="text-start sorting">Nama Supplier </th>
                                 <th>Alamat Supplier</th>
-                                <th class="">No Hp</th>
+                                <th class="text-start" >No Hp</th>
                                 <th>Status</th>
                                 <th class="text-center" style="width: 4%">Aksi</th>
                             </tr>
@@ -95,7 +95,7 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                             </div>
 
-                                            <form action="{{ route('type.update', $item->id) }}" method="POST">
+                                            <form action="{{ route('supplier.update', $item->id) }}" method="POST">
                                                 @csrf
                                                 @method('PUT')
 
@@ -104,55 +104,40 @@
                                                     <input type="hidden" name="modal" value="edit-{{ $item->id }}">
 
                                                     <div class="mb-3">
-                                                        <label class="form-label">Nama Type</label>
+                                                        <label class="form-label">Nama Supplier</label>
 
-                                                        <input type="text" name="nama_type"
-                                                            class="form-control @error('nama_type')
+                                                        <input type="text" name="nama_supplier"
+                                                            class="form-control @error('nama_supplier')
                                                             is-invalid
                                                         @enderror"
-                                                            value="{{ $item->nama_type }}">
+                                                            value="{{ $item->nama_supplier }}">
 
-                                                        @error('nama_type')
+                                                        @error('nama_supplier')
                                                             <small class="text-danger">{{ $message }}</small>
                                                         @enderror
                                                     </div>
 
                                                     <div class="mb-3">
-                                                        <label class="form-label">Luas Bangunan</label>
-                                                        <input type="number" name="luas_bangunan"
-                                                            class="form-control @error('luas_bangunan')
+                                                        <label class="form-label">Alamat Supplier</label>
+                                                        <input type="text" name="alamat_supplier"
+                                                            class="form-control @error('alamat_supplier')
                                                             is-invalid
                                                         @enderror"
-                                                            value="{{ $item->luas_bangunan }}">
-                                                        @error('luas_bangunan')
+                                                            value="{{ $item->alamat_supplier }}">
+                                                        @error('alamat_supplier')
                                                             <small class="text-danger">{{ $message }}</small>
                                                         @enderror
                                                     </div>
 
                                                     <div class="mb-3">
-                                                        <label class="form-label">Luas Tanah</label>
-                                                        <input type="number" name="luas_tanah"
-                                                            class="form-control  @error('luas_tanah')
+                                                        <label class="form-label">No Hp</label>
+                                                        <input type="text" name="no_hp"
+                                                            class="form-control  @error('no_hp')
                                                             is-invalid
                                                         @enderror"
-                                                            value="{{ $item->luas_tanah }}">
+                                                            value="{{ $item->no_hp }}">
 
-                                                        @error('luas_tanah')
-                                                            <small class="text-danger">{{ $message }}</small>
-                                                        @enderror
-                                                    </div>
-
-                                                    <div>
-                                                        <label class="form-label">Harga Rumah</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-text">Rp</span>
-                                                            <input type="number" name="harga_rumah"
-                                                                class="form-control  @error('harga_rumah')
-                                                            is-invalid
-                                                        @enderror"
-                                                                value="{{ $item->harga_rumah }}">
-                                                        </div>
-                                                        @error('harga_rumah')
+                                                        @error('no_hp')
                                                             <small class="text-danger">{{ $message }}</small>
                                                         @enderror
                                                     </div>
