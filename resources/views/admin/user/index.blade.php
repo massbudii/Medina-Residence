@@ -57,22 +57,26 @@
                                         @if ($user->status == 'aktif')
                                             <span class="badge bg-success">Aktif</span>
                                         @else
-                                            <span class="badge bg-secondary">Nonaktif</span>
+                                            <span class="badge bg-warning">Nonaktif</span>
                                         @endif
                                     </td>
                                     <td class="text-nowrap">
 
 
-                                        <button class="btn btn-info btn-sm" data-bs-toggle="modal"
-                                            data-bs-target="#edit-modal{{ $user->id }}">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                        </button>
+                                        <!-- EDIT -->
+                                        <a href="#" class="btn btn-icon btn-sm bg-primary-subtle me-1"
+                                            data-bs-toggle="modal" data-bs-target="#edit-modal{{ $user->id }}"
+                                            title="Edit">
+                                            <i class="mdi mdi-pencil-outline fs-14 text-primary"></i>
+                                        </a>
 
+                                        <!-- DELETE (khusus admin) -->
                                         @if (auth()->id() == 1)
-                                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                                data-bs-target="#deleteModal{{ $user->id }}">
-                                               <i class="fa-solid fa-trash"></i>
-                                            </button>
+                                            <a href="#" class="btn btn-icon btn-sm bg-danger-subtle"
+                                                data-bs-toggle="modal" data-bs-target="#deleteModal{{ $user->id }}"
+                                                title="Hapus">
+                                                <i class="mdi mdi-delete fs-14 text-danger"></i>
+                                            </a>
                                         @endif
 
                                         @if ($user->status == 'aktif')
@@ -324,6 +328,10 @@
                     let id = modal.replace("edit-", "");
                     new bootstrap.Modal(document.getElementById('edit-modal' + id)).show();
                 }
+
+                // document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => {
+                //     new bootstrap.Tooltip(el);
+                // });
 
             });
         </script>

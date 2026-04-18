@@ -39,15 +39,20 @@
                                     <td>Rp {{ number_format($item->harga_rumah, 0, ',', '.') }}</td>
                                     <td class="text-nowrap">
 
-                                        <button class="btn btn-info btn-sm" data-bs-toggle="modal"
-                                            data-bs-target="#edit-modal{{ $item->id }}">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                        </button>
+                                        <!-- EDIT -->
+                                        <a href="#" class="btn btn-icon btn-sm bg-primary-subtle me-1"
+                                            data-bs-toggle="modal" data-bs-target="#edit-modal{{ $item->id }}"
+                                            title="Edit">
+                                            <i class="mdi mdi-pencil-outline fs-14 text-primary"></i>
+                                        </a>
 
-                                        <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                            data-bs-target="#deleteModal1{{ $item->id }}">
-                                           <i class="fa-solid fa-trash"></i>
-                                        </button>
+                                        <!-- DELETE -->
+
+                                        <a href="#" class="btn btn-icon btn-sm bg-danger-subtle"
+                                            data-bs-toggle="modal" data-bs-target="#deleteModal1{{ $item->id }}"
+                                            title="Hapus">
+                                            <i class="mdi mdi-delete fs-14 text-danger"></i>
+                                        </a>
 
                                     </td>
                                 </tr>
