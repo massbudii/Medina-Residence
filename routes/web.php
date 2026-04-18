@@ -51,8 +51,15 @@ Route::group(['middleware' => ['auth', 'check_role:admin,mandor']], function () 
         Route::post('/{id}/selesai', [KawasanController::class, 'selesai'])->name('kawasan.selesai');
     });
 
-    Route::prefix('supplier')->group(function () {
 
+    Route::prefix('supplier')->group(function () {
         Route::get('/supplier', [SupplierController::class, 'index'])->name('supplier.index');
+        Route::post('/store', [SupplierController::class, 'store'])->name('supplier.store');
+        Route::put('/update/{id}', [SupplierController::class, 'update'])->name('supplier.update');
+
+        Route::put('/nonaktif/{id}', [SupplierController::class, 'nonaktif'])->name('supplier.nonaktif');
+        Route::put('/aktif/{id}', [SupplierController::class, 'aktif'])->name('supplier.aktif');
+
+        Route::delete('/delete/{id}', [SupplierController::class, 'destroy'])->name('supplier.delete');
     });
 });

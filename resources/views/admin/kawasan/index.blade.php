@@ -1,5 +1,5 @@
 @extends('app')
-@section('title', 'Data Kawasan')
+@section('title', 'Kawasan')
 @section('content')
 
     <style>

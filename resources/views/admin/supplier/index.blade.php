@@ -1,15 +1,20 @@
 @extends('app')
-@section('title', 'Data Type Unit')
+@section('title', 'Supplier')
 @section('content')
+    <style>
+        table td.text-start {
+            text-align: left !important;
+        }
+    </style>
     <div class="col">
 
         <div class="card mt-3">
 
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h2 class="card-title mb-0">Data Type Unit</h2>
+                <h2 class="card-title mb-0">Data Supplier</h2>
 
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#standard-modal">
-                    Tambah Type
+                    Tambah Supplier
                 </button>
 
             </div>
@@ -20,23 +25,29 @@
                         <thead>
                             <tr>
                                 <th style=" width: 1%">No</th>
-                                <th class="text-start sorting">Nama Type </th>
-                                <th>Luas Banguanan</th>
-                                <th>Luas tanah</th>
-                                <th>Harga Rumah</th>
+                                <th class="text-start sorting">Nama Supplier </th>
+                                <th>Alamat Supplier</th>
+                                <th class="">No Hp</th>
+                                <th>Status</th>
                                 <th class="text-center" style="width: 4%">Aksi</th>
                             </tr>
                         </thead>
 
 
                         <tbody>
-                            @foreach ($type as $key => $item)
+                            @foreach ($supplier as $key => $item)
                                 <tr>
                                     <th scope="row">{{ $loop->iteration }}</th>
-                                    <td class="text-start sorting">{{ $item->nama_type }}</td>
-                                    <td>{{ $item->luas_bangunan }} m<sup>2</sup> </td>
-                                    <td>{{ $item->luas_tanah }} m<sup>2</sup> </td>
-                                    <td>Rp {{ number_format($item->harga_rumah, 0, ',', '.') }}</td>
+                                    <td class="text-start sorting">{{ $item->nama_supplier }}</td>
+                                    <td>{{ $item->alamat_supplier }} </td>
+                                    <td class="text-start text-nowrap   ">{{ $item->no_hp }} </td>
+                                    <td>
+                                        @if ($item->status == 'aktif')
+                                            <span class="badge bg-success">Aktif</span>
+                                        @else
+                                            <span class="badge bg-warning">Nonaktif</span>
+                                        @endif
+                                    </td>
                                     <td class="text-nowrap">
 
                                         <!-- EDIT -->
@@ -53,6 +64,24 @@
                                             title="Hapus">
                                             <i class="mdi mdi-delete fs-14 text-danger"></i>
                                         </a>
+
+                                        @if ($item->status == 'aktif')
+                                            <form action="{{ route('kawasan.selesai', $item->id) }}" method="POST"
+                                                style="display:inline;">
+                                                @csrf
+                                                <button type="submit" class="btn btn-warning btn-sm">
+                                                    Selesai
+                                                </button>
+                                            </form>
+                                        @elseif ($item->status == 'selesai')
+                                            <form action="{{ route('kawasan.aktif', $item->id) }}" method="POST"
+                                                style="display:inline;">
+                                                @csrf
+                                                <button type="submit" class="btn btn-success btn-sm">
+                                                    Aktifkan
+                                                </button>
+                                            </form>
+                                        @endif
 
                                     </td>
                                 </tr>
@@ -153,7 +182,8 @@
 
                                             <div class="modal-header">
                                                 <h5 class="modal-title">Konfirmasi Hapus</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                                <button type="button" class="btn-close"
+                                                    data-bs-dismiss="modal"></button>
                                             </div>
 
                                             <div class="modal-body">
@@ -191,67 +221,49 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                 </div>
 
-                                <form action="{{ route('type.store') }}" method="POST">
+                                <form action="{{ route('supplier.store') }}" method="POST">
                                     @csrf
                                     <div class="modal-body">
                                         <input type="hidden" name="modal" value="tambah">
                                         <div class="row g-3">
 
                                             <div>
-                                                <label class="form-label">Nama Type</label>
-                                                <input type="text" name="nama_type" placeholder="Contoh: Type 45"
-                                                    class="form-control @error('nama_type')
+                                                <label class="form-label">Nama Suplier</label>
+                                                <input type="text" name="nama_supplier"
+                                                    class="form-control @error('nama_supplier')
                                                         is-invalid
                                                     @enderror"
-                                                    value="{{ old('nama_type') }}" id="nama_type">
+                                                    value="{{ old('nama_supplier') }}" id="nama_supplier">
 
-                                                @error('nama_type')
+                                                @error('nama_supplier')
                                                     <small class="text-danger">{{ $message }}</small>
                                                 @enderror
                                             </div>
 
                                             <div>
-                                                <label class="form-label">Luas Bangunan</label>
-                                                <input type="text" name="luas_bangunan"
-                                                    class="form-control @error('luas_bangunan')
+                                                <label class="form-label">Alamat Supplier</label>
+                                                <input type="text" name="alamat_supplier"
+                                                    class="form-control @error('alamat_supplier')
                                                     is-invalid
                                                 @enderror"
-                                                    value="{{ old('luas_bangunan') }}">
-                                                @error('luas_bangunan')
+                                                    value="{{ old('alamat_supplier') }}">
+                                                @error('alamat_supplier')
                                                     <small class="text-danger">{{ $message }}</small>
                                                 @enderror
                                             </div>
 
                                             <div>
-                                                <label class="form-label">Luas Tanah</label>
-                                                <input type="number" name="luas_tanah"
-                                                    class="form-control @error('luas_tanah')
+                                                <label class="form-label">No Hp</label>
+                                                <input type="text" name="no_hp"
+                                                    class="form-control @error('no_hp')
                                                 is-invalid
                                                 @enderror"
-                                                    value="{{ old('luas_tanah') }}">
-                                                @error('luas_tanah')
+                                                    value="{{ old('no_hp') }}">
+                                                @error('no_hp')
                                                     <small class="text-danger">{{ $message }}</small>
                                                 @enderror
                                             </div>
-
-                                            <div>
-                                                <label class="form-label">Harga Rumah</label>
-                                                <div class="input-group">
-                                                    <span class="input-group-text">Rp</span>
-                                                    <input type="number" name="harga_rumah"
-                                                        class="form-control @error('harga_rumah')
-                                                        is-invalid
-                                                    @enderror"
-                                                        value="{{ old('harga_rumah') }}">
-                                                </div>
-                                                @error('harga_rumah')
-                                                    <small class="text-danger">{{ $message }}</small>
-                                                @enderror
-                                            </div>
-
-
                                         </div>
-
                                     </div>
 
                                     <div class="modal-footer">
