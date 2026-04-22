@@ -27,8 +27,8 @@
                                 <th style=" width: 1%">No</th>
                                 <th class="text-start sorting">Nama Supplier </th>
                                 <th>Alamat Supplier</th>
-                                <th class="text-start" >No Hp</th>
-                                <th>Status</th>
+                                <th class="text-start">No Hp</th>
+                                <th style="width: 1%">Status</th>
                                 <th class="text-center" style="width: 4%">Aksi</th>
                             </tr>
                         </thead>
@@ -172,14 +172,14 @@
                                             </div>
 
                                             <div class="modal-body">
-                                                Apakah anda yakin ingin menghapus <b>{{ $item->nama_type }}</b> ?
+                                                Apakah anda yakin ingin menghapus <b>{{ $item->nama_supplier }}</b> ?
                                             </div>
 
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-light"
                                                     data-bs-dismiss="modal">Batal</button>
 
-                                                <form action="{{ route('type.delete', $item->id) }}" method="POST">
+                                                <form action="{{ route('supplier.delete', $item->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button class="btn btn-danger">

@@ -21,12 +21,12 @@
                                             <div class="mb-0 border-0 p-md-4 p-lg-0">
                                                 <div class="mb-4 p-0 text-lg-start text-center">
                                                     <div class="auth-brand text-center">
-                                                        
-                                                       @if (session('failed'))
+
+                                                        @if (session('failed'))
                                                             <div class="alert alert-danger">
                                                                 {{ session('failed') }}
                                                             </div>
-                                                       @endif
+                                                        @endif
 
 
 
@@ -96,7 +96,6 @@
                                                             </div>
                                                         </div>
                                                     </form>
-
                                                 </div>
                                             </div>
                                         </div>
@@ -106,8 +105,6 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
