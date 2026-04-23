@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Material extends Model
 {
-    //
+    protected $guarded = [];
+
+    public function materialKawasan()
+    {
+       return $this->hasMany(MaterialKawasan::class);
+    }
 }
