@@ -62,6 +62,25 @@ class SupplierController extends Controller
         return back()->with('succes', 'Supplier berhasil dihapus');
     }
 
+    public function aktif($id)
+    {
+        $supplier = Supplier::findOrFail($id);
 
+        $supplier->update([
+            'status'=> 'aktif'
+        ]);
+
+        return back()->with('success', 'Supplier berhasil diaktifkan');
+    }
+    public function nonaktif($id)
+    {
+        $supplier = Supplier::findOrFail($id);
+
+        $supplier->update([
+            'status'=> 'nonaktif'
+        ]);
+
+        return back()->with('success', 'Supplier berhasil di noanaktifkan');
+    }
 
 }

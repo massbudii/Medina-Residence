@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('suppliers', function (Blueprint $table) {
-            $table->string('alamat_supplier', 255)->change();
-            $table->enum('status', ['aktif'], ['nonaktif'])->default('aktif')->after('no_hp');
+            $table->enum('status', ['aktif','nonaktif'])->default('aktif')->after('no_hp');
+            $table->string('alamat_supplier')->change();
         });
     }
 
@@ -23,7 +23,6 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('suppliers', function (Blueprint $table) {
-            $table->text('alamat_supplier')->change();
             $table->dropColumn('status');
         });
     }

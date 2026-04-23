@@ -45,7 +45,7 @@
                                         @if ($item->status == 'aktif')
                                             <span class="badge bg-success">Aktif</span>
                                         @else
-                                            <span class="badge bg-warning">Nonaktif</span>
+                                            <span class="badge bg-warning">Nonaktif </span>
                                         @endif
                                     </td>
                                     <td class="text-nowrap">
@@ -66,15 +66,15 @@
                                         </a>
 
                                         @if ($item->status == 'aktif')
-                                            <form action="{{ route('kawasan.selesai', $item->id) }}" method="POST"
+                                            <form action="{{ route('supplier.nonaktif', $item->id) }}" method="POST"
                                                 style="display:inline;">
                                                 @csrf
                                                 <button type="submit" class="btn btn-warning btn-sm">
-                                                    Selesai
+                                                    Nonaktif
                                                 </button>
                                             </form>
-                                        @elseif ($item->status == 'selesai')
-                                            <form action="{{ route('kawasan.aktif', $item->id) }}" method="POST"
+                                        @elseif ($item->status == 'nonaktif')
+                                            <form action="{{ route('supplier.aktif', $item->id) }}" method="POST"
                                                 style="display:inline;">
                                                 @csrf
                                                 <button type="submit" class="btn btn-success btn-sm">
@@ -167,8 +167,7 @@
 
                                             <div class="modal-header">
                                                 <h5 class="modal-title">Konfirmasi Hapus</h5>
-                                                <button type="button" class="btn-close"
-                                                    data-bs-dismiss="modal"></button>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                             </div>
 
                                             <div class="modal-body">

@@ -23,9 +23,6 @@
         </div>
 
         <ul id="side-menu">
-
-
-
             <li class="mt-3">
                 <a href="{{ route('dashboard') }}"  class="nav-links {{ (request()->is('dashboard')) ? 'active' : ''}}">
                     <i data-feather="home"></i>

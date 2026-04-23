@@ -57,8 +57,8 @@ Route::group(['middleware' => ['auth', 'check_role:admin,mandor']], function () 
         Route::post('/supplier/store', [SupplierController::class, 'store'])->name('supplier.store');
         Route::put('/suplier/{id}/update', [SupplierController::class, 'update'])->name('supplier.update');
 
-        Route::put('/nonaktif/{id}', [SupplierController::class, 'nonaktif'])->name('supplier.nonaktif');
-        Route::put('/supplier/{id}aktif', [SupplierController::class, 'aktif'])->name('supplier.aktif');
+        Route::post('/supplier/{id}nonaktif', [SupplierController::class, 'nonaktif'])->name('supplier.nonaktif');
+        Route::post('/supplier/{id}/aktif', [SupplierController::class, 'aktif'])->name('supplier.aktif');
 
         Route::delete('/supplier/{id}/delete', [SupplierController::class, 'destroy'])->name('supplier.delete');
     });
