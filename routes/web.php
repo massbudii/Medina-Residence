@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KawasanController;
+use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
@@ -62,4 +63,10 @@ Route::group(['middleware' => ['auth', 'check_role:admin,mandor']], function () 
 
         Route::delete('/supplier/{id}/delete', [SupplierController::class, 'destroy'])->name('supplier.delete');
     });
+
+    Route::prefix('supplier')->group(function () {
+       Route::get('/data-supplier', [MaterialController::class, 'index'])->name('material.index');
+    });
+
+
 });

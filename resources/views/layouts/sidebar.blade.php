@@ -66,7 +66,7 @@
                 </li>
 
                 <li>
-                    <a href= >
+                    <a href="{{ route('') }}" >
                        <i class="fa-solid fa-boxes-stacked"></i>
                         <span> Material </span>
 
