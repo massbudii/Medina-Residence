@@ -64,9 +64,12 @@ Route::group(['middleware' => ['auth', 'check_role:admin,mandor']], function () 
         Route::delete('/supplier/{id}/delete', [SupplierController::class, 'destroy'])->name('supplier.delete');
     });
 
-    Route::prefix('supplier')->group(function () {
-       Route::get('/data-supplier', [MaterialController::class, 'index'])->name('material.index');
+    Route::prefix('material')->group(function () {
+        Route::get('/data-material', [MaterialController::class, 'index'])->name('material.index');
+        Route::post('/material/store', [MaterialController::class, 'store'])->name('material.store');
+        Route::put('/material/update/{id}', [MaterialController::class, 'update'])->name('material.update');
+
+        Route::post('/material/nonaktif/{id}', [MaterialController::class, 'nonaktif'])->name('material.nonaktif');
+        Route::post('/material/aktif/{id}', [MaterialController::class, 'aktif'])->name('material.aktif');
     });
-
-
 });

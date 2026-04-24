@@ -1,42 +1,85 @@
 @extends('app')
-@section('title', ' Type Unit')
+@section('title', 'Material')
+
 @section('content')
     <div class="col">
 
         <div class="card mt-3">
 
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h2 class="card-title mb-0">Data Type Unit</h2>
+                <h2 class="card-title mb-0">Data Material</h2>
 
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#standard-modal">
-                    Tambah Type
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#standard-modal">
+                    Tambah Material
                 </button>
-
             </div>
 
             <div class="card-body">
+
+                <!-- FILTER -->
+                <form method="GET" action="{{ route('material.index') }}">
+                    <div class="row mb-3">
+
+                        <div class="col-md-4">
+                            <select name="kawasan_id" class="form-control">
+                                <option value="">-- Filter Kawasan --</option>
+                                @foreach ($kawasans as $kawasan)
+                                    <option value="{{ $kawasan->id }}"
+                                        {{ request('kawasan_id') == $kawasan->id ? 'selected' : '' }}>
+                                        {{ $kawasan->nama_kawasan }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-md-4">
+                            <select name="type_unit_id" class="form-control">
+                                <option value="">-- Filter Type Unit --</option>
+                                @foreach ($types as $type)
+                                    <option value="{{ $type->id }}"
+                                        {{ request('type_unit_id') == $type->id ? 'selected' : '' }}>
+                                        {{ $type->nama_type }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-md-4">
+                            <button class="btn btn-primary">Filter</button>
+                            <a href="{{ route('material.index') }}" class="btn btn-warning">Reset</a>
+                        </div>
+
+                    </div>
+                </form>
+
+                <!-- TABLE -->
                 <div class="table-responsive">
-                    <table class="table table-bordered mb-0 text-start" id="table">
+                    <table class="table table-bordered text-start" id="table">
                         <thead>
                             <tr>
-                                <th style=" width: 1%">No</th>
-                                <th class="text-start sorting">Nama Type </th>
-                                <th>Luas Banguanan</th>
-                                <th>Luas tanah</th>
-                                <th>Harga Rumah</th>
-                                <th class="text-center" style="width: 4%">Aksi</th>
+                                <th style="width: 1%">No</th>
+                                <th>Nama Material</th>
+                                <th style="width: 5%">Satuan</th>
+                                <th style="width: 4%">Status</th>
+                                <th style="width: 10%">Aksi</th>
                             </tr>
                         </thead>
 
-
                         <tbody>
-                            @foreach ($type as $key => $item)
+                            @foreach ($materials as $item)
                                 <tr>
-                                    <th scope="row">{{ $loop->iteration }}</th>
-                                    <td class="text-start sorting">{{ $item->nama_type }}</td>
-                                    <td>{{ $item->luas_bangunan }} m<sup>2</sup> </td>
-                                    <td>{{ $item->luas_tanah }} m<sup>2</sup> </td>
-                                    <td>Rp {{ number_format($item->harga_rumah, 0, ',', '.') }}</td>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->nama_material }}</td>
+                                    <td>{{ $item->satuan }}</td>
+
+                                    <td>
+                                        @if ($item->status == 'aktif')
+                                            <span class="badge bg-success">Aktif</span>
+                                        @else
+                                            <span class="badge bg-secondary">Nonaktif</span>
+                                        @endif
+                                    </td>
+
                                     <td class="text-nowrap">
 
                                         <!-- EDIT -->
@@ -48,230 +91,167 @@
 
                                         <!-- DELETE -->
 
-                                        <a href="#" class="btn btn-icon btn-sm bg-danger-subtle"
-                                            data-bs-toggle="modal" data-bs-target="#deleteModal1{{ $item->id }}"
-                                            title="Hapus">
-                                            <i class="mdi mdi-delete fs-14 text-danger"></i>
-                                        </a>
+                                        @if ($item->status == 'aktif')
+                                            <form action="{{ route('material.nonaktif', $item->id) }}" method="POST"
+                                                style="display:inline;">
+                                                @csrf
+                                                <button type="submit" class="btn btn-warning btn-sm">
+                                                    Nonaktif
+                                                </button>
+                                            </form>
+                                        @elseif ($item->status == 'nonaktif')
+                                            <form action="{{ route('material.aktif', $item->id) }}" method="POST"
+                                                style="display:inline;">
+                                                @csrf
+                                                <button type="submit" class="btn btn-success btn-sm">
+                                                    Aktifkan
+                                                </button>
+                                            </form>
+                                        @endif
 
                                     </td>
                                 </tr>
-
-                                <div class="modal fade" id="edit-modal{{ $item->id }}" tabindex="-1">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Edit Type Unit</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                            </div>
-
-                                            <form action="{{ route('type.update', $item->id) }}" method="POST">
-                                                @csrf
-                                                @method('PUT')
-
-                                                <div class="modal-body">
-
-                                                    <input type="hidden" name="modal" value="edit-{{ $item->id }}">
-
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Nama Type</label>
-
-                                                        <input type="text" name="nama_type"
-                                                            class="form-control @error('nama_type')
-                                                            is-invalid
-                                                        @enderror"
-                                                            value="{{ $item->nama_type }}">
-
-                                                        @error('nama_type')
-                                                            <small class="text-danger">{{ $message }}</small>
-                                                        @enderror
-                                                    </div>
-
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Luas Bangunan</label>
-                                                        <input type="number" name="luas_bangunan"
-                                                            class="form-control @error('luas_bangunan')
-                                                            is-invalid
-                                                        @enderror"
-                                                            value="{{ $item->luas_bangunan }}">
-                                                        @error('luas_bangunan')
-                                                            <small class="text-danger">{{ $message }}</small>
-                                                        @enderror
-                                                    </div>
-
-                                                    <div class="mb-3">
-                                                        <label class="form-label">Luas Tanah</label>
-                                                        <input type="number" name="luas_tanah"
-                                                            class="form-control  @error('luas_tanah')
-                                                            is-invalid
-                                                        @enderror"
-                                                            value="{{ $item->luas_tanah }}">
-
-                                                        @error('luas_tanah')
-                                                            <small class="text-danger">{{ $message }}</small>
-                                                        @enderror
-                                                    </div>
-
-                                                    <div>
-                                                        <label class="form-label">Harga Rumah</label>
-                                                        <div class="input-group">
-                                                            <span class="input-group-text">Rp</span>
-                                                            <input type="number" name="harga_rumah"
-                                                                class="form-control  @error('harga_rumah')
-                                                            is-invalid
-                                                        @enderror"
-                                                                value="{{ $item->harga_rumah }}">
-                                                        </div>
-                                                        @error('harga_rumah')
-                                                            <small class="text-danger">{{ $message }}</small>
-                                                        @enderror
-                                                    </div>
-
-                                                </div>
-
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">
-                                                        Batal
-                                                    </button>
-
-                                                    <button type="submit" class="btn btn-primary">
-                                                        Update
-                                                    </button>
-                                                </div>
-
-                                            </form>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- MODAL HAPUS -->
-                                <div class="modal fade" id="deleteModal1{{ $item->id }}" tabindex="-1">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">Konfirmasi Hapus</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                            </div>
-
-                                            <div class="modal-body">
-                                                Apakah anda yakin ingin menghapus <b>{{ $item->nama_type }}</b> ?
-                                            </div>
-
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-light"
-                                                    data-bs-dismiss="modal">Batal</button>
-
-                                                <form action="{{ route('type.delete', $item->id) }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button class="btn btn-danger">
-                                                        Hapus
-                                                    </button>
-
-                                                </form>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
                             @endforeach
                         </tbody>
+
                     </table>
+                </div>
 
+            </div>
+        </div>
+    </div>
 
-                    <!-- MODAL TAMBAH -->
-                    <div class="modal fade" id="standard-modal" tabindex="-1">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Tambah Type</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+    <!-- ================= TAMBAH MODAL ================= -->
+    <div class="modal fade" id="standard-modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <form action="{{ route('material.store') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="modal" value="tambah">
+
+                    <div class="modal-header">
+                        <h5>Tambah Material</h5>
+                        <button class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div class="mb-2">
+                            <label>Nama Material</label>
+                            <input type="text" name="nama_material" class="form-control"
+                                value="{{ old('nama_material') }}">
+                        </div>
+
+                        <div class="mb-2">
+                            <label>Satuan</label>
+                            <input type="text" name="satuan" class="form-control" value="{{ old('satuan') }}">
+                        </div>
+
+                        <div class="mb-2">
+                            <label>Kawasan</label>
+                            <select name="kawasan_id" class="form-control">
+                                <option value="">-- pilih --</option>
+                                @foreach ($kawasans as $kawasan)
+                                    <option value="{{ $kawasan->id }}">{{ $kawasan->nama_kawasan }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="mb-2">
+                            <label>Type Unit</label>
+                            @foreach ($types as $type)
+                                <div class="form-check">
+                                    <input type="checkbox" name="type_unit_id[]" value="{{ $type->id }}">
+                                    {{ $type->nama_type }}
                                 </div>
+                            @endforeach
+                        </div>
 
-                                <form action="{{ route('type.store') }}" method="POST">
-                                    @csrf
-                                    <div class="modal-body">
-                                        <input type="hidden" name="modal" value="tambah">
-                                        <div class="row g-3">
+                    </div>
 
-                                            <div>
-                                                <label class="form-label">Nama Type</label>
-                                                <input type="text" name="nama_type" placeholder="Contoh: Type 45"
-                                                    class="form-control @error('nama_type')
-                                                        is-invalid
-                                                    @enderror"
-                                                    value="{{ old('nama_type') }}" id="nama_type">
+                    <div class="modal-footer">
+                        <button class="btn btn-light" data-bs-dismiss="modal">Batal</button>
+                        <button class="btn btn-primary">Simpan</button>
+                    </div>
 
-                                                @error('nama_type')
-                                                    <small class="text-danger">{{ $message }}</small>
-                                                @enderror
-                                            </div>
+                </form>
 
-                                            <div>
-                                                <label class="form-label">Luas Bangunan</label>
-                                                <input type="text" name="luas_bangunan"
-                                                    class="form-control @error('luas_bangunan')
-                                                    is-invalid
-                                                @enderror"
-                                                    value="{{ old('luas_bangunan') }}">
-                                                @error('luas_bangunan')
-                                                    <small class="text-danger">{{ $message }}</small>
-                                                @enderror
-                                            </div>
+            </div>
+        </div>
+    </div>
 
-                                            <div>
-                                                <label class="form-label">Luas Tanah</label>
-                                                <input type="number" name="luas_tanah"
-                                                    class="form-control @error('luas_tanah')
-                                                is-invalid
-                                                @enderror"
-                                                    value="{{ old('luas_tanah') }}">
-                                                @error('luas_tanah')
-                                                    <small class="text-danger">{{ $message }}</small>
-                                                @enderror
-                                            </div>
+    <!-- ================= EDIT MODAL ================= -->
+    @foreach ($materials as $item)
+        <div class="modal fade" id="edit-modal{{ $item->id }}" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
 
-                                            <div>
-                                                <label class="form-label">Harga Rumah</label>
-                                                <div class="input-group">
-                                                    <span class="input-group-text">Rp</span>
-                                                    <input type="number" name="harga_rumah"
-                                                        class="form-control @error('harga_rumah')
-                                                        is-invalid
-                                                    @enderror"
-                                                        value="{{ old('harga_rumah') }}">
-                                                </div>
-                                                @error('harga_rumah')
-                                                    <small class="text-danger">{{ $message }}</small>
-                                                @enderror
-                                            </div>
+                    <form action="{{ route('material.update', $item->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
 
+                        <div class="modal-header">
+                            <h5>Edit Material</h5>
+                            <button class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
 
-                                        </div>
+                        <div class="modal-body">
 
+                            <div class="mb-2">
+                                <label>Nama</label>
+                                <input type="text" name="nama_material" class="form-control"
+                                    value="{{ $item->nama_material }}">
+                            </div>
+
+                            <div class="mb-2">
+                                <label>Satuan</label>
+                                <input type="text" name="satuan" class="form-control" value="{{ $item->satuan }}">
+                            </div>
+
+                            <div class="mb-2">
+                                <label>Kawasan</label>
+                                <select name="kawasan_id" class="form-control">
+                                    @foreach ($kawasans as $kawasan)
+                                        <option value="{{ $kawasan->id }}">
+                                            {{ $kawasan->nama_kawasan }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="mb-2">
+                                <label>Type Unit</label>
+
+                                @php
+                                    $selected = $item->materialKawasan->pluck('type_unit_id')->toArray();
+                                @endphp
+
+                                @foreach ($types as $type)
+                                    <div class="form-check">
+                                        <input type="checkbox" name="type_unit_id[]" value="{{ $type->id }}"
+                                            {{ in_array($type->id, $selected) ? 'checked' : '' }}>
+                                        {{ $type->nama_type }}
                                     </div>
-
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-light"
-                                            data-bs-dismiss="modal">Batal</button>
-                                        <button class="btn btn-primary">Simpan</button>
-                                    </div>
-
-                                </form>
+                                @endforeach
 
                             </div>
+
                         </div>
-                    </div>
+
+                        <div class="modal-footer">
+                            <button class="btn btn-light" data-bs-dismiss="modal">Batal</button>
+                            <button class="btn btn-primary">Update</button>
+                        </div>
+
+                    </form>
 
                 </div>
             </div>
         </div>
-    </div>
-@endsection
+    @endforeach
 
+@endsection
 @if ($errors->any())
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -300,4 +280,3 @@
         });
     </script>
 @endif
-

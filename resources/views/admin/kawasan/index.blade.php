@@ -1,5 +1,5 @@
 @extends('app')
-@section('title', 'Kawasan')
+@section('title', 'Data Kawasan')
 @section('content')
 
     <style>
@@ -76,20 +76,15 @@
                                         </td>
                                         <td class="text-nowrap">
 
-                                            <!-- EDIT -->
-                                            <a href="#" class="btn btn-icon btn-sm bg-primary-subtle me-1"
-                                                data-bs-toggle="modal" data-bs-target="#edit-modal{{ $item->id }}"
-                                                title="Edit">
-                                                <i class="mdi mdi-pencil-outline fs-14 text-primary"></i>
-                                            </a>
+                                            <button class="btn btn-info btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#edit-modal{{ $item->id }}">
+                                                <i class="fa-solid fa-pen-to-square"></i>
+                                            </button>
 
-                                            <!-- DELETE -->
-
-                                            <a href="#" class="btn btn-icon btn-sm bg-danger-subtle"
-                                                data-bs-toggle="modal" data-bs-target="#deleteModal{{ $item->id }}"
-                                                title="Hapus">
-                                                <i class="mdi mdi-delete fs-14 text-danger"></i>
-                                            </a>
+                                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#deleteModal{{ $item->id }}">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
 
                                             @if ($item->status == 'aktif')
                                                 <form action="{{ route('kawasan.selesai', $item->id) }}" method="POST"

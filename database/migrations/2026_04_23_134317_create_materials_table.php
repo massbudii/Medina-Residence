@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_material');
             $table->string('satuan');
+
             $table->timestamps();
         });
     }

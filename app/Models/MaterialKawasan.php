@@ -26,4 +26,10 @@ class MaterialKawasan extends Model
     {
         return $this->belongsTo(Kawasan::class);
     }
+
+
+    public function typeUnit()
+    {
+        return $this->belongsTo(TypeUnit::class, 'type_unit_id');
+    }
 }

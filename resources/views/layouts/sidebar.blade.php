@@ -66,7 +66,7 @@
                 </li>
 
                 <li>
-                    <a href="{{ route('') }}" >
+                    <a href="{{ route('material.index') }}" class="nav-links{{ (request()->is('material.index')) ? 'active' : '' }}" >
                        <i class="fa-solid fa-boxes-stacked"></i>
                         <span> Material </span>
 
