@@ -29,7 +29,7 @@ class MaterialController extends Controller
         }
 
         // AMBIL & GROUP (biar 1 material tampil 1x)
-      $materials = $query->get();
+        $materials = $query->get();
 
         $kawasans = Kawasan::all();
         $types = TypeUnit::all();

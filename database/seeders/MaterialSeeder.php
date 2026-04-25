@@ -36,17 +36,19 @@ class MaterialSeeder extends Seeder
 
         foreach ($materials as $index => $data) {
 
-            // 🔵 buat material
+            // buat material
             $material = Material::create([
                 'nama_material' => $data['nama_material'],
                 'satuan' => $data['satuan'],
                 'status' => 'aktif',
-            ]);
+            ]); 
 
-            // 🔵 buat relasi (random biar variasi)
+            //  buat relasi (random biar variasi)
             MaterialKawasan::create([
                 'material_id' => $material->id,
                 'kawasan_id' => 1, // pastikan ada di tabel kawasan
+
+
                 'type_unit_id' => ($index % 2) + 1, // 1 atau 2
             ]);
 

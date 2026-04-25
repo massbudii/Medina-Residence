@@ -76,15 +76,19 @@
                                         </td>
                                         <td class="text-nowrap">
 
-                                            <button class="btn btn-info btn-sm" data-bs-toggle="modal"
-                                                data-bs-target="#edit-modal{{ $item->id }}">
-                                                <i class="fa-solid fa-pen-to-square"></i>
-                                            </button>
+                                            <a href="#" class="btn btn-icon btn-sm bg-primary-subtle me-1"
+                                                data-bs-toggle="modal" data-bs-target="#edit-modal{{ $item->id }}"
+                                                title="Edit">
+                                                <i class="mdi mdi-pencil-outline fs-14 text-primary"></i>
+                                            </a>
 
-                                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                                data-bs-target="#deleteModal{{ $item->id }}">
-                                                <i class="fa-solid fa-trash"></i>
-                                            </button>
+                                            <!-- DELETE -->
+
+                                            <a href="#" class="btn btn-icon btn-sm bg-danger-subtle"
+                                                data-bs-toggle="modal" data-bs-target="#deleteModal1{{ $item->id }}"
+                                                title="Hapus">
+                                                <i class="mdi mdi-delete fs-14 text-danger"></i>
+                                            </a>
 
                                             @if ($item->status == 'aktif')
                                                 <form action="{{ route('kawasan.selesai', $item->id) }}" method="POST"
@@ -145,27 +149,6 @@
                                                                 @enderror
                                                             </div>
 
-                                                            {{-- <div>
-                                                            <label class="form-label">Status</label>
-                                                            <select name="status"
-                                                                class="form-control @   error('status') is-invalid @enderror">
-
-                                                                <option value="aktif"
-                                                                    {{ $item->status == 'aktif' ? 'selected' : '' }}>
-                                                                    Aktif
-                                                                </option>
-
-                                                                <option value="selesai"
-                                                                    {{ $item->status == 'selesai' ? 'selected' : '' }}>
-                                                                    Selesai
-                                                                </option>
-
-                                                            </select>
-
-                                                            @error('status')
-                                                                <small class="text-danger">{{ $message }}</small>
-                                                            @enderror
-                                                        </div> --}}
 
                                                             <div>
                                                                 <label class="form-label">Type Unit</label>
