@@ -16,35 +16,45 @@ class MaterialMasukController extends Controller
     {
         $query = MaterialMasuk::with(['material', 'supplier', 'kawasan']);
 
-        //untuk cek udh pakai filter atau belum agar pas filter baru bisa tampil
-        $isFilter = $request->kawasan_id || $request->dari || $request->sampai || $request->bulan || $request->tahun;
+        $isFilter = $request->filled('kawasan_id')
+            || $request->filled('dari')
+            || $request->filled('sampai')
+            || $request->filled('bulan')
+            || $request->filled('tahun');
 
+        // filter kawasan
         if ($request->kawasan_id) {
             $query->where('kawasan_id', $request->kawasan_id);
+        }
+
+        // filter tanggal (INI KUNCI)
+        if ($request->dari && !$request->sampai) {
+            $query->whereDate('tanggal_masuk', $request->dari);
         }
 
         if ($request->dari && $request->sampai) {
             $query->whereBetween('tanggal_masuk', [$request->dari, $request->sampai]);
         }
 
+        // filter bulan
         if ($request->bulan) {
             $query->whereMonth('tanggal_masuk', $request->bulan);
         }
 
+        // filter tahun
         if ($request->tahun) {
             $query->whereYear('tanggal_masuk', $request->tahun);
         }
 
-
-        $query = MaterialMasuk::with(['material', 'supplier', 'kawasan'])
-            ->select('material_masuk.*')
+        // TAMBAH STOK TANPA RESET QUERY
+        $query->select('material_masuk.*')
             ->addSelect([
                 'stok' => DB::table('material_masuk as mm')
                     ->selectRaw('SUM(mm.jumlah)')
                     ->whereColumn('mm.material_id', 'material_masuk.material_id')
                     ->whereColumn('mm.kawasan_id', 'material_masuk.kawasan_id')
             ]);
-        //kalau belum filter data kosong, klaau udah filter ->tamoil
+
         $data = $isFilter ? $query->latest()->get() : collect();
 
         return view('admin.material_masuk.index', [

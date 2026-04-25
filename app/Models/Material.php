@@ -18,5 +18,10 @@ class Material extends Model
         return $this->hasMany(MaterialMasuk::class);
     }
 
-    
+    public function materialTerpakai()
+    {
+        return $this->hasMany(MaterialTerpakai::class);
+    }
+
+
 }

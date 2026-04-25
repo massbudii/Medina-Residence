@@ -132,7 +132,7 @@
                                     </div>
                                 @empty
                                     <tr>
-                                        <td colspan="7" class="text-center text-danger">
+                                        <td colspan="7" class="text-center text-dark">
                                             Data tidak ditemukan
                                         </td>
                                     </tr>

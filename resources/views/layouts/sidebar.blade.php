@@ -85,7 +85,7 @@
             </li>
 
             <li>
-                <a href= >
+                <a href="{{ route('m') }}" >
                  <i class="fa-solid fa-box-open"></i>
                     <span> Material Terpakai </span>
 

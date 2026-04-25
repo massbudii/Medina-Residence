@@ -19,6 +19,10 @@ class Kawasan extends Model
     {
         return $this->hasMany(MaterialMasuk::class);
     }
+    public function materialKeluar()
+    {
+        return $this->hasMany(MaterialTerpakai::class);
+    }
 
 
     public function isSelesai()

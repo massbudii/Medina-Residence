@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KawasanController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\MaterialMasukController;
+use App\Http\Controllers\MaterialTerpakaiController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
@@ -85,5 +86,16 @@ Route::group(['middleware' => ['auth', 'check_role:admin,mandor']], function () 
         Route::put('/update/{id}', [MaterialMasukController::class, 'update'])->name('material_masuk.update');
 
         Route::delete('/delete/{id}', [MaterialMasukController::class, 'destroy'])->name('material_masuk.destroy');
+    });
+
+    Route::prefix('material-keluar')->group(function () {
+
+        Route::get('/', [MaterialTerpakaiController::class, 'index']) ->name('material_terpakai.index');
+
+        Route::post('/store', [MaterialTerpakaiController::class, 'store'])->name('material_terpakai.store');
+
+        Route::put('/update/{id}', [MaterialTerpakaiController::class, 'update'])->name('material_terpakai.update');
+
+        Route::delete('/delete/{id}', [MaterialTerpakaiController::class, 'destroy'])->name('material_terpakai.destroy');
     });
 });
