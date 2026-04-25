@@ -76,7 +76,7 @@
                                         @if ($item->status == 'aktif')
                                             <span class="badge bg-success">Aktif</span>
                                         @else
-                                            <span class="badge bg-secondary">Nonaktif</span>
+                                            <span class="badge bg-warning">Nonaktif</span>
                                         @endif
                                     </td>
 
