@@ -7,6 +7,8 @@ use App\Models\Material;
 use App\Models\Supplier;
 use App\Models\Kawasan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class MaterialMasukController extends Controller
 {
@@ -33,6 +35,15 @@ class MaterialMasukController extends Controller
             $query->whereYear('tanggal_masuk', $request->tahun);
         }
 
+
+        $query = MaterialMasuk::with(['material', 'supplier', 'kawasan'])
+            ->select('material_masuk.*')
+            ->addSelect([
+                'stok' => DB::table('material_masuk as mm')
+                    ->selectRaw('SUM(mm.jumlah)')
+                    ->whereColumn('mm.material_id', 'material_masuk.material_id')
+                    ->whereColumn('mm.kawasan_id', 'material_masuk.kawasan_id')
+            ]);
         //kalau belum filter data kosong, klaau udah filter ->tamoil
         $data = $isFilter ? $query->latest()->get() : collect();
 

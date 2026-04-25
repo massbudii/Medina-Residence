@@ -4,7 +4,7 @@
     <div id="sidebar-menu">
 
         <div class="logo-box">
-            <a href="index.html" class="logo logo-light">
+            <a href="{{ route('dashboard') }}" class="logo logo-light">
                 <span class="logo-sm">
                     <img src="{{ asset('assets/images/logo-medina-new.png') }}" alt="" height="80">
                 </span>
@@ -12,7 +12,7 @@
                     <img src="{{ asset('assets/images/logo-medina-new.png') }}" alt="" height="80">
                 </span>
             </a>
-            <a href="index.html" class="logo logo-dark">
+            <a href="{{ route('dashboard') }}" class="logo logo-dark">
                 <span class="logo-sm">
                     <img src="{{ asset('assets/images/logo-medina-new.png') }}" alt="" height="80">
                 </span>
@@ -102,12 +102,12 @@
                 </li>
             @endif
 
-              <li>
+              {{-- <li>
                 <a href= data-bs-toggle ="collapse">
                     <i class="fa-solid fa-address-book"></i>
                     <span> Profile </span>
 
-                </a>
+                </a> --}}
             </li>
         </ul>
     </div>

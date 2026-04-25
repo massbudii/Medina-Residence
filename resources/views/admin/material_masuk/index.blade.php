@@ -56,6 +56,7 @@
                                 <th>Material</th>
                                 <th>Supplier</th>
                                 <th>Jumlah</th>
+                                <th>Stok</th>
                                 <th style="width: 1%">Aksi</th>
                             </tr>
                         </thead>
@@ -77,6 +78,7 @@
                                         <td>{{ $item->material->nama_material }}</td>
                                         <td>{{ $item->supplier->nama_supplier }}</td>
                                         <td>{{ $item->jumlah }}</td>
+                                        <td>{{ $item->stok }}</td>
 
                                         <td class="text-nowrap">
 
