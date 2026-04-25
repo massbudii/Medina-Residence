@@ -15,6 +15,12 @@ class Kawasan extends Model
         return $this->belongsToMany(TypeUnit::class);
     }
 
+    public function materialMasuk()
+    {
+        return $this->hasMany(MaterialMasuk::class);
+    }
+
+
     public function isSelesai()
     {
         return $this->status === 'selesai';

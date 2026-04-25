@@ -8,8 +8,9 @@ class Supplier extends Model
 {
     protected $guarded = [];
 
-    // public function barangMasuk()
-    // {
-    //     return $this->hasMany(BarangMasuk::class);
-    // }
+    public function materialMasuk()
+    {
+        return $this->hasMany(MaterialMasuk::class);
+    }
+
 }
