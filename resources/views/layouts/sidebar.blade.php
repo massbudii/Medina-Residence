@@ -69,7 +69,6 @@
                     <a href="{{ route('material.index') }}" class="nav-links{{ (request()->is('material.index')) ? 'active' : '' }}" >
                        <i class="fa-solid fa-boxes-stacked"></i>
                         <span> Material </span>
-
                     </a>
                 </li>
             @endif
@@ -79,10 +78,9 @@
             <li class=" menu-title">Transaksi</li>
 
             <li>
-                <a href= >
+                <a href= "{{ route('material_masuk.index') }}" class="nav-links{{ (request()->is('material_masuk.index')) ? 'active' : '' }}">
                    <i class="fa-solid fa-right-to-bracket"></i>
                     <span> Material Masuk </span>
-
                 </a>
             </li>
 

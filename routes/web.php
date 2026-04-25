@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KawasanController;
 use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\MaterialMasukController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
@@ -47,7 +48,7 @@ Route::group(['middleware' => ['auth', 'check_role:admin,mandor']], function () 
         Route::get('/kawasan', [KawasanController::class, 'index'])->name('kawasan.index');
         Route::post('/kawasan', [KawasanController::class, 'store'])->name('kawasan.store');
         Route::put('/kawasan/{id}/update', [KawasanController::class, 'update'])->name('kawasan.update');
-        Route::delete('/kawasan/{id}/delete', [KawasanController::class, 'destroy'])->name('kawasan.delete');
+        Route::delete('/kawasan/{id}/delete', [KawasanController::class, 'destroy'])->name('kawasan.destroy');
         Route::post('/{id}/aktif', [KawasanController::class, 'aktif'])->name('kawasan.aktif');
         Route::post('/{id}/selesai', [KawasanController::class, 'selesai'])->name('kawasan.selesai');
     });
@@ -71,5 +72,18 @@ Route::group(['middleware' => ['auth', 'check_role:admin,mandor']], function () 
 
         Route::post('/material/nonaktif/{id}', [MaterialController::class, 'nonaktif'])->name('material.nonaktif');
         Route::post('/material/aktif/{id}', [MaterialController::class, 'aktif'])->name('material.aktif');
+    });
+
+
+
+    Route::prefix('material-masuk')->group(function () {
+
+        Route::get('/', [MaterialMasukController::class, 'index']) ->name('material_masuk.index');
+
+        Route::post('/store', [MaterialMasukController::class, 'store'])->name('material_masuk.store');
+
+        Route::put('/update/{id}', [MaterialMasukController::class, 'update'])->name('material_masuk.update');
+
+        Route::delete('/delete/{id}', [MaterialMasukController::class, 'destroy'])->name('material_masuk.destroy');
     });
 });

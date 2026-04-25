@@ -189,7 +189,7 @@
                                     </div>
 
                                     <!-- Modal Hapus -->
-                                    <div class="modal fade" id="deleteModal{{ $item->id }}" tabindex="-1">
+                                    <div class="modal fade" id="deleteModal1{{ $item->id }}" tabindex="-1">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
 
@@ -209,7 +209,7 @@
                                                     <button type="button" class="btn btn-light"
                                                         data-bs-dismiss="modal">Batal</button>
 
-                                                    <form action="{{ route('kawasan.delete', $item->id) }}"
+                                                    <form action="{{ route('kawasan.destroy', $item->id) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')
