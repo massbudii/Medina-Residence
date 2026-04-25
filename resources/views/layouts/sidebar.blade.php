@@ -85,7 +85,7 @@
             </li>
 
             <li>
-                <a href="{{ route('m') }}" >
+                <a href="{{ route('material_terpakai.index') }}" class="nav-liks{{ (request()->is('material_terpakai.index')) ?  'active' : '' }}" >
                  <i class="fa-solid fa-box-open"></i>
                     <span> Material Terpakai </span>
 

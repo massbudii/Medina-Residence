@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class MaterialTerpakai extends Model
 {
+    protected $table = 'material_terpakai';
     protected $guarded = [];
 
     public function kawasan()
