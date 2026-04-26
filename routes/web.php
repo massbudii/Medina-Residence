@@ -10,6 +10,7 @@ use App\Http\Controllers\MaterialTerpakaiController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\TypeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\LaporanController;
 
 Route::get('/login', fn() => view('auth.login'))->name('login');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
@@ -79,7 +80,7 @@ Route::group(['middleware' => ['auth', 'check_role:admin,mandor']], function () 
 
     Route::prefix('material-masuk')->group(function () {
 
-        Route::get('/', [MaterialMasukController::class, 'index']) ->name('material_masuk.index');
+        Route::get('/', [MaterialMasukController::class, 'index'])->name('material_masuk.index');
 
         Route::post('/store', [MaterialMasukController::class, 'store'])->name('material_masuk.store');
 
@@ -90,12 +91,26 @@ Route::group(['middleware' => ['auth', 'check_role:admin,mandor']], function () 
 
     Route::prefix('material-keluar')->group(function () {
 
-        Route::get('/', [MaterialTerpakaiController::class, 'index']) ->name('material_terpakai.index');
+        Route::get('/', [MaterialTerpakaiController::class, 'index'])->name('material_terpakai.index');
 
         Route::post('/store', [MaterialTerpakaiController::class, 'store'])->name('material_terpakai.store');
 
         Route::put('/update/{id}', [MaterialTerpakaiController::class, 'update'])->name('material_terpakai.update');
 
         Route::delete('/delete/{id}', [MaterialTerpakaiController::class, 'destroy'])->name('material_terpakai.destroy');
+    });
+
+    Route::prefix('laporan')->group(function () {
+
+        // pengajuan
+        Route::get('/', [LaporanController::class, 'index'])->name('laporan.index');
+        Route::post('/store', [LaporanController::class, 'store'])->name('laporan.store');
+        Route::get('/approve/{id}', [LaporanController::class, 'approve'])->name('laporan.approve');
+
+        // halaman data laporan (baru)
+        Route::get('/data', [LaporanController::class, 'data'])->name('laporan.data');
+
+        // print
+        Route::get('/print/{id}', [LaporanController::class, 'print'])->name('laporan.print');
     });
 });

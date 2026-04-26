@@ -24,7 +24,7 @@
 
         <ul id="side-menu">
             <li class="mt-3">
-                <a href="{{ route('dashboard') }}"  class="nav-links {{ (request()->is('dashboard')) ? 'active' : ''}}">
+                <a href="{{ route('dashboard') }}" class="nav-links {{ request()->is('dashboard') ? 'active' : '' }}">
                     <i data-feather="home"></i>
                     <span> Dashboard </span>
 
@@ -34,15 +34,17 @@
             @if (auth()->user()->role == 'admin')
                 <li class=" menu-title">Master Data</li>
                 <li>
-                    <a href="{{ route('user.index') }}" class="nav-links {{ (request()->is('user.index')) ? 'active' : '' }}" >
-                     <i class="fa-solid fa-user"></i>
+                    <a href="{{ route('user.index') }}"
+                        class="nav-links {{ request()->is('user.index') ? 'active' : '' }}">
+                        <i class="fa-solid fa-user"></i>
                         <span> Data User </span>
 
                     </a>
                 </li>
 
                 <li>
-                    <a href="{{ route('type.index') }}" class="nav-links {{ (request()->is('type.index')) ? 'active' : '' }} " >
+                    <a href="{{ route('type.index') }}"
+                        class="nav-links {{ request()->is('type.index') ? 'active' : '' }} ">
                         <i class="fa-solid fa-layer-group"></i>
                         <span> Type Unit </span>
 
@@ -50,24 +52,27 @@
                 </li>
 
                 <li>
-                    <a href="{{ route('kawasan.index') }}" class="nav-links {{ (request()->is('kawasan.index')) ? 'active' : '' }}">
-                       <i class="fa-solid fa-map-location-dot"></i>
+                    <a href="{{ route('kawasan.index') }}"
+                        class="nav-links {{ request()->is('kawasan.index') ? 'active' : '' }}">
+                        <i class="fa-solid fa-map-location-dot"></i>
                         <span> Kawasan</span>
 
                     </a>
                 </li>
 
                 <li>
-                    <a href="{{ route('supplier.index') }}" class="nav-links{{ (request()->is('supplier.index')) ? 'active' : '' }}">
-                       <i class="fa-solid fa-map-location-dot"></i>
+                    <a href="{{ route('supplier.index') }}"
+                        class="nav-links{{ request()->is('supplier.index') ? 'active' : '' }}">
+                        <i class="fa-solid fa-map-location-dot"></i>
                         <span> Supplier</span>
 
                     </a>
                 </li>
 
                 <li>
-                    <a href="{{ route('material.index') }}" class="nav-links{{ (request()->is('material.index')) ? 'active' : '' }}" >
-                       <i class="fa-solid fa-boxes-stacked"></i>
+                    <a href="{{ route('material.index') }}"
+                        class="nav-links{{ request()->is('material.index') ? 'active' : '' }}">
+                        <i class="fa-solid fa-boxes-stacked"></i>
                         <span> Material </span>
                     </a>
                 </li>
@@ -78,31 +83,47 @@
             <li class=" menu-title">Transaksi</li>
 
             <li>
-                <a href= "{{ route('material_masuk.index') }}" class="nav-links{{ (request()->is('material_masuk.index')) ? 'active' : '' }}">
-                   <i class="fa-solid fa-right-to-bracket"></i>
+                <a href= "{{ route('material_masuk.index') }}"
+                    class="nav-links{{ request()->is('material_masuk.index') ? 'active' : '' }}">
+                    <i class="fa-solid fa-right-to-bracket"></i>
                     <span> Material Masuk </span>
                 </a>
             </li>
 
             <li>
-                <a href="{{ route('material_terpakai.index') }}" class="nav-liks{{ (request()->is('material_terpakai.index')) ?  'active' : '' }}" >
-                 <i class="fa-solid fa-box-open"></i>
+                <a href="{{ route('material_terpakai.index') }}"
+                    class="nav-links{{ request()->is('material_terpakai.index') ? 'active' : '' }}">
+                    <i class="fa-solid fa-box-open"></i>
                     <span> Material Terpakai </span>
 
                 </a>
             </li>
 
-            @if (auth()->user()->role == 'admin')
-                <li>
-                    <a href= >
-                       <i class="fa-solid fa-file"></i>
-                        <span> laporan </span>
+            {{-- @if (auth()->user()->role == 'admin') --}}
 
-                    </a>
-                </li>
-            @endif
 
-              {{-- <li>
+            <li class=" menu-title">Laporan</li>
+
+            <li>
+                <a href="{{ route('laporan.index') }}"
+                    class="nav-links{{ request()->is('laporan.index') ? 'active' : '' }}">
+                    <i class="fa-solid fa-file"></i>
+                    <span> Pengajuan laporan </span>
+
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('laporan.data') }}"
+                    class="nav-links{{ request()->is('laporan.index') ? 'active' : '' }}">
+                    <i class="fa-solid fa-file"></i>
+                    <span> Data laporan </span>
+
+                </a>
+            </li>
+
+            {{-- @endif --}}
+
+            {{-- <li>
                 <a href= data-bs-toggle ="collapse">
                     <i class="fa-solid fa-address-book"></i>
                     <span> Profile </span>
