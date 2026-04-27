@@ -45,7 +45,7 @@
                 <li>
                     <a href="{{ route('type.index') }}"
                         class="nav-links {{ request()->is('type.index') ? 'active' : '' }} ">
-                        <i class="fa-solid fa-layer-group"></i>
+                        <i class="fa-regular fa-house"></i>
                         <span> Type Unit </span>
 
                     </a>
@@ -63,7 +63,7 @@
                 <li>
                     <a href="{{ route('supplier.index') }}"
                         class="nav-links{{ request()->is('supplier.index') ? 'active' : '' }}">
-                        <i class="fa-solid fa-map-location-dot"></i>
+                        <i class="fa-solid fa-truck-fast"></i>
                         <span> Supplier</span>
 
                     </a>
@@ -107,7 +107,7 @@
             <li>
                 <a href="{{ route('laporan.index') }}"
                     class="nav-links{{ request()->is('laporan.index') ? 'active' : '' }}">
-                    <i class="fa-solid fa-file"></i>
+                    <i class="fa-solid fa-paper-plane"></i>
                     <span> Pengajuan laporan </span>
 
                 </a>

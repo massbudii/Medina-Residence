@@ -89,6 +89,10 @@ class LaporanController extends Controller
             'kawasan_id' => 'required',
             'dari' => 'required|date',
             'sampai' => 'required|date|after_or_equal:dari',
+        ],[
+            'kawasan_id.required' => 'Kawasan Wajiib Dipilih',
+            'dari.required' => 'Tanggal Wajiib Dipilih',
+            'sampai.required' => 'Tanggal Wajib Dipilih'
         ]);
 
         Laporan::create([
