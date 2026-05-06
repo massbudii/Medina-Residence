@@ -141,6 +141,27 @@
 
                 <h4>Data Material</h4>
 
+                <!-- FILTER -->
+                <form method="GET" class="mb-3">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <select name="kawasan_id" class="form-control">
+                                <option value="">-- Semua Kawasan --</option>
+                                @foreach ($kawasans as $k)
+                                    <option value="{{ $k->id }}"
+                                        {{ request('kawasan_id') == $k->id ? 'selected' : '' }}>
+                                        {{ $k->nama_kawasan }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-primary">Filter</button>
+                        </div>
+                    </div>
+                </form>
+
+                <!-- TABLE -->
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -161,7 +182,6 @@
                                 <td>{{ $item->masuk }}</td>
                                 <td>{{ $item->keluar }}</td>
                                 <td>{{ $item->satuan }}</td>
-
                                 <td>
                                     <b class="{{ $item->stok < 10 ? 'text-danger' : '' }}">
                                         {{ $item->stok }}
@@ -170,23 +190,12 @@
                             </tr>
                         @endforeach
                     </tbody>
-
                 </table>
 
             </div>
         </div>
 
 
-        <!-- ================= CHART ================= -->
-        <div class="card mt-3">
-            <div class="card-body">
-
-                <h4>Grafik Material Masuk vs Keluar</h4>
-
-                <canvas id="chart"></canvas>
-
-            </div>
-        </div>
 
     </div>
 
@@ -194,28 +203,6 @@
 
 @section('script')
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <script>
-        const ctx = document.getElementById('chart');
-
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: {!! json_encode($labels) !!},
-                datasets: [{
-                        label: 'Material Masuk',
-                        data: {!! json_encode($chartMasuk) !!},
-                        borderWidth: 2
-                    },
-                    {
-                        label: 'Material Keluar',
-                        data: {!! json_encode($chartKeluar) !!},
-                        borderWidth: 2
-                    }
-                ]
-            }
-        });
-    </script>
+    
 
 @endsection
