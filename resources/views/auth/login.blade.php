@@ -59,14 +59,14 @@
                                                         <div class="form-group mb-3">
                                                             <label for="emailaddress" class="form-label">Email</label>
                                                             <input class="form-control" type="email" id="emailaddress"
-                                                                placeholder="Masukkan email anda" name="email">
+                                                                placeholder="Masukkan email anda" name="email" value="{{ old('email') }}">
                                                             @error('email')
                                                                 <small class="text-danger">{{ $message }}</small>
                                                             @enderror
 
-                                                            <div class="invalid-feedback">
+                                                            {{-- <div class="invalid-feedback">
                                                                 salah
-                                                            </div>
+                                                            </div> --}}
 
                                                         </div>
 

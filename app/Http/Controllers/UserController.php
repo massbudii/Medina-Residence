@@ -39,7 +39,9 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
-        if ($user->id == 1) {
+        // Jika yang diedit admin utama,
+        // hanya admin utama sendiri yang boleh edit
+        if ($user->id == 1 && Auth::id() != 1) {
             return back()->with('error', 'Admin utama tidak bisa diedit');
         }
 
@@ -55,7 +57,7 @@ class UserController extends Controller
 
         $data = $request->only(['nama', 'email', 'role']);
 
-        if ($request->password) {
+        if ($request->filled('password')) {
             $data['password'] = Hash::make($request->password);
         }
 
@@ -113,11 +115,18 @@ class UserController extends Controller
             return back()->with('error', 'Hanya admin utama yang boleh menghapus user');
         }
 
+        // Tidak boleh hapus admin utama
+        if ($user->id == 1) {
+            return back()->with('error', 'Admin utama tidak boleh dihapus');
+        }
+
+        // Tidak boleh hapus diri sendiri
         if ($user->id == Auth::id()) {
             return back()->with('error', 'Tidak bisa menghapus akun sendiri');
         }
 
         $user->delete();
+
         return back()->with('success', 'User berhasil dihapus');
     }
 }

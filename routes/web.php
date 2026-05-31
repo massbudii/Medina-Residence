@@ -106,6 +106,8 @@ Route::group(['middleware' => ['auth', 'check_role:admin,mandor']], function () 
         Route::get('/', [LaporanController::class, 'index'])->name('laporan.index');
         Route::post('/store', [LaporanController::class, 'store'])->name('laporan.store');
         Route::get('/approve/{id}', [LaporanController::class, 'approve'])->name('laporan.approve');
+        Route::get('/laporan/reject/{id}', [LaporanController::class, 'reject'])
+            ->name('laporan.reject');
 
         // halaman data laporan (baru)
         Route::get('/data', [LaporanController::class, 'data'])->name('laporan.data');

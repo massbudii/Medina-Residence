@@ -89,7 +89,7 @@ class LaporanController extends Controller
             'kawasan_id' => 'required',
             'dari' => 'required|date',
             'sampai' => 'required|date|after_or_equal:dari',
-        ],[
+        ], [
             'kawasan_id.required' => 'Kawasan Wajiib Dipilih',
             'dari.required' => 'Tanggal Wajiib Dipilih',
             'sampai.required' => 'Tanggal Wajib Dipilih'
@@ -107,22 +107,31 @@ class LaporanController extends Controller
     }
 
     // ================= APPROVE =================
+    // ================= APPROVE =================
     public function approve($id)
     {
         $laporan = Laporan::findOrFail($id);
-
-        if ($laporan->status != 'diajukan') {
-            return back()->with('error', 'Sudah diambil admin lain');
-        }
 
         $laporan->update([
             'status' => 'disetujui',
             'disetujui_oleh' => Auth::id()
         ]);
 
-        return back()->with('success', 'Disetujui');
+        return back()->with('success', 'Laporan berhasil disetujui');
     }
 
+    // ================= REJECT =================
+    public function reject($id)
+    {
+        $laporan = Laporan::findOrFail($id);
+
+        $laporan->update([
+            'status' => 'ditolak',
+            'disetujui_oleh' => Auth::id()
+        ]);
+
+        return back()->with('success', 'Laporan berhasil ditolak');
+    }
     public function data(Request $request)
     {
         $kawasan = $request->kawasan_id;

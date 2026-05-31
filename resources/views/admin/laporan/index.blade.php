@@ -123,9 +123,19 @@
                                                     class="btn btn-success btn-sm">
                                                     ACC
                                                 </a>
-                                            @else
-                                                <button class="btn btn-secondary btn-sm" disabled>
-                                                    Selesai
+
+                                                <a href="{{ route('laporan.reject', $l->id) }}"
+                                                    class="btn btn-danger btn-sm"
+                                                    onclick="return confirm('Yakin ingin menolak laporan ini?')">
+                                                    Tolak
+                                                </a>
+                                            @elseif ($l->status == 'disetujui')
+                                                <button class="btn btn-success btn-sm" disabled>
+                                                    Disetujui
+                                                </button>
+                                            @elseif ($l->status == 'ditolak')
+                                                <button class="btn btn-danger btn-sm" disabled>
+                                                    Ditolak
                                                 </button>
                                             @endif
                                         @endif
@@ -137,9 +147,13 @@
                                                     class="btn btn-primary btn-sm">
                                                     Print
                                                 </a>
+                                            @elseif ($l->status == 'ditolak')
+                                                <button class="btn btn-danger btn-sm" disabled>
+                                                    Ditolak
+                                                </button>
                                             @else
-                                                <button class="btn btn-secondary btn-sm" disabled>
-                                                    Menunggu
+                                                <button class="btn btn-warning btn-sm" disabled>
+                                                    Menunggu ACC
                                                 </button>
                                             @endif
                                         @endif

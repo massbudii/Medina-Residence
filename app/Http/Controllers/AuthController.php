@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+
 
 class AuthController extends Controller
 {
@@ -13,15 +16,42 @@ class AuthController extends Controller
             'email' => 'required|email|max:64',
             'password' => 'required|max:255',
         ]);
-        if (Auth::attempt($request->only('email', 'password'))) {
-            return redirect('/dashboard');
+
+        $user = User::where('email', $request->email)->first();
+
+        // Email tidak ditemukan
+        if (!$user) {
+            return back()
+                ->withInput()
+                ->with('failed', 'Email tidak terdaftar');
         }
-        return back()->with('failed', 'Email dan password salah');
+
+        // Password salah
+        if (!Hash::check($request->password, $user->password)) {
+            return back()
+                ->withInput()
+                ->with('failed', 'Password yang Anda masukkan salah');
+        }
+
+        // Akun nonaktif
+        if ($user->status != 'aktif') {
+            return back()
+                ->withInput()
+                ->with('failed', 'Akun Anda telah dinonaktifkan');
+        }
+
+        Auth::login($user);
+
+        return redirect('/dashboard');
+
+
     }
 
-    public function logout(){
-        Auth::logout(Auth::user());
-        return redirect('/login');
 
+    public function logout()
+    {
+        Auth::logout();
+
+        return redirect('/login');
     }
 }
