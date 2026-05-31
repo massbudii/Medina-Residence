@@ -108,6 +108,7 @@ class LaporanController extends Controller
 
     // ================= APPROVE =================
     // ================= APPROVE =================
+    // ================= APPROVE =================
     public function approve($id)
     {
         $laporan = Laporan::findOrFail($id);

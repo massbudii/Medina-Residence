@@ -116,30 +116,31 @@
 
                                     <td class="text-nowrap text-center">
 
+
                                         {{-- ADMIN --}}
                                         @if (auth()->user()->role == 'admin')
                                             @if ($l->status == 'diajukan')
                                                 <a href="{{ route('laporan.approve', $l->id) }}"
-                                                    class="btn btn-success btn-sm">
+                                                    class="btn btn-success btn-sm btn-acc">
                                                     ACC
                                                 </a>
 
                                                 <a href="{{ route('laporan.reject', $l->id) }}"
-                                                    class="btn btn-danger btn-sm"
-                                                    onclick="return confirm('Yakin ingin menolak laporan ini?')">
+                                                    class="btn btn-danger btn-sm btn-tolak">
                                                     Tolak
                                                 </a>
                                             @elseif ($l->status == 'disetujui')
-                                                <button class="btn btn-success btn-sm" disabled>
-                                                    Disetujui
-                                                </button>
+                                                <a href="{{ route('laporan.reject', $l->id) }}"
+                                                    class="btn btn-danger btn-sm btn-tolak">
+                                                    Tolak
+                                                </a>
                                             @elseif ($l->status == 'ditolak')
-                                                <button class="btn btn-danger btn-sm" disabled>
-                                                    Ditolak
-                                                </button>
+                                                <a href="{{ route('laporan.approve', $l->id) }}"
+                                                    class="btn btn-success btn-sm btn-acc">
+                                                    ACC
+                                                </a>
                                             @endif
                                         @endif
-
                                         {{-- MANDOR --}}
                                         @if (auth()->user()->role == 'mandor')
                                             @if ($l->status == 'disetujui')
@@ -169,4 +170,49 @@
         </div>
 
     </div>
+
+    <script>
+        document.querySelectorAll('.btn-tolak').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                let url = this.getAttribute('href');
+
+                Swal.fire({
+                    title: 'Tolak Laporan?',
+                    text: 'Status laporan akan diubah menjadi ditolak.',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya, Tolak',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = url;
+                    }
+                });
+            });
+        });
+
+        document.querySelectorAll('.btn-acc').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+
+                let url = this.getAttribute('href');
+
+                Swal.fire({
+                    title: 'Setujui Laporan?',
+                    text: 'Status laporan akan diubah menjadi disetujui.',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ya, ACC',
+                    cancelButtonText: 'Batal'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = url;
+                    }
+                });
+            });
+        });
+    </script>
+
 @endsection
