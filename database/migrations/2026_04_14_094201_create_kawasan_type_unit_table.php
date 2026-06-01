@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('kawasan_type_unit', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('kawasan_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('type_unit_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('kawasan_id')->constrained()->restrictOnDelete();
+            $table->foreignId('type_unit_id')->constrained()->restrictOnDelete();
             $table->timestamps();
         });
     }
