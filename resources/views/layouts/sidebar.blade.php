@@ -46,7 +46,7 @@
                     <a href="{{ route('type.index') }}"
                         class="nav-links {{ request()->is('type.index') ? 'active' : '' }} ">
                         <i class="fa-regular fa-house"></i>
-                        <span> Type Unit </span>
+                        <span> Tipe Unit </span>
 
                     </a>
                 </li>
