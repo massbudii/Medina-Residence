@@ -32,7 +32,7 @@
             </li>
 
             @if (auth()->user()->role == 'admin')
-                <li class=" menu-title">Master Data</li>
+                <li class=" menu-title">Kelola Data</li>
                 <li>
                     <a href="{{ route('user.index') }}"
                         class="nav-links {{ request()->is('user.index') ? 'active' : '' }}">
@@ -46,7 +46,7 @@
                     <a href="{{ route('type.index') }}"
                         class="nav-links {{ request()->is('type.index') ? 'active' : '' }} ">
                         <i class="fa-regular fa-house"></i>
-                        <span> Tipe Unit </span>
+                        <span> Data Tipe Unit </span>
 
                     </a>
                 </li>
@@ -55,7 +55,7 @@
                     <a href="{{ route('kawasan.index') }}"
                         class="nav-links {{ request()->is('kawasan.index') ? 'active' : '' }}">
                         <i class="fa-solid fa-map-location-dot"></i>
-                        <span> Kawasan</span>
+                        <span> Data Kawasan</span>
 
                     </a>
                 </li>
@@ -64,7 +64,7 @@
                     <a href="{{ route('supplier.index') }}"
                         class="nav-links{{ request()->is('supplier.index') ? 'active' : '' }}">
                         <i class="fa-solid fa-truck-fast"></i>
-                        <span> Supplier</span>
+                        <span> Data Supplier</span>
 
                     </a>
                 </li>
@@ -73,7 +73,7 @@
                     <a href="{{ route('material.index') }}"
                         class="nav-links{{ request()->is('material.index') ? 'active' : '' }}">
                         <i class="fa-solid fa-boxes-stacked"></i>
-                        <span> Material </span>
+                        <span> Data Material </span>
                     </a>
                 </li>
             @endif
