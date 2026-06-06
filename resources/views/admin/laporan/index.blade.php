@@ -122,7 +122,7 @@
                                             @if ($l->status == 'diajukan')
                                                 <a href="{{ route('laporan.approve', $l->id) }}"
                                                     class="btn btn-success btn-sm btn-acc">
-                                                    ACC
+                                                    Setujui
                                                 </a>
 
                                                 <a href="{{ route('laporan.reject', $l->id) }}"
@@ -137,7 +137,7 @@
                                             @elseif ($l->status == 'ditolak')
                                                 <a href="{{ route('laporan.approve', $l->id) }}"
                                                     class="btn btn-success btn-sm btn-acc">
-                                                    ACC
+                                                    Setujui
                                                 </a>
                                             @endif
                                         @endif
@@ -154,7 +154,7 @@
                                                 </button>
                                             @else
                                                 <button class="btn btn-warning btn-sm" disabled>
-                                                    Menunggu ACC
+                                                    Menunggu Disetujui
                                                 </button>
                                             @endif
                                         @endif
@@ -204,7 +204,7 @@
                     text: 'Status laporan akan diubah menjadi disetujui.',
                     icon: 'question',
                     showCancelButton: true,
-                    confirmButtonText: 'Ya, ACC',
+                    confirmButtonText: 'Ya, Setujui',
                     cancelButtonText: 'Batal'
                 }).then((result) => {
                     if (result.isConfirmed) {
