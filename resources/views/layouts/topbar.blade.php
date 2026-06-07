@@ -9,6 +9,42 @@
          ->count();
  @endphp
 
+ <style>
+     .topbar-notification-link {
+         width: 48px;
+         min-width: 48px;
+         height: 70px;
+         display: flex !important;
+         align-items: center;
+         justify-content: center;
+         padding: 0 12px !important;
+         line-height: 70px;
+     }
+
+     .topbar-notification-link > i {
+         display: block;
+         line-height: 1;
+     }
+
+     .topbar-notification-link::after {
+         display: none;
+     }
+
+     .topbar-notification-badge {
+         min-width: 17px;
+         height: 17px;
+         padding: 0 4px;
+         position: absolute;
+         top: 20px;
+         right: 7px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         font-size: 10px;
+         line-height: 1;
+     }
+ </style>
+
  <div class="container-fluid">
                 <div class="d-flex justify-content-between">
                     <ul class="list-unstyled topnav-menu mb-0 d-flex align-items-center">
@@ -50,11 +86,11 @@
 
                         <!-- Notifications -->
                         <li class="dropdown notification-list topbar-dropdown">
-                            <a class="nav-link dropdown-toggle position-relative" data-bs-toggle="dropdown"
+                            <a class="nav-link dropdown-toggle position-relative topbar-notification-link" data-bs-toggle="dropdown"
                                 href="#" role="button" aria-haspopup="false" aria-expanded="false">
                                 <i class="mdi mdi-bell-outline fs-22"></i>
                                 @if ($unreadNotificationCount > 0)
-                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    <span class="topbar-notification-badge badge rounded-pill bg-danger">
                                         {{ $unreadNotificationCount > 9 ? '9+' : $unreadNotificationCount }}
                                     </span>
                                 @endif
