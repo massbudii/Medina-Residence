@@ -42,8 +42,14 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect('/dashboard');
+        $message = match ($user->role) {
+            'admin' => "Selamat datang, {$user->nama}. Anda berhasil login sebagai Admin.",
+            'mandor' => "Selamat datang, {$user->nama}. Anda berhasil login sebagai Mandor.",
+            default => "Selamat datang, {$user->nama}. Anda berhasil login.",
+        };
 
+        return redirect('/dashboard')
+            ->with('login_success', $message);
 
     }
 

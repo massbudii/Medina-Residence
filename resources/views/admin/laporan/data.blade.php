@@ -68,7 +68,7 @@
                 @else
                     @forelse($data as $d)
                         <tr>
-                            <td>{{ $d->tanggal }}</td>
+                            <td>{{ \Carbon\Carbon::parse($d->tanggal)->translatedFormat('d F Y') }}</td>
                             <td>{{ $d->kawasan->nama_kawasan }}</td>
                             <td>{{ $d->material->nama_material }}</td>
                             <td>{{ $d->tipe == 'masuk' ? $d->jumlah : '-' }}</td>

@@ -55,7 +55,7 @@ class MaterialMasukController extends Controller
                     ->whereColumn('mm.kawasan_id', 'material_masuk.kawasan_id')
             ]);
 
-        $data = $isFilter ? $query->latest()->get() : collect();
+        $data = $query->latest()->get();
 
         return view('admin.material_masuk.index', [
             'data' => $data,
@@ -95,7 +95,7 @@ class MaterialMasukController extends Controller
 
         MaterialMasuk::create($validated);
 
-        return back()
+        return redirect()->route('material_masuk.index')
             ->with('success', 'Material masuk berhasil ditambahkan');
     }
 
@@ -119,7 +119,7 @@ class MaterialMasukController extends Controller
         $data = MaterialMasuk::findOrFail($id);
         $data->update($validated);
 
-        return back()
+        return redirect()->route('material_masuk.index')
             ->with('success', 'Material masuk berhasil diupdate');
     }
 
@@ -129,7 +129,7 @@ class MaterialMasukController extends Controller
         $data = MaterialMasuk::findOrFail($id);
         $data->delete();
 
-        return back()
+        return redirect()->route('material_masuk.index')
             ->with('success', 'Material masuk berhasil dihapus');
     }
 }

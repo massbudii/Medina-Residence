@@ -64,83 +64,74 @@
 
                         <tbody>
 
-                            @if (!$isFilter)
+                            @forelse ($data as $item)
                                 <tr>
-                                    <td colspan="7" class="text-center text-muted">
-                                        Untuk menampilkan data silahkan filter terlebih dahulu
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($item->tanggal_masuk)->translatedFormat('d F Y') }}</td>
+                                    <td>{{ $item->kawasan->nama_kawasan }}</td>
+                                    <td>{{ $item->material->nama_material }}</td>
+                                    <td>{{ $item->jumlah }}</td>
+                                    <td>{{ $item->material->satuan }}</td>
+                                    <td>{{ $item->supplier->nama_supplier }}</td>
+                                    <td>{{ $item->stok }}</td>
+
+                                    <td class="text-nowrap">
+
+                                        <!-- EDIT -->
+                                        <a href="#" class="btn btn-icon btn-sm bg-primary-subtle me-1"
+                                            data-bs-toggle="modal" data-bs-target="#edit-modal{{ $item->id }}">
+                                            <i class="mdi mdi-pencil-outline fs-14 text-primary"></i>
+                                        </a>
+
+                                        <!-- DELETE -->
+                                        <a href="#" class="btn btn-icon btn-sm bg-danger-subtle"
+                                            data-bs-toggle="modal" data-bs-target="#deleteModal1{{ $item->id }}"
+                                            title="Hapus">
+                                            <i class="mdi mdi-delete fs-14 text-danger"></i>
+                                        </a>
+
                                     </td>
                                 </tr>
-                            @else
-                                @forelse ($data as $item)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->tanggal_masuk }}</td>
-                                        <td>{{ $item->kawasan->nama_kawasan }}</td>
-                                        <td>{{ $item->material->nama_material }}</td>
-                                        <td>{{ $item->jumlah }}</td>
-                                        <td>{{ $item->material->satuan }}</td>
-                                        <td>{{ $item->supplier->nama_supplier }}</td>
-                                        <td>{{ $item->stok }}</td>
 
-                                        <td class="text-nowrap">
+                                <div class="modal fade" id="deleteModal1{{ $item->id }}" tabindex="-1">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
 
-                                            <!-- EDIT -->
-                                            <a href="#" class="btn btn-icon btn-sm bg-primary-subtle me-1"
-                                                data-bs-toggle="modal" data-bs-target="#edit-modal{{ $item->id }}">
-                                                <i class="mdi mdi-pencil-outline fs-14 text-primary"></i>
-                                            </a>
-
-                                            <!-- DELETE -->
-                                            <a href="#" class="btn btn-icon btn-sm bg-danger-subtle"
-                                                data-bs-toggle="modal" data-bs-target="#deleteModal1{{ $item->id }}"
-                                                title="Hapus">
-                                                <i class="mdi mdi-delete fs-14 text-danger"></i>
-                                            </a>
-
-                                        </td>
-                                    </tr>
-
-                                    <div class="modal fade" id="deleteModal1{{ $item->id }}" tabindex="-1">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">Konfirmasi Hapus</h5>
-                                                    <button type="button" class="btn-close"
-                                                        data-bs-dismiss="modal"></button>
-                                                </div>
-
-                                                <div class="modal-body">
-                                                    Apakah anda yakin ingin menghapus <b>{{ $item->material_masuk }}</b> ?
-                                                </div>
-
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-light"
-                                                        data-bs-dismiss="modal">Batal</button>
-
-                                                    <form action="{{ route('material_masuk.destroy', $item->id) }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-
-                                                        <button type="submit" class="btn bg-danger btn-danger">
-                                                            Hapus
-                                                        </button>
-                                                    </form>
-                                                </div>
-
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Konfirmasi Hapus</h5>
+                                                <button type="button" class="btn-close"
+                                                    data-bs-dismiss="modal"></button>
                                             </div>
+
+                                            <div class="modal-body">
+                                                Apakah anda yakin ingin menghapus <b>{{ $item->material_masuk }}</b> ?
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-light"
+                                                    data-bs-dismiss="modal">Batal</button>
+
+                                                <form action="{{ route('material_masuk.destroy', $item->id) }}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+
+                                                    <button type="submit" class="btn bg-danger btn-danger">
+                                                        Hapus
+                                                    </button>
+                                                </form>
+                                            </div>
+
                                         </div>
                                     </div>
-                                @empty
-                                    <tr>
-                                        <td colspan="7" class="text-center text-dark">
-                                            Data tidak ditemukan
-                                        </td>
-                                    </tr>
-                                @endforelse
-
-                            @endif
+                                </div>
+                            @empty
+                                <tr>
+                                    <td colspan="9" class="text-center text-dark">
+                                        Data tidak ditemukan
+                                    </td>
+                                </tr>
+                            @endforelse
 
                         </tbody>
 

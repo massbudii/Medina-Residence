@@ -95,9 +95,9 @@
                                     <td>{{ $l->kawasan->nama_kawasan ?? '-' }}</td>
 
                                     <td>
-                                        {{ \Carbon\Carbon::parse($l->dari)->format('d-m-Y') }}
+                                        {{ \Carbon\Carbon::parse($l->dari)->translatedFormat('d F Y') }}
                                         s/d
-                                        {{ \Carbon\Carbon::parse($l->sampai)->format('d-m-Y') }}
+                                        {{ \Carbon\Carbon::parse($l->sampai)->translatedFormat('d F Y') }}
                                     </td>
 
                                     <td>{{ $l->pembuat->nama ?? '-' }}</td>

@@ -38,7 +38,7 @@ class MaterialTerpakaiController extends Controller
                     ->whereColumn('mm.kawasan_id', 'material_terpakai.kawasan_id')
             ]);
 
-        $data = $isFilter ? $query->latest()->get() : collect();
+        $data = $query->latest()->get();
 
         return view('admin.material_terpakai.index', [
             'data' => $data,
@@ -82,7 +82,8 @@ class MaterialTerpakaiController extends Controller
             'jumlah' => $request->jumlah,
         ]);
 
-        return back()->with('success', 'Material terpakai berhasil disimpan');
+        return redirect()->route('material_terpakai.index')
+            ->with('success', 'Material terpakai berhasil disimpan');
     }
 
     public function update(Request $request, $id)
@@ -121,12 +122,14 @@ class MaterialTerpakaiController extends Controller
             'jumlah' => $request->jumlah,
         ]);
 
-        return back()->with('success', 'Data berhasil diupdate');
+        return redirect()->route('material_terpakai.index')
+            ->with('success', 'Data berhasil diupdate');
     }
 
     public function destroy($id)
     {
         MaterialTerpakai::findOrFail($id)->delete();
-        return back()->with('success', 'Data berhasil dihapus');
+        return redirect()->route('material_terpakai.index')
+            ->with('success', 'Data berhasil dihapus');
     }
 }

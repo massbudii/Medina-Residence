@@ -42,6 +42,20 @@
  </script>
 
  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ @if (session('login_success'))
+     <script>
+         Swal.fire({
+             toast: true,
+             position: 'top-end',
+             icon: 'success',
+             title: @json(session('login_success')),
+             showConfirmButton: false,
+             timer: 3500,
+             timerProgressBar: true
+         });
+     </script>
+ @endif
+
  @if (session('success'))
      <script>
          Swal.fire({
