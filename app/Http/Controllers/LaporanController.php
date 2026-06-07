@@ -9,6 +9,8 @@ use App\Models\Laporan;
 use App\Models\Kawasan;
 use App\Models\MaterialMasuk;
 use App\Models\MaterialTerpakai;
+use App\Models\AppNotification;
+use App\Models\User;
 
 class LaporanController extends Controller
 {
@@ -95,13 +97,27 @@ class LaporanController extends Controller
             'sampai.required' => 'Tanggal Wajib Dipilih'
         ]);
 
-        Laporan::create([
+        $laporan = Laporan::create([
             'kawasan_id' => $request->kawasan_id,
             'dari' => $request->dari,
             'sampai' => $request->sampai,
             'dibuat_oleh' => Auth::id(),
             'status' => 'diajukan'
         ]);
+
+        $admins = User::where('role', 'admin')
+            ->where('status', 'aktif')
+            ->get();
+
+        foreach ($admins as $admin) {
+            AppNotification::create([
+                'user_id' => $admin->id,
+                'laporan_id' => $laporan->id,
+                'title' => 'Pengajuan laporan baru',
+                'message' => Auth::user()->nama . ' mengajukan laporan baru untuk disetujui.',
+                'url' => route('laporan.index', [], false),
+            ]);
+        }
 
         return back()->with('success', 'Laporan diajukan');
     }
@@ -118,6 +134,14 @@ class LaporanController extends Controller
             'disetujui_oleh' => Auth::id()
         ]);
 
+        AppNotification::create([
+            'user_id' => $laporan->dibuat_oleh,
+            'laporan_id' => $laporan->id,
+            'title' => 'Laporan disetujui',
+            'message' => 'Pengajuan laporan Anda telah disetujui oleh ' . Auth::user()->nama . '.',
+            'url' => route('laporan.index', [], false),
+        ]);
+
         return back()->with('success', 'Laporan berhasil disetujui');
     }
 
@@ -129,6 +153,14 @@ class LaporanController extends Controller
         $laporan->update([
             'status' => 'ditolak',
             'disetujui_oleh' => Auth::id()
+        ]);
+
+        AppNotification::create([
+            'user_id' => $laporan->dibuat_oleh,
+            'laporan_id' => $laporan->id,
+            'title' => 'Laporan ditolak',
+            'message' => 'Pengajuan laporan Anda telah ditolak oleh ' . Auth::user()->nama . '.',
+            'url' => route('laporan.index', [], false),
         ]);
 
         return back()->with('success', 'Laporan berhasil ditolak');

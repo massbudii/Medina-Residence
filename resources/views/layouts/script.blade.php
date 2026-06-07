@@ -42,16 +42,48 @@
  </script>
 
  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ @php
+     $toastNotification = auth()->check()
+         ? auth()->user()->appNotifications()->whereNull('read_at')->latest()->first()
+         : null;
+ @endphp
+
  @if (session('login_success'))
      <script>
          Swal.fire({
              toast: true,
-             position: 'top-end',
+             position: 'bottom-end',
              icon: 'success',
              title: @json(session('login_success')),
              showConfirmButton: false,
              timer: 3500,
              timerProgressBar: true
+         });
+     </script>
+ @endif
+
+ @if ($toastNotification)
+     <script>
+         Swal.fire({
+             toast: true,
+             position: 'bottom-end',
+             icon: 'info',
+             title: @json($toastNotification->title),
+             html: @json($toastNotification->message),
+             showConfirmButton: false,
+             showCloseButton: true,
+             timer: 6000,
+             timerProgressBar: true,
+             didOpen: function(toast) {
+                 toast.style.cursor = 'pointer';
+                 toast.addEventListener('click', function(event) {
+                     if (event.target.closest('.swal2-close')) {
+                         return;
+                     }
+
+                     window.location.href = @json(route('notification.read', $toastNotification->id));
+                 });
+             }
          });
      </script>
  @endif

@@ -1,3 +1,14 @@
+ @php
+     $topbarNotifications = auth()->user()->appNotifications()
+         ->latest()
+         ->take(5)
+         ->get();
+
+     $unreadNotificationCount = auth()->user()->appNotifications()
+         ->whereNull('read_at')
+         ->count();
+ @endphp
+
  <div class="container-fluid">
                 <div class="d-flex justify-content-between">
                     <ul class="list-unstyled topnav-menu mb-0 d-flex align-items-center">
@@ -35,6 +46,50 @@
                                 <i data-feather="moon" class="align-middle dark-mode"></i>
                                 <i data-feather="sun" class="align-middle light-mode"></i>
                             </button>
+                        </li>
+
+                        <!-- Notifications -->
+                        <li class="dropdown notification-list topbar-dropdown">
+                            <a class="nav-link dropdown-toggle position-relative" data-bs-toggle="dropdown"
+                                href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                                <i class="mdi mdi-bell-outline fs-22"></i>
+                                @if ($unreadNotificationCount > 0)
+                                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                        {{ $unreadNotificationCount > 9 ? '9+' : $unreadNotificationCount }}
+                                    </span>
+                                @endif
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end" style="min-width: 340px;">
+                                <div class="dropdown-header noti-title d-flex justify-content-between align-items-center">
+                                    <h6 class="text-overflow m-0">Notifikasi</h6>
+                                    @if ($unreadNotificationCount > 0)
+                                        <span class="badge bg-danger">{{ $unreadNotificationCount }} baru</span>
+                                    @endif
+                                </div>
+
+                                @forelse ($topbarNotifications as $notification)
+                                    <a href="{{ route('notification.read', $notification->id) }}"
+                                        class="dropdown-item notify-item {{ $notification->read_at ? '' : 'bg-light' }}">
+                                        <div class="d-flex gap-2">
+                                            <div>
+                                                <i class="mdi mdi-file-document-outline fs-18 text-primary"></i>
+                                            </div>
+                                            <div class="flex-grow-1">
+                                                <div class="fw-semibold text-dark">{{ $notification->title }}</div>
+                                                <div class="text-muted small text-wrap">{{ $notification->message }}</div>
+                                                <div class="text-muted small mt-1">
+                                                    {{ $notification->created_at->translatedFormat('d F Y H:i') }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                @empty
+                                    <div class="dropdown-item text-center text-muted py-3">
+                                        Belum ada notifikasi
+                                    </div>
+                                @endforelse
+                            </div>
                         </li>
 
 
