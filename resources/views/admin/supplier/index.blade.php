@@ -28,7 +28,7 @@
                                 <th class="text-start sorting">Nama Supplier </th>
                                 <th>Alamat Supplier</th>
                                 <th class="text-start">No Hp</th>
-                                <th style="width: 1%">Status</th>
+                                <th style="wi``````````````````````````````````````````````````````dth: 1%">Status</th>
                                 <th class="text-center" style="width: 4%">Aksi</th>
                             </tr>
                         </thead>
