@@ -49,7 +49,7 @@
                                     <th scope="col">Nama Kawasan</th>
                                     <th scope="col">Alamat</th>
                                     <th scope="col" style="width: 10%">Type Unit</th>
-                                    <th scope="col" style="width: 5%">Status</th>
+                                    {{-- <th scope="col" style="width: 5%">Status</th> --}}
                                     <th style="width:1%" class="text-center">Aksi</th>
                                 </tr>
                             </thead>
@@ -67,13 +67,13 @@
                                                 <span class="text-muted">Belum ada</span>
                                             @endif
                                         </td>
-                                        <td>
+                                        {{-- <td>
                                             @if ($item->status == 'aktif')
                                                 <span class="badge bg-success">Aktif</span>
                                             @else
                                                 <span class="badge bg-warning">Selesai</span>
                                             @endif
-                                        </td>
+                                        </td> --}}
                                         <td class="text-nowrap">
 
                                             <a href="#" class="btn btn-icon btn-sm bg-primary-subtle me-1"
@@ -90,7 +90,7 @@
                                                 <i class="mdi mdi-delete fs-14 text-danger"></i>
                                             </a>
 
-                                            @if ($item->status == 'aktif')
+                                            {{-- @if ($item->status == 'aktif')
                                                 <form action="{{ route('kawasan.selesai', $item->id) }}" method="POST"
                                                     style="display:inline;">
                                                     @csrf
@@ -106,7 +106,7 @@
                                                         Aktifkan
                                                     </button>
                                                 </form>
-                                            @endif
+                                            @endif --}}
                                         </td>
                                     </tr>
 

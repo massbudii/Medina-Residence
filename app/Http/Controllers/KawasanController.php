@@ -120,29 +120,29 @@ class KawasanController extends Controller
         }
     }
 
-    public function aktif($id)
-    {
-        $kawasan = Kawasan::findOrFail($id);
+    // public function aktif($id)
+    // {
+    //     $kawasan = Kawasan::findOrFail($id);
 
-        if ($kawasan->status !== 'aktif') {
-            $kawasan->update([
-                'status' => 'aktif'
-            ]);
-        }
+    //     if ($kawasan->status !== 'aktif') {
+    //         $kawasan->update([
+    //             'status' => 'aktif'
+    //         ]);
+    //     }
 
-        return redirect()->back()->with('success', 'Kawasan berhasil diaktifkan');
-    }
+    //     return redirect()->back()->with('success', 'Kawasan berhasil diaktifkan');
+    // }
 
-    public function selesai($id)
-    {
-        $kawasan = Kawasan::findOrFail($id);
+    // public function selesai($id)
+    // {
+    //     $kawasan = Kawasan::findOrFail($id);
 
-        if ($kawasan->status !== 'selesai') {
-            $kawasan->update([
-                'status' => 'selesai'
-            ]);
-        }
+    //     if ($kawasan->status !== 'selesai') {
+    //         $kawasan->update([
+    //             'status' => 'selesai'
+    //         ]);
+    //     }
 
-        return redirect()->back()->with('success', 'Kawasan telah selesai pengerjaan');
-    }
+    //     return redirect()->back()->with('success', 'Kawasan telah selesai pengerjaan');
+    // }
 }
