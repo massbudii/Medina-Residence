@@ -46,7 +46,7 @@
         </form>
 
         {{-- TABLE --}}
-        <table class="table table-bordered">
+        <table class="table table-bordered" id="table">
             <thead>
                 <tr>
                     <th>Tanggal</th>
@@ -59,30 +59,22 @@
             </thead>
 
             <tbody>
-                @if(!$isFilter)
+                @forelse($data as $d)
                     <tr>
-                        <td colspan="6" class="text-center text-muted">
-                            Silakan filter dulu
+                        <td>{{ \Carbon\Carbon::parse($d->tanggal)->translatedFormat('d F Y') }}</td>
+                        <td>{{ $d->kawasan->nama_kawasan }}</td>
+                        <td>{{ $d->material->nama_material }}</td>
+                        <td>{{ $d->tipe == 'masuk' ? $d->jumlah : '-' }}</td>
+                        <td>{{ $d->tipe == 'keluar' ? $d->jumlah : '-' }}</td>
+                        <td><b>{{ $d->stok }}</b></td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="6" class="text-center">
+                            Data tidak ditemukan
                         </td>
                     </tr>
-                @else
-                    @forelse($data as $d)
-                        <tr>
-                            <td>{{ \Carbon\Carbon::parse($d->tanggal)->translatedFormat('d F Y') }}</td>
-                            <td>{{ $d->kawasan->nama_kawasan }}</td>
-                            <td>{{ $d->material->nama_material }}</td>
-                            <td>{{ $d->tipe == 'masuk' ? $d->jumlah : '-' }}</td>
-                            <td>{{ $d->tipe == 'keluar' ? $d->jumlah : '-' }}</td>
-                            <td><b>{{ $d->stok }}</b></td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="6" class="text-center">
-                                Data tidak ditemukan
-                            </td>
-                        </tr>
-                    @endforelse
-                @endif
+                @endforelse
             </tbody>
         </table>
 

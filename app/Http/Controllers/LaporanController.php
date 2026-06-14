@@ -171,43 +171,40 @@ class LaporanController extends Controller
         $dari = $request->dari;
         $sampai = $request->sampai;
 
-        $isFilter = $request->filled('kawasan_id') &&
-            $request->filled('dari') &&
+        $isFilter = $request->filled('kawasan_id') ||
+            $request->filled('dari') ||
             $request->filled('sampai');
 
-        $data = collect();
-
-        if ($isFilter) {
-
-            $masuk = MaterialMasuk::with(['material', 'kawasan'])
-                ->where('kawasan_id', $kawasan)
-                ->whereBetween('tanggal_masuk', [$dari, $sampai])
-                ->get()
-                ->map(function ($item) {
-                    $item->tipe = 'masuk';
-                    $item->tanggal = $item->tanggal_masuk;
-                    return $item;
-                });
-
-            $keluar = MaterialTerpakai::with(['material', 'kawasan'])
-                ->where('kawasan_id', $kawasan)
-                ->whereBetween('tanggal_pakai', [$dari, $sampai])
-                ->get()
-                ->map(function ($item) {
-                    $item->tipe = 'keluar';
-                    $item->tanggal = $item->tanggal_pakai;
-                    return $item;
-                });
-
-            $data = $masuk->merge($keluar)->sortBy('tanggal')->values();
-
-            $stok = 0;
-            $data = $data->map(function ($item) use (&$stok) {
-                $stok += ($item->tipe == 'masuk') ? $item->jumlah : -$item->jumlah;
-                $item->stok = $stok;
+        $masuk = MaterialMasuk::with(['material', 'kawasan'])
+            ->when($kawasan, fn ($query) => $query->where('kawasan_id', $kawasan))
+            ->when($dari, fn ($query) => $query->whereDate('tanggal_masuk', '>=', $dari))
+            ->when($sampai, fn ($query) => $query->whereDate('tanggal_masuk', '<=', $sampai))
+            ->get()
+            ->map(function ($item) {
+                $item->tipe = 'masuk';
+                $item->tanggal = $item->tanggal_masuk;
                 return $item;
             });
-        }
+
+        $keluar = MaterialTerpakai::with(['material', 'kawasan'])
+            ->when($kawasan, fn ($query) => $query->where('kawasan_id', $kawasan))
+            ->when($dari, fn ($query) => $query->whereDate('tanggal_pakai', '>=', $dari))
+            ->when($sampai, fn ($query) => $query->whereDate('tanggal_pakai', '<=', $sampai))
+            ->get()
+            ->map(function ($item) {
+                $item->tipe = 'keluar';
+                $item->tanggal = $item->tanggal_pakai;
+                return $item;
+            });
+
+        $data = $masuk->merge($keluar)->sortBy('tanggal')->values();
+
+        $stok = 0;
+        $data = $data->map(function ($item) use (&$stok) {
+            $stok += ($item->tipe == 'masuk') ? $item->jumlah : -$item->jumlah;
+            $item->stok = $stok;
+            return $item;
+        });
 
         return view('admin.laporan.data', [
             'data' => $data,

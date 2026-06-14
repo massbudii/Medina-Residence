@@ -63,6 +63,10 @@
      $toastNotification = auth()->check()
          ? auth()->user()->appNotifications()->whereNull('read_at')->latest()->first()
          : null;
+
+     if ($toastNotification) {
+         $toastNotification->update(['read_at' => now()]);
+     }
  @endphp
 
  @if (session('login_success'))
@@ -81,27 +85,29 @@
 
  @if ($toastNotification)
      <script>
-         Swal.fire({
-             toast: true,
-             position: 'bottom-end',
-             icon: 'info',
-             title: @json($toastNotification->title),
-             html: @json($toastNotification->message),
-             showConfirmButton: false,
-             showCloseButton: true,
-             timer: 6000,
-             timerProgressBar: true,
-             didOpen: function(toast) {
-                 toast.style.cursor = 'pointer';
-                 toast.addEventListener('click', function(event) {
-                     if (event.target.closest('.swal2-close')) {
-                         return;
-                     }
+         setTimeout(function() {
+             Swal.fire({
+                 toast: true,
+                 position: 'bottom-end',
+                 icon: 'info',
+                 title: @json($toastNotification->title),
+                 html: @json($toastNotification->message),
+                 showConfirmButton: false,
+                 showCloseButton: true,
+                 timer: 6000,
+                 timerProgressBar: true,
+                 didOpen: function(toast) {
+                     toast.style.cursor = 'pointer';
+                     toast.addEventListener('click', function(event) {
+                         if (event.target.closest('.swal2-close')) {
+                             return;
+                         }
 
-                     window.location.href = @json(route('notification.read', $toastNotification->id));
-                 });
-             }
-         });
+                         window.location.href = @json(route('notification.read', $toastNotification->id));
+                     });
+                 }
+             });
+         }, {{ session('login_success') ? 3700 : 0 }});
      </script>
  @endif
 
