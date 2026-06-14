@@ -10,9 +10,6 @@
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h2 class="card-title mb-0">Data Material Masuk</h2>
 
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#standard-modal">
-                    Tambah Material Masuk
-                </button>
             </div>
 
             <div class="card-body">
@@ -58,7 +55,7 @@
                                 <th>Satuan</th>
                                  <th>Supplier</th>
                                 <th>Stok</th>
-                                <th style="width: 1%">Aksi</th>
+
                             </tr>
                         </thead>
 
@@ -75,22 +72,7 @@
                                     <td>{{ $item->supplier->nama_supplier }}</td>
                                     <td>{{ $item->stok }}</td>
 
-                                    <td class="text-nowrap">
-
-                                        <!-- EDIT -->
-                                        <a href="#" class="btn btn-icon btn-sm bg-primary-subtle me-1"
-                                            data-bs-toggle="modal" data-bs-target="#edit-modal{{ $item->id }}">
-                                            <i class="mdi mdi-pencil-outline fs-14 text-primary"></i>
-                                        </a>
-
-                                        <!-- DELETE -->
-                                        <a href="#" class="btn btn-icon btn-sm bg-danger-subtle"
-                                            data-bs-toggle="modal" data-bs-target="#deleteModal1{{ $item->id }}"
-                                            title="Hapus">
-                                            <i class="mdi mdi-delete fs-14 text-danger"></i>
-                                        </a>
-
-                                    </td>
+                                    
                                 </tr>
 
                                 <div class="modal fade" id="deleteModal1{{ $item->id }}" tabindex="-1">
@@ -143,7 +125,7 @@
     </div>
 
     <!-- ================= TAMBAH MODAL ================= -->
-    <div class="modal fade" id="standard-modal" tabindex="-1">
+    {{-- <div class="modal fade" id="standard-modal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
 
@@ -234,9 +216,9 @@
 
             </div>
         </div>
-    </div>
+    </div> --}}
 
-    <!-- ================= EDIT MODAL ================= -->
+    {{-- <!-- ================= EDIT MODAL ================= -->
     @foreach ($data as $item)
         <div class="modal fade" id="edit-modal{{ $item->id }}" tabindex="-1">
             <div class="modal-dialog">
@@ -313,7 +295,7 @@
                 </div>
             </div>
         </div>
-    @endforeach
+    @endforeach --}}
 
 @endsection
 @if ($errors->any())

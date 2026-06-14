@@ -25,7 +25,24 @@
  <script>
      $(document).ready(function() {
          new DataTable('#table', {
-             pageLength: 10
+             pageLength: 10,
+             language: {
+                 lengthMenu: 'Tampilkan _MENU_ data',
+                 search: 'Cari:',
+                 info: 'Menampilkan _START_ sampai _END_ dari _TOTAL_ data',
+                 infoEmpty: 'Menampilkan 0 sampai 0 dari 0 data',
+                 infoFiltered: '(difilter dari _MAX_ total data)',
+                 zeroRecords: 'Data tidak ditemukan',
+                 emptyTable: 'Belum ada data',
+                 loadingRecords: 'Memuat...',
+                 processing: 'Memproses...',
+                 paginate: {
+                     first: 'Pertama',
+                     last: 'Terakhir',
+                     next: 'Selanjutnya',
+                     previous: 'Sebelumnya'
+                 }
+             }
          });
      });
 

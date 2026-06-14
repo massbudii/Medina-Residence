@@ -8,10 +8,6 @@
 
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h2 class="card-title mb-0">Data Material Terpakai</h2>
-
-                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#standard-modal">
-                    Tambah Material Terpakai
-                </button>
             </div>
 
             <div class="card-body">
@@ -56,7 +52,6 @@
                                 <th>Jumlah</th>
                                 <th>Satuan</th>
                                 <th>Stok</th>
-                                <th style="width: 1%">Aksi</th>
                             </tr>
                         </thead>
 
@@ -72,21 +67,6 @@
                                     <td>{{ $item->material->satuan }}</td>
                                     <td>{{ $item->stok }}</td>
 
-                                    <td class="text-nowrap">
-
-                                        <!-- EDIT -->
-                                        <a href="#" class="btn btn-icon btn-sm bg-primary-subtle me-1"
-                                            data-bs-toggle="modal" data-bs-target="#edit-modal{{ $item->id }}">
-                                            <i class="mdi mdi-pencil-outline fs-14 text-primary"></i>
-                                        </a>
-
-                                        <!-- DELETE -->
-                                        <a href="#" class="btn btn-icon btn-sm bg-danger-subtle"
-                                            data-bs-toggle="modal" data-bs-target="#deleteModal{{ $item->id }}">
-                                            <i class="mdi mdi-delete fs-14 text-danger"></i>
-                                        </a>
-
-                                    </td>
                                 </tr>
 
                                 <!-- DELETE MODAL -->

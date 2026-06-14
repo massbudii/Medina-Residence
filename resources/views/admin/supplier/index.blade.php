@@ -59,11 +59,11 @@
 
                                         <!-- DELETE -->
 
-                                        <a href="#" class="btn btn-icon btn-sm bg-danger-subtle"
+                                        {{-- <a href="#" class="btn btn-icon btn-sm bg-danger-subtle"
                                             data-bs-toggle="modal" data-bs-target="#deleteModal1{{ $item->id }}"
                                             title="Hapus">
                                             <i class="mdi mdi-delete fs-14 text-danger"></i>
-                                        </a>
+                                        </a> --}}
 
                                         @if ($item->status == 'aktif')
                                             <form action="{{ route('supplier.nonaktif', $item->id) }}" method="POST"
