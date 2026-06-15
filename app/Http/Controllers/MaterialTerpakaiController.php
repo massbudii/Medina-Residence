@@ -7,6 +7,7 @@ use App\Models\Kawasan;
 use App\Models\MaterialMasuk;
 use App\Models\MaterialTerpakai;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class MaterialTerpakaiController extends Controller
@@ -50,6 +51,8 @@ class MaterialTerpakaiController extends Controller
 
     public function store(Request $request)
     {
+        abort_if(Auth::user()->role !== 'mandor', 403);
+
         $request->validate([
             'material_id' => 'required',
             'kawasan_id' => 'required',
@@ -88,6 +91,8 @@ class MaterialTerpakaiController extends Controller
 
     public function update(Request $request, $id)
     {
+        abort_if(Auth::user()->role !== 'mandor', 403);
+
         $data = MaterialTerpakai::findOrFail($id);
 
         $request->validate([
@@ -128,6 +133,8 @@ class MaterialTerpakaiController extends Controller
 
     public function destroy($id)
     {
+        abort_if(Auth::user()->role !== 'mandor', 403);
+
         MaterialTerpakai::findOrFail($id)->delete();
         return redirect()->route('material_terpakai.index')
             ->with('success', 'Data berhasil dihapus');

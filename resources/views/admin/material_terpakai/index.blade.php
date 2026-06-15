@@ -8,6 +8,11 @@
 
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h2 class="card-title mb-0">Data Material Terpakai</h2>
+                @if (auth()->user()->role == 'mandor')
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#standard-modal">
+                        Tambah Material Terpakai
+                    </button>
+                @endif
             </div>
 
             <div class="card-body">
@@ -52,6 +57,9 @@
                                 <th>Jumlah</th>
                                 <th>Satuan</th>
                                 <th>Stok</th>
+                                @if (auth()->user()->role == 'mandor')
+                                    <th class="text-center" style="width: 4%">Aksi</th>
+                                @endif
                             </tr>
                         </thead>
 
@@ -66,11 +74,27 @@
                                     <td>{{ $item->jumlah }}</td>
                                     <td>{{ $item->material->satuan }}</td>
                                     <td>{{ $item->stok }}</td>
+                                    @if (auth()->user()->role == 'mandor')
+                                        <td class="text-nowrap">
+                                            <a href="#" class="btn btn-icon btn-sm bg-primary-subtle me-1"
+                                                data-bs-toggle="modal" data-bs-target="#edit-modal{{ $item->id }}"
+                                                title="Edit">
+                                                <i class="mdi mdi-pencil-outline fs-14 text-primary"></i>
+                                            </a>
+
+                                            <a href="#" class="btn btn-icon btn-sm bg-danger-subtle"
+                                                data-bs-toggle="modal" data-bs-target="#deleteModal{{ $item->id }}"
+                                                title="Hapus">
+                                                <i class="mdi mdi-delete fs-14 text-danger"></i>
+                                            </a>
+                                        </td>
+                                    @endif
 
                                 </tr>
 
                                 <!-- DELETE MODAL -->
-                                <div class="modal fade" id="deleteModal{{ $item->id }}" tabindex="-1">
+                                @if (auth()->user()->role == 'mandor')
+                                    <div class="modal fade" id="deleteModal{{ $item->id }}" tabindex="-1">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
 
@@ -81,7 +105,8 @@
                                             </div>
 
                                             <div class="modal-body">
-                                                Apakah anda yakin ingin menghapus data ini?
+                                                Apakah anda yakin ingin menghapus data
+                                                <b>{{ $item->material->nama_material }}</b>?
                                             </div>
 
                                             <div class="modal-footer">
@@ -101,11 +126,13 @@
 
                                         </div>
                                     </div>
-                                </div>
+                                    </div>
+                                @endif
 
                             @empty
                                 <tr>
-                                    <td colspan="8" class="text-center text-dark">
+                                    <td colspan="{{ auth()->user()->role == 'mandor' ? 8 : 7 }}"
+                                        class="text-center text-dark">
                                         Data tidak ditemukan
                                     </td>
                                 </tr>
@@ -120,6 +147,7 @@
     </div>
 
     <!-- ================= TAMBAH MODAL ================= -->
+    @if (auth()->user()->role == 'mandor')
     <div class="modal fade" id="standard-modal" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -263,6 +291,7 @@
             </div>
         </div>
     @endforeach
+    @endif
 
 @endsection
 

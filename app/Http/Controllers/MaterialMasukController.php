@@ -7,6 +7,7 @@ use App\Models\Material;
 use App\Models\Supplier;
 use App\Models\Kawasan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 
@@ -69,6 +70,8 @@ class MaterialMasukController extends Controller
     //  STORE
     public function store(Request $request)
     {
+        abort_if(Auth::user()->role !== 'mandor', 403);
+
         $validated = $request->validate([
             'material_id' => 'required|exists:materials,id',
             'supplier_id' => 'required|exists:suppliers,id',
@@ -102,6 +105,8 @@ class MaterialMasukController extends Controller
     //  UPDATE
     public function update(Request $request, $id)
     {
+        abort_if(Auth::user()->role !== 'mandor', 403);
+
         $validated = $request->validate([
             'material_id' => 'required|exists:materials,id',
             'supplier_id' => 'required|exists:suppliers,id',
@@ -126,6 +131,8 @@ class MaterialMasukController extends Controller
     //  DELETE
     public function destroy($id)
     {
+        abort_if(Auth::user()->role !== 'mandor', 403);
+
         $data = MaterialMasuk::findOrFail($id);
         $data->delete();
 
