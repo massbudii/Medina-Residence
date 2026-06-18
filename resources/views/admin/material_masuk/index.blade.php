@@ -136,6 +136,8 @@
                                 <tr>
                                     <td colspan="{{ auth()->user()->role == 'mandor' ? 9 : 8 }}"
                                         class="text-center text-dark">
+
+
                                         Data tidak ditemukan
                                     </td>
                                 </tr>
