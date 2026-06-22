@@ -4,8 +4,8 @@
              &copy;
              <script>
                  document.write(new Date().getFullYear())
-             </script> - Made with <span class="mdi mdi-heart text-danger"></span> by <a href="#!"
-                 class="text-reset fw-semibold">Zoyothemes</a>
+             </script> - Copyright </span>  <a href="#!"
+                 class="text-reset fw-semibold">PT. Medina Aqsa Arthatama</a>
          </div>
      </div>
  </div>
