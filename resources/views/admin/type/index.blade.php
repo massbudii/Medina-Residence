@@ -1,15 +1,15 @@
 @extends('app')
-@section('title', ' Type Unit')
+@section('title', ' Tipe Unit')
 @section('content')
     <div class="col">
 
         <div class="card mt-3">
 
             <div class="card-header d-flex justify-content-between align-items-center">
-                <h2 class="card-title mb-0">Data Type Unit</h2>
+                <h2 class="card-title mb-0">Data Tipe Unit</h2>
 
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#standard-modal">
-                    Tambah Type
+                    Tambah Tipe
                 </button>
 
             </div>
@@ -20,7 +20,7 @@
                         <thead>
                             <tr>
                                 <th style=" width: 1%">No</th>
-                                <th class="text-start sorting">Nama Type </th>
+                                <th class="text-start sorting">Nama Tipe </th>
                                 <th>Luas Banguanan</th>
                                 <th>Luas tanah</th>
                                 <th>Harga Rumah</th>
@@ -62,7 +62,7 @@
                                         <div class="modal-content">
 
                                             <div class="modal-header">
-                                                <h5 class="modal-title">Edit Type Unit</h5>
+                                                <h5 class="modal-title">Edit Tipe Unit</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                             </div>
 
@@ -75,7 +75,7 @@
                                                     <input type="hidden" name="modal" value="edit-{{ $item->id }}">
 
                                                     <div class="mb-3">
-                                                        <label class="form-label">Nama Type</label>
+                                                        <label class="form-label">Nama Tipe</label>
 
                                                         <input type="text" name="nama_type"
                                                             class="form-control @error('nama_type')
@@ -187,7 +187,7 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title">Tambah Type</h5>
+                                    <h5 class="modal-title">Tambah Tipe</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                 </div>
 
@@ -198,7 +198,7 @@
                                         <div class="row g-3">
 
                                             <div>
-                                                <label class="form-label">Nama Type</label>
+                                                <label class="form-label">Nama Tipe</label>
                                                 <input type="text" name="nama_type" placeholder="Contoh: Type 45"
                                                     class="form-control @error('nama_type')
                                                         is-invalid

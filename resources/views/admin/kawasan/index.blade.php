@@ -151,7 +151,7 @@
 
 
                                                             <div>
-                                                                <label class="form-label">Type Unit</label>
+                                                                <label class="form-label">Tipe Unit</label>
 
                                                                 <div class="type-box">
                                                                     @foreach ($types as $type)
