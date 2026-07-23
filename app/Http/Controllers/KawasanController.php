@@ -23,7 +23,7 @@ class KawasanController extends Controller
         $validated = $request->validate([
             'nama_kawasan' => 'required|unique:kawasans,nama_kawasan',
             'alamat' => 'required',
-            'status' => 'required',
+            'status' => 'required|in:aktif,selesai',
             'type_unit_id' => 'required|array|min:1',
             'type_unit_id.*' => 'exists:type_units,id',
         ], [
@@ -66,12 +66,15 @@ class KawasanController extends Controller
         $validated = $request->validate([
             'nama_kawasan' => ['required', Rule::unique('kawasans', 'nama_kawasan')->ignore($id)],
             'alamat' => 'required',
+            'status' => 'required|in:aktif,selesai',
             'type_unit_id' => 'required|array|min:1',
             'type_unit_id.*' => 'exists:type_units,id',
         ], [
             'nama_kawasan.required' => 'Nama kawasan wajib diisi',
             'nama_kawasan.unique' => 'Nama kawasan tersebut telah ada',
             'alamat.required' => 'Alamat wajib diisi',
+            'status.required' => 'Status wajib dipilih',
+            'status.in' => 'Status tidak valid',
             'type_unit_id.required' => 'Type unit wajib dipilih',
             'type_unit_id.min' => 'Minimal pilih 1 type unit',
         ]);
@@ -83,6 +86,7 @@ class KawasanController extends Controller
             $kawasan->update([
                 'nama_kawasan' => $validated['nama_kawasan'],
                 'alamat' => $validated['alamat'],
+                'status' => $validated['status'],
             ]);
 
             // update relasi

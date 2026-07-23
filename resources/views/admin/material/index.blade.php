@@ -17,11 +17,12 @@
             <div class="card-body">
 
                 <!-- FILTER -->
-                <form method="GET" action="{{ route('material.index') }}">
+                <form method="GET" action="{{ route('material.index') }}" id="filter-form">
                     <div class="row mb-3">
 
                         <div class="col-md-4">
-                            <select name="kawasan_id" class="form-control">
+                            <select name="kawasan_id" class="form-control" id="kawasan-filter"
+                                data-type-map='{{ $kawasanTypeMap->toJson() }}'>
                                 <option value="">-- Filter Kawasan --</option>
                                 @foreach ($kawasans as $kawasan)
                                     <option value="{{ $kawasan->id }}"
@@ -33,10 +34,10 @@
                         </div>
 
                         <div class="col-md-4">
-                            <select name="type_unit_id" class="form-control">
+                            <select name="type_unit_id" class="form-control" id="type-filter">
                                 <option value="">-- Filter Type Unit --</option>
                                 @foreach ($types as $type)
-                                    <option value="{{ $type->id }}"
+                                    <option value="{{ $type->id }}" data-type-id="{{ $type->id }}"
                                         {{ request('type_unit_id') == $type->id ? 'selected' : '' }}>
                                         {{ $type->nama_type }}
                                     </option>
@@ -150,9 +151,10 @@
 
                         <div class="mb-2">
                             <label>Kawasan</label>
-                            <select name="kawasan_id" class="form-control">
+                            <select name="kawasan_id" class="form-control" id="kawasan-select-add"
+                                data-type-map='{{ $kawasanTypeMap->toJson() }}'>
                                 <option value="">-- pilih --</option>
-                                @foreach ($kawasans as $kawasan)
+                                @foreach ($kawasanAktif as $kawasan)
                                     <option value="{{ $kawasan->id }}">{{ $kawasan->nama_kawasan }}</option>
                                 @endforeach
                             </select>
@@ -160,12 +162,15 @@
 
                         <div class="mb-2">
                             <label>Type Unit</label>
-                            @foreach ($types as $type)
-                                <div class="form-check">
-                                    <input type="checkbox" name="type_unit_id[]" value="{{ $type->id }}">
-                                    {{ $type->nama_type }}
-                                </div>
-                            @endforeach
+                            <div id="type-unit-container-add">
+                                @foreach ($types as $type)
+                                    <div class="form-check type-unit-item" data-type-id="{{ $type->id }}">
+                                        <input type="checkbox" name="type_unit_id[]" value="{{ $type->id }}">
+                                        {{ $type->nama_type }}
+                                    </div>
+                                @endforeach
+                            </div>
+                            <small class="text-muted" id="type-unit-hint-add" style="display:none">Pilih kawasan terlebih dahulu</small>
                         </div>
 
                     </div>
@@ -183,6 +188,10 @@
 
     <!-- ================= EDIT MODAL ================= -->
     @foreach ($materials as $item)
+        @php
+            $selectedKawasan = $item->materialKawasan->pluck('kawasan_id')->first();
+            $selectedTypes = $item->materialKawasan->pluck('type_unit_id')->toArray();
+        @endphp
         <div class="modal fade" id="edit-modal{{ $item->id }}" tabindex="-1">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -211,9 +220,11 @@
 
                             <div class="mb-2">
                                 <label>Kawasan</label>
-                                <select name="kawasan_id" class="form-control">
-                                    @foreach ($kawasans as $kawasan)
-                                        <option value="{{ $kawasan->id }}">
+                                <select name="kawasan_id" class="form-control kawasan-select-edit"
+                                    data-type-map='{{ $kawasanTypeMap->toJson() }}'>
+                                    @foreach ($kawasanAktif as $kawasan)
+                                        <option value="{{ $kawasan->id }}"
+                                            {{ $selectedKawasan == $kawasan->id ? 'selected' : '' }}>
                                             {{ $kawasan->nama_kawasan }}
                                         </option>
                                     @endforeach
@@ -222,19 +233,15 @@
 
                             <div class="mb-2">
                                 <label>Type Unit</label>
-
-                                @php
-                                    $selected = $item->materialKawasan->pluck('type_unit_id')->toArray();
-                                @endphp
-
-                                @foreach ($types as $type)
-                                    <div class="form-check">
-                                        <input type="checkbox" name="type_unit_id[]" value="{{ $type->id }}"
-                                            {{ in_array($type->id, $selected) ? 'checked' : '' }}>
-                                        {{ $type->nama_type }}
-                                    </div>
-                                @endforeach
-
+                                <div class="type-unit-container-edit">
+                                    @foreach ($types as $type)
+                                        <div class="form-check type-unit-item" data-type-id="{{ $type->id }}">
+                                            <input type="checkbox" name="type_unit_id[]" value="{{ $type->id }}"
+                                                {{ in_array($type->id, $selectedTypes) ? 'checked' : '' }}>
+                                            {{ $type->nama_type }}
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
 
                         </div>
@@ -280,3 +287,81 @@
         });
     </script>
 @endif
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const typeMapRaw = document.getElementById('kawasan-select-add')?.getAttribute('data-type-map')
+        || document.getElementById('kawasan-filter')?.getAttribute('data-type-map')
+        || '{}';
+    const typeMap = JSON.parse(typeMapRaw);
+
+    function filterTypeUnits(selectEl, containerEl) {
+        const kawasanId = selectEl.value;
+        const allowedTypes = typeMap[kawasanId] || [];
+        const items = containerEl.querySelectorAll('.type-unit-item');
+
+        items.forEach(function(item) {
+            const typeId = parseInt(item.getAttribute('data-type-id'));
+            if (allowedTypes.length === 0 || allowedTypes.includes(typeId)) {
+                item.style.display = '';
+            } else {
+                item.style.display = 'none';
+                item.querySelector('input[type="checkbox"]').checked = false;
+            }
+        });
+    }
+
+    // === FILTER TYPE UNIT DROPDOWN ===
+    const kawasanFilter = document.getElementById('kawasan-filter');
+    const typeFilter = document.getElementById('type-filter');
+
+    if (kawasanFilter && typeFilter) {
+        function filterTypeDropdown() {
+            const kawasanId = kawasanFilter.value;
+            const allowedTypes = typeMap[kawasanId] || [];
+            const options = typeFilter.querySelectorAll('option[value]');
+
+            options.forEach(function(opt) {
+                const typeId = opt.getAttribute('data-type-id');
+                if (!typeId) return; // skip "-- Filter Type Unit --"
+                if (allowedTypes.length === 0 || allowedTypes.includes(parseInt(typeId))) {
+                    opt.hidden = false;
+                    opt.disabled = false;
+                } else {
+                    opt.hidden = true;
+                    opt.disabled = true;
+                    if (opt.selected) opt.selected = false;
+                }
+            });
+        }
+
+        kawasanFilter.addEventListener('change', filterTypeDropdown);
+        if (kawasanFilter.value) filterTypeDropdown();
+    }
+
+    // === TAMBAH MODAL ===
+    const kawasanSelectAdd = document.getElementById('kawasan-select-add');
+    const containerAdd = document.getElementById('type-unit-container-add');
+
+    if (kawasanSelectAdd && containerAdd) {
+        kawasanSelectAdd.addEventListener('change', function() {
+            filterTypeUnits(this, containerAdd);
+        });
+        if (kawasanSelectAdd.value) {
+            filterTypeUnits(kawasanSelectAdd, containerAdd);
+        }
+    }
+
+    // === EDIT MODAL ===
+    document.querySelectorAll('.kawasan-select-edit').forEach(function(selectEl) {
+        const containerEl = selectEl.closest('.modal-body').querySelector('.type-unit-container-edit');
+
+        selectEl.addEventListener('change', function() {
+            filterTypeUnits(this, containerEl);
+        });
+        if (selectEl.value) {
+            filterTypeUnits(selectEl, containerEl);
+        }
+    });
+});
+</script>

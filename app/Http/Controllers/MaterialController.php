@@ -32,9 +32,15 @@ class MaterialController extends Controller
         $materials = $query->get();
 
         $kawasans = Kawasan::all();
+        $kawasanAktif = Kawasan::with('typeUnits')->where('status', 'aktif')->get();
         $types = TypeUnit::all();
 
-        return view('admin.material.index', compact('materials', 'kawasans', 'types'));
+        // mapping kawasan_id => [type_unit_ids]
+        $kawasanTypeMap = $kawasanAktif->mapWithKeys(function ($k) {
+            return [$k->id => $k->typeUnits->pluck('id')->toArray()];
+        });
+
+        return view('admin.material.index', compact('materials', 'kawasans', 'kawasanAktif', 'types', 'kawasanTypeMap'));
     }
 
     public function store(Request $request)
@@ -50,6 +56,12 @@ class MaterialController extends Controller
             'kawasan_id.required' => 'Kawasan wajib dipilih',
             'type_unit_id.required' => 'Type unit wajib dipilih',
         ]);
+
+        // CEK STATUS KAWASAN
+        $kawasan = Kawasan::findOrFail($request->kawasan_id);
+        if ($kawasan->status === 'selesai') {
+            return back()->with('error', 'Kawasan dengan status selesai tidak dapat ditambahkan material');
+        }
 
         // CEGAH DUPLIKAT MATERIAL
         $material = Material::firstOrCreate(
@@ -75,13 +87,18 @@ class MaterialController extends Controller
             'nama_material' => 'required',
             'satuan' => 'required',
             'kawasan_id' => 'required',
-            'type_unit_id' => 'required|array',
+            'type_unit_id' => 'nullable|array',
         ], [
             'nama_material.required' => 'Nama material wajib diisi',
             'satuan.required' => 'Satuan wajib diisi',
             'kawasan_id.required' => 'Kawasan wajib dipilih',
-            'type_unit_id.required' => 'Type unit wajib dipilih',
         ]);
+
+        // CEK STATUS KAWASAN
+        $kawasan = Kawasan::findOrFail($request->kawasan_id);
+        if ($kawasan->status === 'selesai') {
+            return back()->with('error', 'Kawasan dengan status selesai tidak dapat diupdate material');
+        }
 
         $material = Material::findOrFail($id);
 
@@ -90,19 +107,26 @@ class MaterialController extends Controller
             'satuan' => $request->satuan,
         ]);
 
-        // hapus pivot lama
-        $material->materialKawasan()->delete();
+        $selectedTypeUnitIds = collect($request->input('type_unit_id', []))
+            ->filter(fn ($typeId) => !empty($typeId))
+            ->map(fn ($typeId) => (int) $typeId)
+            ->unique()
+            ->values()
+            ->all();
 
-        // insert ulang
-        foreach ($request->type_unit_id as $type) {
-            MaterialKawasan::create([
-                'material_id' => $material->id,
-                'kawasan_id' => $request->kawasan_id,
-                'type_unit_id' => $type,
-            ]);
+        if (!empty($selectedTypeUnitIds)) {
+            $material->materialKawasan()->delete();
+
+            foreach ($selectedTypeUnitIds as $type) {
+                MaterialKawasan::create([
+                    'material_id' => $material->id,
+                    'kawasan_id' => $request->kawasan_id,
+                    'type_unit_id' => $type,
+                ]);
+            }
         }
 
-        return back()->with('success', 'Material berhasil diupdate');
+        return redirect()->route('material.index')->with('success', 'Material berhasil diupdate');
     }
 
 

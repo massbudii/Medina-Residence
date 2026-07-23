@@ -24,7 +24,7 @@
                         <div class="col-md-4">
                             <select name="kawasan_id" class="form-control">
                                 <option value="">-- Filter Kawasan --</option>
-                                @foreach ($kawasans as $kawasan)
+                                @foreach ($semuaKawasans as $kawasan)
                                     <option value="{{ $kawasan->id }}"
                                         {{ request('kawasan_id') == $kawasan->id ? 'selected' : '' }}>
                                         {{ $kawasan->nama_kawasan }}

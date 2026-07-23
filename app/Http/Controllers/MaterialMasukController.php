@@ -63,7 +63,8 @@ class MaterialMasukController extends Controller
             'isFilter' => $isFilter,
             'materials' => Material::where('status', 'aktif')->get(),
             'suppliers' => Supplier::all(),
-            'kawasans' => Kawasan::all(),
+            'kawasans' => Kawasan::where('status', 'aktif')->get(),
+            'semuaKawasans' => Kawasan::all(),
         ]);
     }
 
@@ -96,6 +97,12 @@ class MaterialMasukController extends Controller
             'jumlah.min' => 'Jumlah minimal 1',
         ]);
 
+        // CEK STATUS KAWASAN
+        $kawasan = Kawasan::findOrFail($request->kawasan_id);
+        if ($kawasan->status === 'selesai') {
+            return back()->with('error', 'Kawasan dengan status selesai tidak dapat ditambahkan material masuk');
+        }
+
         MaterialMasuk::create($validated);
 
         return redirect()->route('material_masuk.index')
@@ -120,6 +127,12 @@ class MaterialMasukController extends Controller
             'tanggal_masuk.required' => 'Tanggal wajib diisi',
             'jumlah.required' => 'Jumlah wajib diisi',
         ]);
+
+        // CEK STATUS KAWASAN
+        $kawasan = Kawasan::findOrFail($request->kawasan_id);
+        if ($kawasan->status === 'selesai') {
+            return back()->with('error', 'Kawasan dengan status selesai tidak dapat diupdate material masuk');
+        }
 
         $data = MaterialMasuk::findOrFail($id);
         $data->update($validated);

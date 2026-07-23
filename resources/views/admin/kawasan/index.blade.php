@@ -48,8 +48,8 @@
                                     <th scope="col" style="width: 1%">No</th>
                                     <th scope="col">Nama Kawasan</th>
                                     <th scope="col">Alamat</th>
-                                    <th scope="col" style="width: 10%">Type Unit</th>
-                                    {{-- <th scope="col" style="width: 5%">Status</th> --}}
+                                    <th scope="col" style="width: 20%">Type Unit</th>
+                                    <th scope="col" style="width: 5%">Status</th>
                                     <th style="width:1%" class="text-center">Aksi</th>
                                 </tr>
                             </thead>
@@ -67,13 +67,13 @@
                                                 <span class="text-muted">Belum ada</span>
                                             @endif
                                         </td>
-                                        {{-- <td>
+                                        <td>
                                             @if ($item->status == 'aktif')
                                                 <span class="badge bg-success">Aktif</span>
                                             @else
                                                 <span class="badge bg-warning">Selesai</span>
                                             @endif
-                                        </td> --}}
+                                        </td>
                                         <td class="text-nowrap">
 
                                             <a href="#" class="btn btn-icon btn-sm bg-primary-subtle me-1"
@@ -145,6 +145,20 @@
                                                                     class="form-control @error('alamat') is-invalid @enderror"
                                                                     value="{{ $item->alamat }}">
                                                                 @error('alamat')
+                                                                    <small class="text-danger">{{ $message }}</small>
+                                                                @enderror
+                                                            </div>
+
+                                                            <div class="">
+                                                                <label class="form-label">Status</label>
+                                                                <select name="status"
+                                                                    class="form-control @error('status') is-invalid @enderror">
+                                                                    <option value="aktif"
+                                                                        {{ old('status', $item->status) == 'aktif' ? 'selected' : '' }}>Aktif</option>
+                                                                    <option value="selesai"
+                                                                        {{ old('status', $item->status) == 'selesai' ? 'selected' : '' }}>Selesai</option>
+                                                                </select>
+                                                                @error('status')
                                                                     <small class="text-danger">{{ $message }}</small>
                                                                 @enderror
                                                             </div>
@@ -267,11 +281,10 @@
                                                     <select name="status"
                                                         class="form-control @error('status') is-invalid @enderror">
                                                         <option value="">--Pilih Status--</option>
-                                                        <option value="Aktif"
+                                                        <option value="aktif"
                                                             {{ old('status') == 'aktif' ? 'selected' : '' }}>Aktif</option>
-                                                        <option value="Nonaktif"
-                                                            {{ old('status') == 'selesai' ? 'selected' : '' }}>Selesai
-                                                        </option>
+                                                        <option value="selesai"
+                                                            {{ old('status') == 'selesai' ? 'selected' : '' }}>Selesai</option>
                                                     </select>
                                                     @error('status')
                                                         <small class="text-danger">{{ $message }}</small>

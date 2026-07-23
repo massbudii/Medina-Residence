@@ -45,7 +45,8 @@ class MaterialTerpakaiController extends Controller
             'data' => $data,
             'isFilter' => $isFilter,
             'materials' => Material::where('status', 'aktif')->get(),
-            'kawasans' => Kawasan::all(),
+            'kawasans' => Kawasan::where('status', 'aktif')->get(),
+            'semuaKawasans' => Kawasan::all(),
         ]);
     }
 
@@ -59,6 +60,12 @@ class MaterialTerpakaiController extends Controller
             'tanggal_pakai' => 'required|date',
             'jumlah' => 'required|numeric|min:1',
         ]);
+
+        // CEK STATUS KAWASAN
+        $kawasan = Kawasan::findOrFail($request->kawasan_id);
+        if ($kawasan->status === 'selesai') {
+            return back()->with('error', 'Kawasan dengan status selesai tidak dapat ditambahkan material terpakai');
+        }
 
         // HITUNG STOK
         $masuk = MaterialMasuk::where('material_id', $request->material_id)
@@ -101,6 +108,12 @@ class MaterialTerpakaiController extends Controller
             'tanggal_pakai' => 'required|date',
             'jumlah' => 'required|numeric|min:1',
         ]);
+
+        // CEK STATUS KAWASAN
+        $kawasan = Kawasan::findOrFail($request->kawasan_id);
+        if ($kawasan->status === 'selesai') {
+            return back()->with('error', 'Kawasan dengan status selesai tidak dapat diupdate material terpakai');
+        }
 
         // HITUNG ULANG STOK TANPA DATA INI
         $masuk = MaterialMasuk::where('material_id', $request->material_id)
