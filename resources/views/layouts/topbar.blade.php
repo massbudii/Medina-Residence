@@ -133,19 +133,19 @@
                         <li class="dropdown notification-list topbar-dropdown">
                             <a class="nav-link dropdown-toggle nav-user me-0" data-bs-toggle="dropdown"
                                 href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                <img src="{{ asset('assets/images/users/user-13.jpg') }}" alt="user-image" class="rounded-circle" />
+                                <img src="{{ auth()->user()->foto ? asset(auth()->user()->foto) : asset('assets/images/users/user-13.jpg') }}" alt="user-image" class="rounded-circle" style="width: 32px; height: 32px; object-fit: cover;" />
                                 <span class="pro-user-name ms-1">{{ auth()->user()->nama }}<i class="mdi mdi-chevron-down"></i></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end profile-dropdown">
                                 <!-- item-->
                                 <div class="dropdown-header noti-title">
-                                    <h6 class="text-overflow m-0">Welcome !</h6>
+                                    <h6 class="text-overflow m-0">Selamat Datang!</h6>
                                 </div>
 
                                 <!-- item-->
-                                <a href="pages-profile.html" class="dropdown-item notify-item">
+                                <a href="{{ route('profile.index') }}" class="dropdown-item notify-item">
                                     <i class="mdi mdi-account-circle-outline fs-16 align-middle"></i>
-                                    <span>My Account</span>
+                                    <span>Profil Saya</span>
                                 </a>
 
                                 <!-- item-->

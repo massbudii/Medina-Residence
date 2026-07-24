@@ -20,18 +20,21 @@ class UserController extends Controller
         $validated = $request->validate([
             'nama' => 'required',
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => ['required', 'string', 'min:6', 'regex:/^[A-Z](?=.*[0-9]).+$/'],
             'role' => 'required'
         ], [
             'nama.required' => 'Nama wajib diisi',
             'email.required' => 'Email wajib diisi',
             'password.required' => 'Password wajib diisi',
+            'password.min' => 'Password minimal 6 karakter',
+            'password.regex' => 'Password harus diawali huruf besar (kapital) dan mengandung kombinasi huruf serta angka (contoh: Admin123)',
             'role.required' => 'Role wajib diisi',
         ]);
 
         $validated['password'] = Hash::make($validated['password']);
         $validated['status'] = 'aktif';
-        User::create($validated);
+        $user = User::create($validated);
+
         return back()->with('success', 'User berhasil ditambahkan');
     }
 
@@ -58,6 +61,12 @@ class UserController extends Controller
         $data = $request->only(['nama', 'email', 'role']);
 
         if ($request->filled('password')) {
+            $request->validate([
+                'password' => ['string', 'min:6', 'regex:/^[A-Z](?=.*[0-9]).+$/']
+            ], [
+                'password.min' => 'Password minimal 6 karakter',
+                'password.regex' => 'Password harus diawali huruf besar (kapital) dan mengandung kombinasi huruf serta angka (contoh: Admin123)',
+            ]);
             $data['password'] = Hash::make($request->password);
         }
 

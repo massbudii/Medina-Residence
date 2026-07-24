@@ -110,7 +110,7 @@
                                                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                                 </div>
 
-                                                <form action="{{ route('user.update', $user->id) }}" method="POST">
+                                                <form action="{{ route('user.update', $user->id) }}" method="POST" autocomplete="off">
                                                     @method('PUT')
                                                     @csrf
                                                     <input type="hidden" name="modal" value="edit-{{ $user->id }}">
@@ -124,7 +124,7 @@
                                                                     class="form-control @error('nama')
                                                                         is-invalid
                                                                     @enderror"
-                                                                    value="{{ $user->nama }}" id="nama">
+                                                                    value="{{ $user->nama }}" id="nama" autocomplete="off">
 
                                                                 @error('nama')
                                                                     <small class="text-danger">{{ $message }}</small>
@@ -137,7 +137,7 @@
                                                                     class="form-control @error('email')
                                                                         is-invalid
                                                                     @enderror"
-                                                                    value="{{ $user->email }}" id="email">
+                                                                    value="{{ $user->email }}" id="email" autocomplete="off">
 
                                                                 @error('email')
                                                                     <small class="text-danger">{{ $message }}</small>
@@ -145,9 +145,13 @@
                                                             </div>
 
                                                             <div class="">
-                                                                <label class="form-label">Password</label>
-                                                                <input type="password" class="form-control" name="password"
+                                                                <label class="form-label">Password (Opsional)</label>
+                                                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" autocomplete="new-password"
                                                                     placeholder="Kosongkan jika tidak ingin mengganti password">
+                                                                <small class="text-muted d-block mt-1 fs-12">Format: Diawali huruf kapital & mengandung kombinasi huruf + angka (contoh: Admin123)</small>
+                                                                @error('password')
+                                                                    <small class="text-danger d-block mt-1">{{ $message }}</small>
+                                                                @enderror
                                                             </div>
 
                                                             <div>
@@ -233,7 +237,7 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                                     </div>
 
-                                    <form action="{{ route('user.store') }}" method="POST">
+                                    <form action="{{ route('user.store') }}" method="POST" autocomplete="off">
                                         @csrf
                                         <div class="modal-body">
                                             <input type="hidden" name="modal" value="tambah">
@@ -245,7 +249,7 @@
                                                         class="form-control @error('nama')
                                                             is-invalid
                                                         @enderror"
-                                                        value="{{ old('nama') }}" id="nama">
+                                                        value="{{ old('nama') }}" id="nama" autocomplete="off">
 
                                                     @error('nama')
                                                         <small class="text-danger">{{ $message }}</small>
@@ -254,11 +258,11 @@
 
                                                 <div class="">
                                                     <label class="form-label">Email</label>
-                                                    <input type="text" name="email" placeholder="Email"
+                                                    <input type="email" name="email" placeholder="Email"
                                                         class="form-control @error('email')
                                                             is-invalid
                                                         @enderror"
-                                                        value="{{ old('email') }}" id="email">
+                                                        value="{{ old('email') }}" id="email" autocomplete="off">
 
                                                     @error('email')
                                                         <small class="text-danger">{{ $message }}</small>
@@ -267,10 +271,11 @@
 
                                                 <div class="">
                                                     <label class="form-label">Password</label>
-                                                    <input type="password" name="password" placeholder="Password"
+                                                    <input type="password" name="password" placeholder="Password" autocomplete="new-password"
                                                         class="form-control @error('password')
                                                             is-invalid
                                                         @enderror ">
+                                                    <small class="text-muted d-block mt-1 fs-12">Format: Diawali huruf kapital & mengandung kombinasi huruf + angka (contoh: Admin123)</small>
 
                                                     @error('password')
                                                         <small class="text-danger">{{ $message }}</small>

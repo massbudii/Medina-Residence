@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Crypt;
 
 class User extends Authenticatable
 {
@@ -22,7 +23,9 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
-        'status'
+        'status',
+        'foto',
+        'no_hp'
     ];
 
     /**
@@ -46,6 +49,56 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Accessor Email dengan penanganan dekripsi aman (backward compatible untuk data lama).
+     */
+    public function getEmailAttribute($value)
+    {
+        if (empty($value)) return $value;
+        try {
+            return Crypt::decryptString($value);
+        } catch (\Exception $e) {
+            return $value;
+        }
+    }
+
+    /**
+     * Mutator Email untuk enkripsi data baru.
+     */
+    public function setEmailAttribute($value)
+    {
+        if (empty($value)) {
+            $this->attributes['email'] = $value;
+        } else {
+            $this->attributes['email'] = Crypt::encryptString($value);
+        }
+    }
+
+    /**
+     * Accessor No HP dengan penanganan dekripsi aman.
+     */
+    public function getNoHpAttribute($value)
+    {
+        if (empty($value)) return $value;
+        try {
+            return Crypt::decryptString($value);
+        } catch (\Exception $e) {
+            return $value;
+        }
+    }
+
+    /**
+     * Mutator No HP untuk enkripsi data baru.
+     */
+    public function setNoHpAttribute($value)
+    {
+        if (empty($value)) {
+            $this->attributes['no_hp'] = $value;
+        } else {
+            $this->attributes['no_hp'] = Crypt::encryptString($value);
+        }
     }
 
     public function appNotifications()

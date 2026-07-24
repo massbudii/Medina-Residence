@@ -31,6 +31,13 @@
                 </a>
             </li>
 
+            <li>
+                <a href="{{ route('profile.index') }}" class="nav-links {{ request()->is('profile*') ? 'active' : '' }}">
+                    <i class="fa-solid fa-address-card"></i>
+                    <span> Profil </span>
+                </a>
+            </li>
+
             @if (auth()->user()->role == 'admin')
                 <li class=" menu-title">Kelola Data</li>
                 <li>

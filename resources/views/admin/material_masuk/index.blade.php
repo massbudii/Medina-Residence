@@ -334,7 +334,7 @@
 
             let modal = "{{ old('modal') }}";
 
-            if (modal === "tambah") {
+            if (modal === "tambah") {a
                 let m = new bootstrap.Modal(document.getElementById('standard-modal'));
                 m.show();
 
