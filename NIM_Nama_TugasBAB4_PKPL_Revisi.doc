@@ -1,0 +1,396 @@
+<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
+<head>
+<meta charset="utf-8">
+<title>Laporan Tugas BAB 4 PKPL - Medina Residence</title>
+<style>
+    @page {
+        size: A4;
+        margin: 3cm 2.5cm 2.5cm 3cm;
+    }
+    body {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 12pt;
+        line-height: 150%;
+        color: #000000;
+        text-align: justify;
+    }
+    .judul-bab {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 14pt;
+        font-weight: bold;
+        text-align: center;
+        line-height: 150%;
+        margin-top: 18pt;
+        margin-bottom: 12pt;
+    }
+    .judul-subbab {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 14pt;
+        font-weight: bold;
+        text-align: left;
+        line-height: 150%;
+        margin-top: 14pt;
+        margin-bottom: 6pt;
+    }
+    .paragraf {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 12pt;
+        line-height: 150%;
+        text-align: justify;
+        text-indent: 1.25cm;
+        margin-top: 0pt;
+        margin-bottom: 8pt;
+    }
+    .poin {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 12pt;
+        line-height: 150%;
+        text-align: justify;
+        margin-left: 0.75cm;
+        text-indent: -0.75cm;
+        margin-top: 0pt;
+        margin-bottom: 6pt;
+    }
+    .poin-isi {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 12pt;
+        line-height: 150%;
+        text-align: justify;
+        text-indent: 1.25cm;
+        margin-top: 0pt;
+        margin-bottom: 8pt;
+    }
+    .defect-item {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 12pt;
+        line-height: 150%;
+        text-align: justify;
+        margin-top: 0pt;
+        margin-bottom: 6pt;
+    }
+    .cover {
+        text-align: center;
+        page-break-after: always;
+    }
+    .cover-judul {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 14pt;
+        font-weight: bold;
+        text-align: center;
+        line-height: 150%;
+        margin-top: 6pt;
+        margin-bottom: 6pt;
+    }
+    .cover-teks {
+        font-family: "Times New Roman", Times, serif;
+        font-size: 12pt;
+        text-align: center;
+        line-height: 150%;
+        margin-top: 4pt;
+        margin-bottom: 4pt;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 8pt;
+        margin-bottom: 12pt;
+        font-family: "Times New Roman", Times, serif;
+        font-size: 10pt;
+        line-height: 120%;
+    }
+    th, td {
+        border: 1px solid #000000;
+        padding: 5px;
+        vertical-align: top;
+        text-align: justify;
+    }
+    th {
+        background-color: #D9E8F5;
+        font-weight: bold;
+        text-align: center;
+    }
+    .ss-box {
+        border: 1px dashed #666666;
+        padding: 16px;
+        text-align: center;
+        font-family: "Times New Roman", Times, serif;
+        font-size: 12pt;
+        margin-top: 6pt;
+        margin-bottom: 12pt;
+        background-color: #FAFAFA;
+    }
+</style>
+</head>
+<body>
+
+<div class="cover">
+    <p class="cover-judul" style="margin-top: 24pt;">LAPORAN PRAKTIKUM DAN PENUGASAN MAHASISWA</p>
+    <p class="cover-judul">BAB 4 — SOFTWARE QUALITY TESTING</p>
+    <p class="cover-judul" style="margin-top: 12pt;">AUDIT PENGUJIAN SEDERHANA TERHADAP FUNGSI AUTENTIKASI LOGIN PADA APLIKASI WEB MEDINA RESIDENCE MENGGUNAKAN PENDEKATAN BLACK-BOX TESTING</p>
+
+    <br><br><br>
+    <p class="cover-teks"><strong>Mata Kuliah:</strong> Penjamin Kualitas Perangkat Lunak</p>
+    <p class="cover-teks"><strong>Dosen Pengampu:</strong> Ir. Gellysa Urva, S.T., M.Kom</p>
+    <br><br><br><br>
+
+    <p class="cover-teks"><strong>Disusun Oleh:</strong></p>
+    <p class="cover-teks">Nama: [Isi Nama Mahasiswa]</p>
+    <p class="cover-teks">NIM: [Isi NIM Mahasiswa]</p>
+    <br><br><br><br>
+
+    <p class="cover-judul">PROGRAM STUDI S1 TEKNIK INFORMATIKA</p>
+    <p class="cover-judul">SEMESTER VII</p>
+    <p class="cover-judul">TAHUN AKADEMIK 2026/2027</p>
+</div>
+
+<p class="judul-bab">BAB I<br>DESKRIPSI OBJEK DAN RUANG LINGKUP PENGUJIAN</p>
+
+<p class="judul-subbab">1.1 Deskripsi dan Tujuan Aplikasi</p>
+<p class="paragraf">Objek pengujian yang digunakan pada laporan ini adalah aplikasi web bernama Medina Residence. Aplikasi Medina Residence merupakan sistem informasi berbasis web yang dibangun menggunakan kerangka kerja Laravel dan basis data MySQL untuk mengelola inventaris, distribusi, serta pelaporan penggunaan material bangunan pada proyek pembangunan perumahan Medina Residence.</p>
+<p class="paragraf">Tujuan utama dari aplikasi Medina Residence adalah membantu pihak manajemen proyek dan pengawas lapangan dalam mencatat stok material masuk dari pemasok, memantau pemakaian material keluar di setiap kawasan pembangunan, mengelola data pengguna serta tipe unit perumahan, dan menyediakan mekanisme pengajuan serta persetujuan laporan pemakaian material secara terpusat dan akurat.</p>
+
+<p class="judul-subbab">1.2 Pengguna Sasaran Aplikasi</p>
+<p class="paragraf">Aplikasi Medina Residence memiliki dua kelompok pengguna sasaran yang dibedakan berdasarkan hak akses peran di dalam sistem. Kelompok pertama adalah Admin, yaitu pengelola utama yang bertugas mengelola data master pengguna, data tipe unit rumah, data kawasan proyek, data pemasok, data material, serta melakukan verifikasi persetujuan atau penolakan terhadap laporan material yang diajukan. Kelompok kedua adalah Mandor, yaitu pengawas lapangan yang bertugas mencatat transaksi material masuk, mencatat transaksi material terpakai di lapangan, serta mengajukan laporan penggunaan material per kawasan kepada Admin.</p>
+
+<p class="judul-subbab">1.3 Fungsi yang Dipilih dan Ruang Lingkup Pengujian</p>
+<p class="paragraf">Fungsi yang dipilih untuk diaudit dalam pengujian ini adalah modul Autentikasi Login pengguna pada rute halaman <code>/login</code>. Modul ini dipilih karena merupakan gerbang keamanan utama yang mengatur kendali akses pengguna berdasarkan kredensial email, kata sandi, status keaktifan akun, pembatasan percobaan gagal login maksimal tiga kali disertai penguncian sementara selama 30 detik, serta pemeriksaan kelengkapan foto profil pengguna sebelum diizinkan mengakses halaman utama.</p>
+<p class="paragraf">Cakupan yang termasuk dalam ruang lingkup pengujian meliputi proses autentikasi login menggunakan kredensial valid baik untuk pengguna yang sudah melengkapi foto profil maupun yang belum melengkapi foto profil, validasi kolom wajib pada input email dan kata sandi ketika dikosongkan seluruhnya atau sebagian, penanganan kondisi negatif ketika email tidak terdaftar atau kata sandi salah, pengujian nilai batas jumlah percobaan gagal login berturut-turut hingga mencapai batas penguncian akun selama 30 detik, serta penanganan percobaan login oleh akun yang berstatus nonaktif.</p>
+<p class="paragraf">Adapun bagian yang tidak termasuk dalam ruang lingkup pengujian ini meliputi modul transaksi material masuk, modul transaksi material keluar atau terpakai, modul manajemen master kawasan dan pemasok, modul pencetakan laporan, serta pengujian keamanan tingkat jaringan dan pengujian beban kerja server.</p>
+
+<p class="judul-bab">BAB II<br>METODE DAN SKENARIO PENGUJIAN</p>
+
+<p class="judul-subbab">2.1 Metode Pengujian</p>
+<p class="paragraf">Metode yang diterapkan dalam audit ini adalah pengujian kotak hitam (Black-Box Testing) yang dikombinasikan dengan teknik Equivalence Partitioning dan Boundary Value Analysis. Melalui pendekatan ini, pengujian difokuskan pada perilaku fungsional antarmuka halaman login dari sudut pandang pengguna akhir dengan membandingkan hasil yang diharapkan (Expected Result) sesuai aturan spesifikasi sistem terhadap hasil aktual (Actual Result) yang benar-benar teramati pada peramban web Google Chrome di lingkungan pengujian lokal.</p>
+
+<p class="judul-subbab">2.2 Identifikasi Skenario Pengujian</p>
+<p class="paragraf">Berdasarkan aturan bisnis dan validasi pada modul autentikasi Medina Residence, disusun empat kelompok skenario pengujian utama sebagai berikut:</p>
+<p class="poin">1. Skenario Alur Normal (Kredensial Valid): Menguji perilaku sistem ketika pengguna memasukkan kombinasi email dan kata sandi yang terdaftar serta berstatus aktif, baik untuk akun yang sudah memiliki foto profil (diarahkan ke halaman dashboard) maupun akun yang belum memiliki foto profil (diarahkan ke halaman profil untuk melengkapi data).</p>
+<p class="poin">2. Skenario Kondisi Negatif Kolom Kosong: Menguji respons validasi formulir ketika pengguna mengosongkan seluruh kolom input atau hanya mengisi salah satu kolom saja, yaitu email diisi tetapi kata sandi kosong, serta email kosong tetapi kata sandi diisi.</p>
+<p class="poin">3. Skenario Kondisi Negatif Kredensial Tidak Valid dan Pengujian Batas Percobaan (Boundary Value Analysis): Menguji respons sistem terhadap email yang tidak terdaftar, kata sandi yang salah pada percobaan pertama, percobaan gagal kedua (satu angka di bawah batas penguncian), hingga tepat pada batas maksimal percobaan gagal ketiga yang memicu penguncian formulir selama 30 detik.</p>
+<p class="poin">4. Skenario Kondisi Negatif Status Akun Nonaktif: Menguji perilaku sistem ketika pengguna yang status akunnya telah dinonaktifkan oleh Admin mencoba melakukan login menggunakan email dan kata sandi yang benar.</p>
+
+<p class="judul-bab">BAB III<br>PERANCANGAN DAN HASIL EKSEKUSI TEST CASE</p>
+
+<p class="judul-subbab">3.1 Tabel Perancangan dan Eksekusi Test Case (Bagian C)</p>
+<p class="paragraf">Tabel berikut memuat sepuluh test case yang telah dirancang sebelum pengujian dilakukan beserta catatan hasil aktual dan status eksekusinya pada aplikasi Medina Residence.</p>
+
+<table>
+    <thead>
+        <tr>
+            <th style="width: 7%;">Test Case ID</th>
+            <th style="width: 13%;">Skenario/Tujuan</th>
+            <th style="width: 13%;">Prasyarat</th>
+            <th style="width: 12%;">Data Uji</th>
+            <th style="width: 15%;">Langkah Pengujian</th>
+            <th style="width: 15%;">Expected Result</th>
+            <th style="width: 15%;">Actual Result</th>
+            <th style="width: 5%;">Status</th>
+            <th style="width: 5%;">Bukti/Catatan</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align: center;"><strong>TC-01</strong></td>
+            <td>Login dengan kredensial Admin yang valid dan sudah memiliki foto profil (Alur Normal)</td>
+            <td>Aplikasi berjalan di browser, pengguna berada di halaman /login, akun Admin aktif dan memiliki foto profil.</td>
+            <td>Email: admin@gmail.com<br>Password: admin123</td>
+            <td>1. Buka halaman /login<br>2. Masukkan Email admin@gmail.com<br>3. Masukkan Password admin123<br>4. Klik tombol Log In</td>
+            <td>Sistem menerima login, mengarahkan pengguna ke halaman /dashboard, dan menampilkan pesan selamat datang sebagai Admin.</td>
+            <td>Sistem berhasil mengarahkan pengguna ke halaman /dashboard dan menampilkan notifikasi selamat datang sebagai Admin.</td>
+            <td style="text-align: center;"><strong>Pass</strong></td>
+            <td>Gambar Bukti TC-01</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;"><strong>TC-02</strong></td>
+            <td>Login dengan kredensial Mandor valid yang belum melengkapi foto profil (Alur Normal Guard Profil)</td>
+            <td>Pengguna berada di halaman /login, akun Mandor aktif namun foto profil masih kosong.</td>
+            <td>Email: mandor1@gmail.com<br>Password: password</td>
+            <td>1. Buka halaman /login<br>2. Masukkan Email mandor1@gmail.com<br>3. Masukkan Password password<br>4. Klik tombol Log In</td>
+            <td>Sistem menerima autentikasi, menahan akses ke dashboard, mengarahkan ke halaman /profile, dan menampilkan peringatan wajib melengkapi profil dan foto.</td>
+            <td>Sistem mengarahkan otomatis ke halaman /profile dengan peringatan wajib melengkapi profil dan foto pengguna terlebih dahulu.</td>
+            <td style="text-align: center;"><strong>Pass</strong></td>
+            <td>Gambar Bukti TC-02</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;"><strong>TC-03</strong></td>
+            <td>Login dengan mengosongkan kolom Email dan Password (Kondisi Negatif Kolom Kosong)</td>
+            <td>Pengguna berada di halaman /login dalam keadaan belum login.</td>
+            <td>Email: (kosong)<br>Password: (kosong)</td>
+            <td>1. Buka halaman /login<br>2. Biarkan kolom Email kosong<br>3. Biarkan kolom Password kosong<br>4. Klik tombol Log In</td>
+            <td>Sistem menolak proses login dan menampilkan pesan validasi Email wajib diisi serta Password wajib diisi.</td>
+            <td>Sistem tidak memproses login dan menampilkan teks merah Email wajib diisi dan Password wajib diisi di bawah kolom input.</td>
+            <td style="text-align: center;"><strong>Pass</strong></td>
+            <td>Gambar Bukti TC-03</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;"><strong>TC-04</strong></td>
+            <td>Login dengan mengisi Email valid tetapi mengosongkan kolom Password (Kondisi Negatif)</td>
+            <td>Pengguna berada di halaman /login.</td>
+            <td>Email: admin@gmail.com<br>Password: (kosong)</td>
+            <td>1. Buka halaman /login<br>2. Masukkan Email admin@gmail.com<br>3. Kosongkan kolom Password<br>4. Klik tombol Log In</td>
+            <td>Sistem menolak login, mempertahankan input email, dan menampilkan pesan validasi Password wajib diisi.</td>
+            <td>Sistem menolak login, nilai email tetap terisi, dan muncul teks merah Password wajib diisi.</td>
+            <td style="text-align: center;"><strong>Pass</strong></td>
+            <td>Gambar Bukti TC-04</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;"><strong>TC-05</strong></td>
+            <td>Login menggunakan alamat Email yang tidak terdaftar di database (Kondisi Negatif)</td>
+            <td>Pengguna berada di halaman /login dan kuota percobaan login belum habis.</td>
+            <td>Email: belumterdaftar@gmail.com<br>Password: admin123</td>
+            <td>1. Buka halaman /login<br>2. Masukkan Email belumterdaftar@gmail.com<br>3. Masukkan Password admin123<br>4. Klik tombol Log In</td>
+            <td>Sistem menolak akses login dan menampilkan peringatan Email tidak terdaftar disertai sisa kesempatan login 2 kali lagi.</td>
+            <td>Sistem menolak login dan menampilkan kotak peringatan merah Email tidak terdaftar. Sisa kesempatan login Anda: 2 kali lagi.</td>
+            <td style="text-align: center;"><strong>Pass</strong></td>
+            <td>Gambar Bukti TC-05</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;"><strong>TC-06</strong></td>
+            <td>Login dengan Email terdaftar namun Password salah pada percobaan pertama (Kondisi Negatif)</td>
+            <td>Pengguna berada di halaman /login, akun admin@gmail.com terdaftar, belum ada gagal login sebelumnya.</td>
+            <td>Email: admin@gmail.com<br>Password: SalahPassword1</td>
+            <td>1. Buka halaman /login<br>2. Masukkan Email admin@gmail.com<br>3. Masukkan Password SalahPassword1<br>4. Klik tombol Log In</td>
+            <td>Sistem menolak akses dan menampilkan peringatan Password yang Anda masukkan salah disertai sisa kesempatan login 2 kali lagi.</td>
+            <td>Sistem menolak akses dan menampilkan kotak peringatan merah Password yang Anda masukkan salah. Sisa kesempatan login Anda: 2 kali lagi.</td>
+            <td style="text-align: center;"><strong>Pass</strong></td>
+            <td>Gambar Bukti TC-06</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;"><strong>TC-07</strong></td>
+            <td>Login gagal 2 kali berturut-turut pada batas sebelum akun dikunci (Boundary Value Test: Batas Maksimal dikurangi 1)</td>
+            <td>Pengguna sudah gagal login 1 kali menggunakan email admin@gmail.com.</td>
+            <td>Email: admin@gmail.com<br>Password: SalahPassword2</td>
+            <td>1. Masukkan kembali Email admin@gmail.com<br>2. Masukkan Password salah SalahPassword2<br>3. Klik tombol Log In</td>
+            <td>Sistem menolak login, menampilkan sisa kesempatan login 1 kali lagi, dan formulir login masih aktif.</td>
+            <td>Sistem menampilkan pesan sisa kesempatan 1 kali lagi dan kolom input beserta tombol Log In masih dapat digunakan.</td>
+            <td style="text-align: center;"><strong>Pass</strong></td>
+            <td>Gambar Bukti TC-07</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;"><strong>TC-08</strong></td>
+            <td>Login gagal tepat 3 kali berturut-turut pada batas penguncian 30 detik (Boundary Value Test: Tepat Batas Maksimal)</td>
+            <td>Pengguna sudah gagal login 2 kali berturut-turut menggunakan email admin@gmail.com.</td>
+            <td>Email: admin@gmail.com<br>Password: SalahPassword3</td>
+            <td>1. Masukkan Email admin@gmail.com<br>2. Masukkan Password salah ketiga SalahPassword3<br>3. Klik tombol Log In</td>
+            <td>Sistem mengunci akses login selama 30 detik, menampilkan hitung mundur waktu tunggu, dan menonaktifkan kolom input serta tombol Log In.</td>
+            <td>Muncul peringatan hitung mundur 30 detik serta kolom Email, Password, dan tombol Log In otomatis terkunci hingga waktu tunggu selesai.</td>
+            <td style="text-align: center;"><strong>Pass</strong></td>
+            <td>Gambar Bukti TC-08</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;"><strong>TC-09</strong></td>
+            <td>Login dengan mengosongkan kolom Email tetapi mengisi kolom Password (Kondisi Negatif Kolom Kosong Sebagian)</td>
+            <td>Pengguna berada di halaman /login dan tidak sedang terkena penguncian.</td>
+            <td>Email: (kosong)<br>Password: admin123</td>
+            <td>1. Buka halaman /login<br>2. Biarkan kolom Email kosong<br>3. Masukkan Password admin123<br>4. Klik tombol Log In</td>
+            <td>Sistem menolak proses login dan menampilkan pesan validasi Email wajib diisi di bawah kolom Email.</td>
+            <td>Sistem menolak login dan menampilkan teks merah Email wajib diisi di bawah kolom Email.</td>
+            <td style="text-align: center;"><strong>Pass</strong></td>
+            <td>Gambar Bukti TC-09</td>
+        </tr>
+        <tr>
+            <td style="text-align: center;"><strong>TC-10</strong></td>
+            <td>Login menggunakan akun berstatus Nonaktif dengan kredensial yang benar (Kondisi Negatif Status Akun)</td>
+            <td>Pengguna berada di halaman /login, akun mandor2@gmail.com telah dinonaktifkan oleh Admin.</td>
+            <td>Email: mandor2@gmail.com<br>Password: password</td>
+            <td>1. Buka halaman /login<br>2. Masukkan Email mandor2@gmail.com<br>3. Masukkan Password benar password<br>4. Klik tombol Log In</td>
+            <td>Sistem menolak login dan memberi tahu bahwa akun telah dinonaktifkan tanpa mengurangi kuota kesempatan percobaan login.</td>
+            <td>Sistem menolak login tetapi tetap memotong kuota percobaan dan menampilkan pesan Akun Anda telah dinonaktifkan. Sisa kesempatan login Anda: 2 kali lagi.</td>
+            <td style="text-align: center;"><strong>Fail</strong></td>
+            <td>Gambar Bukti TC-10 (Defect DEF-01)</td>
+        </tr>
+    </tbody>
+</table>
+
+<p class="judul-subbab">3.2 Dokumentasi Bukti Eksekusi Pengujian</p>
+<p class="paragraf">Berikut adalah dokumentasi tangkapan layar dari hasil eksekusi nyata setiap test case pada aplikasi Medina Residence.</p>
+
+<p class="poin">1. Bukti Pengujian TC-01 (Login Admin Valid ke Halaman Dashboard)</p>
+<div class="ss-box">[ Tempel Screenshot TC-01 di sini: Gambar Form Login dan Halaman Dashboard ]</div>
+
+<p class="poin">2. Bukti Pengujian TC-02 (Login Akun Tanpa Foto Profil Diarahkan ke Halaman Profil)</p>
+<div class="ss-box">[ Tempel Screenshot TC-02 di sini: Gambar Halaman Profil dengan Peringatan Wajib Isi Profil ]</div>
+
+<p class="poin">3. Bukti Pengujian TC-03 (Validasi Kolom Email dan Password Kosong)</p>
+<div class="ss-box">[ Tempel Screenshot TC-03 di sini: Gambar Pesan Validasi Email Wajib Diisi dan Password Wajib Diisi ]</div>
+
+<p class="poin">4. Bukti Pengujian TC-04 (Validasi Kolom Password Kosong)</p>
+<div class="ss-box">[ Tempel Screenshot TC-04 di sini: Gambar Pesan Validasi Password Wajib Diisi ]</div>
+
+<p class="poin">5. Bukti Pengujian TC-05 (Peringatan Email Tidak Terdaftar)</p>
+<div class="ss-box">[ Tempel Screenshot TC-05 di sini: Gambar Alert Email Tidak Terdaftar ]</div>
+
+<p class="poin">6. Bukti Pengujian TC-06 (Peringatan Password Salah Percobaan Pertama)</p>
+<div class="ss-box">[ Tempel Screenshot TC-06 di sini: Gambar Alert Password Salah Sisa 2 Kali ]</div>
+
+<p class="poin">7. Bukti Pengujian TC-07 (Peringatan Password Salah Percobaan Kedua / Boundary Sebelum Terkunci)</p>
+<div class="ss-box">[ Tempel Screenshot TC-07 di sini: Gambar Alert Password Salah Sisa 1 Kali ]</div>
+
+<p class="poin">8. Bukti Pengujian TC-08 (Penguncian Formulir 30 Detik pada Percobaan Gagal Ketiga)</p>
+<div class="ss-box">[ Tempel Screenshot TC-08 di sini: Gambar Hitung Mundur Lockout 30 Detik dan Tombol Disabled ]</div>
+
+<p class="poin">9. Bukti Pengujian TC-09 (Validasi Kolom Email Kosong dan Password Terisi)</p>
+<div class="ss-box">[ Tempel Screenshot TC-09 di sini: Gambar Pesan Validasi Email Wajib Diisi ]</div>
+
+<p class="poin">10. Bukti Pengujian TC-10 (Percobaan Login Akun Berstatus Nonaktif)</p>
+<div class="ss-box">[ Tempel Screenshot TC-10 di sini: Gambar Alert Akun Dinonaktifkan Beserta Sisa Kesempatan Login ]</div>
+
+<p class="judul-bab">BAB IV<br>LAPORAN DEFECT DAN ANALISIS PRIORITAS</p>
+
+<p class="judul-subbab">4.1 Laporan Defect (Bagian D — Template Defect Report)</p>
+<p class="paragraf">Berdasarkan sepuluh test case yang telah dijalankan, ditemukan satu test case yang berstatus Fail yaitu pada TC-10. Rincian laporan defect disusun sesuai format Bagian D sebagai berikut:</p>
+
+<p class="defect-item"><strong>Defect ID:</strong> DEF-01 (Merujuk pada hasil eksekusi TC-10)</p>
+<p class="defect-item"><strong>Judul defect:</strong> Sistem tetap memotong kuota percobaan login dan menampilkan pesan sisa kesempatan login pada akun yang berstatus nonaktif</p>
+<p class="defect-item"><strong>Tanggal dan lingkungan pengujian:</strong> 9 November 2026 pada sistem operasi Windows 11, peramban Google Chrome, server lokal Laravel PHP 8.2, dan basis data MySQL</p>
+<p class="defect-item"><strong>Prasyarat dan data uji:</strong> Pengguna berada pada halaman <code>/login</code> dan akun Mandor dengan email <code>mandor2@gmail.com</code> serta kata sandi <code>password</code> memiliki status nonaktif di dalam basis data</p>
+<p class="defect-item"><strong>Langkah reproduksi (bernomor):</strong><br>
+1. Masuk terlebih dahulu sebagai Admin dan pastikan akun <code>mandor2@gmail.com</code> telah dinonaktifkan pada menu Data User, kemudian lakukan logout.<br>
+2. Buka halaman <code>/login</code> pada peramban web.<br>
+3. Masukkan alamat email <code>mandor2@gmail.com</code> pada kolom Email.<br>
+4. Masukkan kata sandi yang benar yaitu <code>password</code> pada kolom Password.<br>
+5. Klik tombol Log In dan amati pesan peringatan yang ditampilkan sistem.</p>
+<p class="defect-item"><strong>Expected result:</strong> Sistem menolak akses login dan menampilkan pemberitahuan bahwa akun telah dinonaktifkan serta mengarahkan pengguna untuk menghubungi Admin tanpa menghitungnya sebagai kegagalan kredensial dan tanpa menampilkan sisa kesempatan percobaan login.</p>
+<p class="defect-item"><strong>Actual result:</strong> Sistem menolak akses login namun tetap memanggil pencatat batas percobaan gagal login dan menampilkan pesan "Akun Anda telah dinonaktifkan. Sisa kesempatan login Anda: 2 kali lagi." yang memberi kesan keliru seolah pengguna masih memiliki dua kesempatan untuk berhasil masuk apabila mencoba kembali.</p>
+<p class="defect-item"><strong>Severity dan alasan:</strong> Low (Rendah). Alasan penetapan tingkat keparahan rendah adalah fungsi keamanan utama tetap berhasil menahan akun nonaktif agar tidak masuk ke halaman dashboard, sehingga cacat ini hanya berdampak pada ketidaktepatan informasi umpan balik antarmuka dan pengalaman pengguna tanpa merusak integritas data.</p>
+<p class="defect-item"><strong>Priority dan alasan:</strong> Medium (Sedang). Alasan penetapan prioritas sedang adalah pesan tersebut dapat membingungkan pengguna lapangan (Mandor) hingga mencoba login berulang kali sampai terkunci, namun perbaikannya cukup sederhana pada kode pengendali autentikasi sehingga dapat dijadwalkan pada siklus perbaikan berikutnya.</p>
+<p class="defect-item"><strong>Bukti pendukung (pastikan aman):</strong> Gambar Bukti TC-10 pada Subbab 3.2 yang menampilkan kotak peringatan merah pada akun uji sintetis tanpa memuat data pribadi nyata.</p>
+<p class="defect-item"><strong>Status/tindak lanjut:</strong> Open (Belum Diperbaiki). Tindak lanjut yang disarankan adalah menghapus pemanggilan fungsi <code>RateLimiter::hit()</code> dan menghapus kalimat sisa kesempatan login pada blok pemeriksaan status akun nonaktif di berkas <code>AuthController.php</code>.</p>
+
+<p class="judul-subbab">4.2 Analisis Prioritas Pengujian</p>
+<p class="paragraf">Dalam pelaksanaan audit pengujian modul autentikasi ini, prioritas pengujian diurutkan berdasarkan tingkat risiko terhadap keamanan akses dan ketersediaan fungsi utama aplikasi. Prioritas tertinggi diberikan pada pengujian kredensial valid (TC-01 dan TC-02) serta penolakan kredensial salah dan penguncian otomatis setelah tiga kali gagal (TC-05, TC-06, TC-07, dan TC-08), karena kegagalan pada skenario tersebut akan berdampak langsung pada terbukanya celah akses tidak sah atau terhalangnya pengguna sah untuk bekerja.</p>
+<p class="paragraf">Prioritas menengah diberikan pada pengujian status akun nonaktif (TC-10) serta validasi kelengkapan kolom wajib (TC-03, TC-04, dan TC-09) yang memastikan umpan balik formulir berjalan tertib sebelum permintaan diproses lebih lanjut.</p>
+
+<p class="judul-bab">BAB V<br>JAWABAN PERTANYAAN REFLEKSI (BAGIAN E)</p>
+
+<p class="poin">21. Mengapa expected result perlu ditentukan sebelum pengujian dijalankan?</p>
+<p class="poin-isi">Expected result wajib ditentukan sebelum pengujian dijalankan agar penguji memiliki tolok ukur objektif yang didasarkan pada spesifikasi kebutuhan perangkat lunak, bukan berdasarkan asumsi subjektif setelah melihat perilaku aplikasi. Apabila expected result baru ditulis setelah melihat hasil di layar, penguji berisiko mengalami bias konfirmasi, yaitu menganggap perilaku aplikasi yang sebenarnya cacat sebagai sesuatu yang wajar dan benar.</p>
+
+<p class="poin">22. Apa perbedaan hasil Pass dan kesimpulan bahwa perangkat lunak bebas defect?</p>
+<p class="poin-isi">Status Pass hanya menunjukkan bahwa pada satu test case tertentu dengan kombinasi data uji dan langkah spesifik yang dijalankan, perilaku aktual sistem telah sesuai dengan hasil yang diharapkan. Sebaliknya, pernyataan bahwa perangkat lunak bebas defect merupakan klaim mutlak yang tidak dapat dibuktikan hanya dari sejumlah test case yang lulus, karena prinsip dasar pengujian perangkat lunak menyatakan bahwa pengujian hanya dapat membuktikan keberadaan defect dan tidak pernah dapat membuktikan ketiadaan defect secara keseluruhan di luar skenario yang diuji.</p>
+
+<p class="poin">23. Jika waktu terbatas, bagaimana Anda memilih test case yang diprioritaskan?</p>
+<p class="poin-isi">Apabila waktu pengujian terbatas, pemilihan test case dilakukan menggunakan pendekatan berbasis risiko (Risk-Based Testing). Urutan pertama yang diprioritaskan adalah skenario alur utama (Happy Path) seperti login kredensial valid pada TC-01 agar kepastian fungsi dasar aplikasi terjaga. Urutan kedua adalah skenario keamanan kritis dan batas sistem seperti penolakan kata sandi salah serta mekanisme penguncian akun pada TC-06 dan TC-08. Adapun pengujian kosmetik atau variasi kolom kosong sebagian dapat dijalankan paling akhir jika waktu masih tersedia.</p>
+
+<p class="poin">24. Apa perbedaan severity dan priority? Berikan contoh dari hasil pengujian Anda.</p>
+<p class="poin-isi">Severity adalah ukuran tingkat keparahan dampak suatu defect terhadap fungsi teknis dan stabilitas sistem, sedangkan Priority adalah ukuran tingkat kemendesakan waktu bagi tim pengembang untuk memperbaiki defect tersebut dari sudut pandang bisnis atau operasional. Sebagai contoh dari hasil pengujian pada DEF-01 (TC-10), defect pesan sisa kesempatan login pada akun nonaktif memiliki tingkat Severity yang rendah (Low) karena sistem tetap berhasil memblokir akses akun nonaktif sehingga keamanan tidak bocor, namun memiliki Priority sedang (Medium) karena berada di halaman depan aplikasi yang sering diakses pengguna sehingga perlu segera dirapikan agar pesan sistem tidak membingungkan pengguna.</p>
+
+<p class="poin">25. Sebutkan keterbatasan pengujian dan fungsi apa yang masih perlu diuji.</p>
+<p class="poin-isi">Keterbatasan dalam pengujian ini adalah cakupan audit baru terbatas pada satu fungsi yaitu autentikasi login melalui pendekatan black-box pada satu jenis peramban di lingkungan lokal, sehingga belum menguji aspek keamanan sesi, ketahanan beban akses bersamaan, maupun fungsi bisnis inti lainnya. Fungsi pada aplikasi Medina Residence yang masih perlu diuji lebih lanjut meliputi modul transaksi Material Masuk, modul transaksi Material Terpakai beserta perhitungan stok berjalan per kawasan, modul Manajemen Data User, serta modul Pengajuan dan Persetujuan Laporan.</p>
+
+<p class="judul-bab">BAB VI<br>KESIMPULAN DAN REKOMENDASI</p>
+
+<p class="judul-subbab">6.1 Kesimpulan</p>
+<p class="paragraf">Berdasarkan pelaksanaan audit pengujian black-box terhadap fungsi autentikasi login pada aplikasi Medina Residence, dari total 10 test case yang dirancang dan dijalankan, diperoleh hasil sebanyak 9 test case berstatus Pass (90%) dan 1 test case berstatus Fail (10%). Fitur utama autentikasi yang meliputi verifikasi akun aktif, pengalihan wajib lengkapi profil, validasi kolom kosong, penolakan kredensial tidak valid, serta penguncian otomatis selama 30 detik pada batas percobaan gagal ketiga telah berjalan sesuai spesifikasi.</p>
+<p class="paragraf">Satu temuan defect (DEF-01) teramati pada skenario login akun nonaktif (TC-10) yang masih mengurangi kuota percobaan dan menampilkan sisa kesempatan login. Hasil pengujian ini hanya mencerminkan kualitas pada cakupan skenario login yang diuji dan tidak menyatakan aplikasi bebas dari defect pada modul lainnya.</p>
+
+<p class="judul-subbab">6.2 Rekomendasi</p>
+<p class="paragraf">Rekomendasi perbaikan yang disarankan kepada pengembang aplikasi Medina Residence adalah memperbarui logika pemeriksaan status akun nonaktif pada berkas <code>AuthController.php</code> dengan menghentikan perhitungan kuota <code>RateLimiter</code> ketika akun diketahui berstatus nonaktif, serta memperbaiki teks pesan peringatan menjadi pemberitahuan tegas bahwa akun telah dinonaktifkan dan meminta pengguna menghubungi Admin. Selain itu, disarankan untuk melanjutkan pengujian black-box pada modul transaksi material keluar dan manajemen pengguna guna memastikan keakuratan perhitungan stok serta pencegahan duplikasi data.</p>
+
+<p class="judul-bab">SUMBER YANG DIGUNAKAN</p>
+<p class="poin">1. Urva, Gellysa. (2026). Lembar Praktikum dan Penugasan Mahasiswa BAB 4 — Software Quality Testing: Perancangan dan Pelaksanaan Black-Box Testing pada Aplikasi Web Sederhana. Mata Kuliah Penjamin Kualitas Perangkat Lunak, Program Studi S1 Teknik Informatika.</p>
+<p class="poin">2. Pressman, R. S., &amp; Maxim, B. R. (2020). Software Engineering: A Practitioner's Approach (9th ed.). McGraw-Hill Education.</p>
+<p class="poin">3. Kode Sumber Aplikasi Web Medina Residence (Modul Autentikasi <code>app/Http/Controllers/AuthController.php</code> dan Antarmuka <code>resources/views/auth/login.blade.php</code>).</p>
+
+</body>
+</html>

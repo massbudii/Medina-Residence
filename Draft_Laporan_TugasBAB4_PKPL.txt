@@ -1,0 +1,147 @@
+LAPORAN PRAKTIKUM DAN PENUGASAN MAHASISWA
+BAB 4 — SOFTWARE QUALITY TESTING
+AUDIT PENGUJIAN SEDERHANA TERHADAP FUNGSI AUTENTIKASI LOGIN PADA APLIKASI WEB MEDINA RESIDENCE MENGGUNAKAN PENDEKATAN BLACK-BOX TESTING
+
+Mata Kuliah: Penjamin Kualitas Perangkat Lunak
+Dosen Pengampu: Ir. Gellysa Urva, S.T., M.Kom
+
+Disusun Oleh:
+Nama: [Isi Nama Mahasiswa]
+NIM: [Isi NIM Mahasiswa]
+
+PROGRAM STUDI S1 TEKNIK INFORMATIKA
+SEMESTER VII
+TAHUN AKADEMIK 2026/2027
+
+
+BAB I
+DESKRIPSI OBJEK DAN RUANG LINGKUP PENGUJIAN
+
+1.1 Deskripsi dan Tujuan Aplikasi
+	Objek pengujian yang digunakan pada laporan ini adalah aplikasi web bernama Medina Residence. Aplikasi Medina Residence merupakan sistem informasi berbasis web yang dibangun menggunakan kerangka kerja Laravel dan basis data MySQL untuk mengelola inventaris, distribusi, serta pelaporan penggunaan material bangunan pada proyek pembangunan perumahan Medina Residence.
+	Tujuan utama dari aplikasi Medina Residence adalah membantu pihak manajemen proyek dan pengawas lapangan dalam mencatat stok material masuk dari pemasok, memantau pemakaian material keluar di setiap kawasan pembangunan, mengelola data pengguna serta tipe unit perumahan, dan menyediakan mekanisme pengajuan serta persetujuan laporan pemakaian material secara terpusat dan akurat.
+
+1.2 Pengguna Sasaran Aplikasi
+	Aplikasi Medina Residence memiliki dua kelompok pengguna sasaran yang dibedakan berdasarkan hak akses peran di dalam sistem. Kelompok pertama adalah Admin, yaitu pengelola utama yang bertugas mengelola data master pengguna, data tipe unit rumah, data kawasan proyek, data pemasok, data material, serta melakukan verifikasi persetujuan atau penolakan terhadap laporan material yang diajukan. Kelompok kedua adalah Mandor, yaitu pengawas lapangan yang bertugas mencatat transaksi material masuk, mencatat transaksi material terpakai di lapangan, serta mengajukan laporan penggunaan material per kawasan kepada Admin.
+
+1.3 Fungsi yang Dipilih dan Ruang Lingkup Pengujian
+	Fungsi yang dipilih untuk diaudit dalam pengujian ini adalah modul Autentikasi Login pengguna pada rute halaman /login. Modul ini dipilih karena merupakan gerbang keamanan utama yang mengatur kendali akses pengguna berdasarkan kredensial email, kata sandi, status keaktifan akun, pembatasan percobaan gagal login maksimal tiga kali disertai penguncian sementara selama 30 detik, serta pemeriksaan kelengkapan foto profil pengguna sebelum diizinkan mengakses halaman utama.
+	Cakupan yang termasuk dalam ruang lingkup pengujian meliputi proses autentikasi login menggunakan kredensial valid baik untuk pengguna yang sudah melengkapi foto profil maupun yang belum melengkapi foto profil, validasi kolom wajib pada input email dan kata sandi ketika dikosongkan seluruhnya atau sebagian, penanganan kondisi negatif ketika email tidak terdaftar atau kata sandi salah, pengujian nilai batas jumlah percobaan gagal login berturut-turut hingga mencapai batas penguncian akun selama 30 detik, serta penanganan percobaan login oleh akun yang berstatus nonaktif.
+	Adapun bagian yang tidak termasuk dalam ruang lingkup pengujian ini meliputi modul transaksi material masuk, modul transaksi material keluar atau terpakai, modul manajemen master kawasan dan pemasok, modul pencetakan laporan, serta pengujian keamanan tingkat jaringan dan pengujian beban kerja server.
+
+
+BAB II
+METODE DAN SKENARIO PENGUJIAN
+
+2.1 Metode Pengujian
+	Metode yang diterapkan dalam audit ini adalah pengujian kotak hitam (Black-Box Testing) yang dikombinasikan dengan teknik Equivalence Partitioning dan Boundary Value Analysis. Melalui pendekatan ini, pengujian difokuskan pada perilaku fungsional antarmuka halaman login dari sudut pandang pengguna akhir dengan membandingkan hasil yang diharapkan (Expected Result) sesuai aturan spesifikasi sistem terhadap hasil aktual (Actual Result) yang benar-benar teramati pada peramban web Google Chrome di lingkungan pengujian lokal.
+
+2.2 Identifikasi Skenario Pengujian
+	Berdasarkan aturan bisnis dan validasi pada modul autentikasi Medina Residence, disusun empat kelompok skenario pengujian utama sebagai berikut:
+1. Skenario Alur Normal (Kredensial Valid): Menguji perilaku sistem ketika pengguna memasukkan kombinasi email dan kata sandi yang terdaftar serta berstatus aktif, baik untuk akun yang sudah memiliki foto profil (diarahkan ke halaman dashboard) maupun akun yang belum memiliki foto profil (diarahkan ke halaman profil untuk melengkapi data).
+2. Skenario Kondisi Negatif Kolom Kosong: Menguji respons validasi formulir ketika pengguna mengosongkan seluruh kolom input atau hanya mengisi salah satu kolom saja, yaitu email diisi tetapi kata sandi kosong, serta email kosong tetapi kata sandi diisi.
+3. Skenario Kondisi Negatif Kredensial Tidak Valid dan Pengujian Batas Percobaan (Boundary Value Analysis): Menguji respons sistem terhadap email yang tidak terdaftar, kata sandi yang salah pada percobaan pertama, percobaan gagal kedua (satu angka di bawah batas penguncian), hingga tepat pada batas maksimal percobaan gagal ketiga yang memicu penguncian formulir selama 30 detik.
+4. Skenario Kondisi Negatif Status Akun Nonaktif: Menguji perilaku sistem ketika pengguna yang status akunnya telah dinonaktifkan oleh Admin mencoba melakukan login menggunakan email dan kata sandi yang benar.
+
+
+BAB III
+PERANCANGAN DAN HASIL EKSEKUSI TEST CASE
+
+3.1 Ringkasan Hasil Eksekusi 10 Test Case (Bagian C)
+	Sepuluh test case telah dirancang dan dieksekusi secara berurutan pada halaman /login aplikasi Medina Residence (tabel lengkap terdapat pada berkas spreadsheet NIM_Nama_TestCaseBAB4_Revisi.xlsx dan pada berkas Word). Berikut adalah rincian kesepuluh test case beserta tempat dokumentasi bukti pengujiannya:
+
+1. Bukti Pengujian TC-01 (Login Admin Valid ke Halaman Dashboard — Status: Pass)
+[ Tempel Screenshot TC-01 di sini: Gambar Form Login dan Halaman Dashboard ]
+
+2. Bukti Pengujian TC-02 (Login Akun Tanpa Foto Profil Diarahkan ke Halaman Profil — Status: Pass)
+[ Tempel Screenshot TC-02 di sini: Gambar Halaman Profil dengan Peringatan Wajib Isi Profil ]
+
+3. Bukti Pengujian TC-03 (Validasi Kolom Email dan Password Kosong — Status: Pass)
+[ Tempel Screenshot TC-03 di sini: Gambar Pesan Validasi Email Wajib Diisi dan Password Wajib Diisi ]
+
+4. Bukti Pengujian TC-04 (Validasi Kolom Password Kosong — Status: Pass)
+[ Tempel Screenshot TC-04 di sini: Gambar Pesan Validasi Password Wajib Diisi ]
+
+5. Bukti Pengujian TC-05 (Peringatan Email Tidak Terdaftar — Status: Pass)
+[ Tempel Screenshot TC-05 di sini: Gambar Alert Email Tidak Terdaftar ]
+
+6. Bukti Pengujian TC-06 (Peringatan Password Salah Percobaan Pertama — Status: Pass)
+[ Tempel Screenshot TC-06 di sini: Gambar Alert Password Salah Sisa 2 Kali ]
+
+7. Bukti Pengujian TC-07 (Peringatan Password Salah Percobaan Kedua / Boundary Sebelum Terkunci — Status: Pass)
+[ Tempel Screenshot TC-07 di sini: Gambar Alert Password Salah Sisa 1 Kali ]
+
+8. Bukti Pengujian TC-08 (Penguncian Formulir 30 Detik pada Percobaan Gagal Ketiga — Status: Pass)
+[ Tempel Screenshot TC-08 di sini: Gambar Hitung Mundur Lockout 30 Detik dan Tombol Disabled ]
+
+9. Bukti Pengujian TC-09 (Validasi Kolom Email Kosong dan Password Terisi — Status: Pass)
+[ Tempel Screenshot TC-09 di sini: Gambar Pesan Validasi Email Wajib Diisi ]
+
+10. Bukti Pengujian TC-10 (Percobaan Login Akun Berstatus Nonaktif — Status: Fail)
+[ Tempel Screenshot TC-10 di sini: Gambar Alert Akun Dinonaktifkan Beserta Sisa Kesempatan Login ]
+
+
+BAB IV
+LAPORAN DEFECT DAN ANALISIS PRIORITAS
+
+4.1 Laporan Defect (Bagian D — Template Defect Report)
+	Berdasarkan sepuluh test case yang telah dijalankan, ditemukan satu test case yang berstatus Fail yaitu pada TC-10. Rincian laporan defect disusun sesuai format Bagian D sebagai berikut:
+
+Defect ID: DEF-01 (Merujuk pada hasil eksekusi TC-10)
+Judul defect: Sistem tetap memotong kuota percobaan login dan menampilkan pesan sisa kesempatan login pada akun yang berstatus nonaktif
+Tanggal dan lingkungan pengujian: 9 November 2026 pada sistem operasi Windows 11, peramban Google Chrome, server lokal Laravel PHP 8.2, dan basis data MySQL
+Prasyarat dan data uji: Pengguna berada pada halaman /login dan akun Mandor dengan email mandor2@gmail.com serta kata sandi password memiliki status nonaktif di dalam basis data
+Langkah reproduksi (bernomor):
+1. Masuk terlebih dahulu sebagai Admin dan pastikan akun mandor2@gmail.com telah dinonaktifkan pada menu Data User, kemudian lakukan logout.
+2. Buka halaman /login pada peramban web.
+3. Masukkan alamat email mandor2@gmail.com pada kolom Email.
+4. Masukkan kata sandi yang benar yaitu password pada kolom Password.
+5. Klik tombol Log In dan amati pesan peringatan yang ditampilkan sistem.
+Expected result: Sistem menolak akses login dan menampilkan pemberitahuan bahwa akun telah dinonaktifkan serta mengarahkan pengguna untuk menghubungi Admin tanpa menghitungnya sebagai kegagalan kredensial dan tanpa menampilkan sisa kesempatan percobaan login.
+Actual result: Sistem menolak akses login namun tetap memanggil pencatat batas percobaan gagal login dan menampilkan pesan "Akun Anda telah dinonaktifkan. Sisa kesempatan login Anda: 2 kali lagi." yang memberi kesan keliru seolah pengguna masih memiliki dua kesempatan untuk berhasil masuk apabila mencoba kembali.
+Severity dan alasan: Low (Rendah). Alasan penetapan tingkat keparahan rendah adalah fungsi keamanan utama tetap berhasil menahan akun nonaktif agar tidak masuk ke halaman dashboard, sehingga cacat ini hanya berdampak pada ketidaktepatan informasi umpan balik antarmuka dan pengalaman pengguna tanpa merusak integritas data.
+Priority dan alasan: Medium (Sedang). Alasan penetapan prioritas sedang adalah pesan tersebut dapat membingungkan pengguna lapangan (Mandor) hingga mencoba login berulang kali sampai terkunci, namun perbaikannya cukup sederhana pada kode pengendali autentikasi sehingga dapat dijadwalkan pada siklus perbaikan berikutnya.
+Bukti pendukung (pastikan aman): Gambar Bukti TC-10 pada Bab III yang menampilkan kotak peringatan merah pada akun uji sintetis tanpa memuat data pribadi nyata.
+Status/tindak lanjut: Open (Belum Diperbaiki). Tindak lanjut yang disarankan adalah menghapus pemanggilan fungsi RateLimiter::hit() dan menghapus kalimat sisa kesempatan login pada blok pemeriksaan status akun nonaktif di berkas AuthController.php.
+
+4.2 Analisis Prioritas Pengujian
+	Dalam pelaksanaan audit pengujian modul autentikasi ini, prioritas pengujian diurutkan berdasarkan tingkat risiko terhadap keamanan akses dan ketersediaan fungsi utama aplikasi. Prioritas tertinggi diberikan pada pengujian kredensial valid (TC-01 dan TC-02) serta penolakan kredensial salah dan penguncian otomatis setelah tiga kali gagal (TC-05, TC-06, TC-07, dan TC-08), karena kegagalan pada skenario tersebut akan berdampak langsung pada terbukanya celah akses tidak sah atau terhalangnya pengguna sah untuk bekerja.
+	Prioritas menengah diberikan pada pengujian status akun nonaktif (TC-10) serta validasi kelengkapan kolom wajib (TC-03, TC-04, dan TC-09) yang memastikan umpan balik formulir berjalan tertib sebelum permintaan diproses lebih lanjut.
+
+
+BAB V
+JAWABAN PERTANYAAN REFLEKSI (BAGIAN E)
+
+21. Mengapa expected result perlu ditentukan sebelum pengujian dijalankan?
+	Expected result wajib ditentukan sebelum pengujian dijalankan agar penguji memiliki tolok ukur objektif yang didasarkan pada spesifikasi kebutuhan perangkat lunak, bukan berdasarkan asumsi subjektif setelah melihat perilaku aplikasi. Apabila expected result baru ditulis setelah melihat hasil di layar, penguji berisiko mengalami bias konfirmasi, yaitu menganggap perilaku aplikasi yang sebenarnya cacat sebagai sesuatu yang wajar dan benar.
+
+22. Apa perbedaan hasil Pass dan kesimpulan bahwa perangkat lunak bebas defect?
+	Status Pass hanya menunjukkan bahwa pada satu test case tertentu dengan kombinasi data uji dan langkah spesifik yang dijalankan, perilaku aktual sistem telah sesuai dengan hasil yang diharapkan. Sebaliknya, pernyataan bahwa perangkat lunak bebas defect merupakan klaim mutlak yang tidak dapat dibuktikan hanya dari sejumlah test case yang lulus, karena prinsip dasar pengujian perangkat lunak menyatakan bahwa pengujian hanya dapat membuktikan keberadaan defect dan tidak pernah dapat membuktikan ketiadaan defect secara keseluruhan di luar skenario yang diuji.
+
+23. Jika waktu terbatas, bagaimana Anda memilih test case yang diprioritaskan?
+	Apabila waktu pengujian terbatas, pemilihan test case dilakukan menggunakan pendekatan berbasis risiko (Risk-Based Testing). Urutan pertama yang diprioritaskan adalah skenario alur utama (Happy Path) seperti login kredensial valid pada TC-01 agar kepastian fungsi dasar aplikasi terjaga. Urutan kedua adalah skenario keamanan kritis dan batas sistem seperti penolakan kata sandi salah serta mekanisme penguncian akun pada TC-06 dan TC-08. Adapun pengujian kosmetik atau variasi kolom kosong sebagian dapat dijalankan paling akhir jika waktu masih tersedia.
+
+24. Apa perbedaan severity dan priority? Berikan contoh dari hasil pengujian Anda.
+	Severity adalah ukuran tingkat keparahan dampak suatu defect terhadap fungsi teknis dan stabilitas sistem, sedangkan Priority adalah ukuran tingkat kemendesakan waktu bagi tim pengembang untuk memperbaiki defect tersebut dari sudut pandang bisnis atau operasional. Sebagai contoh dari hasil pengujian pada DEF-01 (TC-10), defect pesan sisa kesempatan login pada akun nonaktif memiliki tingkat Severity yang rendah (Low) karena sistem tetap berhasil memblokir akses akun nonaktif sehingga keamanan tidak bocor, namun memiliki Priority sedang (Medium) karena berada di halaman depan aplikasi yang sering diakses pengguna sehingga perlu segera dirapikan agar pesan sistem tidak membingungkan pengguna.
+
+25. Sebutkan keterbatasan pengujian dan fungsi apa yang masih perlu diuji.
+	Keterbatasan dalam pengujian ini adalah cakupan audit baru terbatas pada satu fungsi yaitu autentikasi login melalui pendekatan black-box pada satu jenis peramban di lingkungan lokal, sehingga belum menguji aspek keamanan sesi, ketahanan beban akses bersamaan, maupun fungsi bisnis inti lainnya. Fungsi pada aplikasi Medina Residence yang masih perlu diuji lebih lanjut meliputi modul transaksi Material Masuk, modul transaksi Material Terpakai beserta perhitungan stok berjalan per kawasan, modul Manajemen Data User, serta modul Pengajuan dan Persetujuan Laporan.
+
+
+BAB VI
+KESIMPULAN DAN REKOMENDASI
+
+6.1 Kesimpulan
+	Berdasarkan pelaksanaan audit pengujian black-box terhadap fungsi autentikasi login pada aplikasi Medina Residence, dari total 10 test case yang dirancang dan dijalankan, diperoleh hasil sebanyak 9 test case berstatus Pass (90%) dan 1 test case berstatus Fail (10%). Fitur utama autentikasi yang meliputi verifikasi akun aktif, pengalihan wajib lengkapi profil, validasi kolom kosong, penolakan kredensial tidak valid, serta penguncian otomatis selama 30 detik pada batas percobaan gagal ketiga telah berjalan sesuai spesifikasi.
+	Satu temuan defect (DEF-01) teramati pada skenario login akun nonaktif (TC-10) yang masih mengurangi kuota percobaan dan menampilkan sisa kesempatan login. Hasil pengujian ini hanya mencerminkan kualitas pada cakupan skenario login yang diuji dan tidak menyatakan aplikasi bebas dari defect pada modul lainnya.
+
+6.2 Rekomendasi
+	Rekomendasi perbaikan yang disarankan kepada pengembang aplikasi Medina Residence adalah memperbarui logika pemeriksaan status akun nonaktif pada berkas AuthController.php dengan menghentikan perhitungan kuota RateLimiter ketika akun diketahui berstatus nonaktif, serta memperbaiki teks pesan peringatan menjadi pemberitahuan tegas bahwa akun telah dinonaktifkan dan meminta pengguna menghubungi Admin. Selain itu, disarankan untuk melanjutkan pengujian black-box pada modul transaksi material keluar dan manajemen pengguna guna memastikan keakuratan perhitungan stok serta pencegahan duplikasi data.
+
+
+SUMBER YANG DIGUNAKAN
+1. Urva, Gellysa. (2026). Lembar Praktikum dan Penugasan Mahasiswa BAB 4 — Software Quality Testing: Perancangan dan Pelaksanaan Black-Box Testing pada Aplikasi Web Sederhana. Mata Kuliah Penjamin Kualitas Perangkat Lunak, Program Studi S1 Teknik Informatika.
+2. Amalia, A., Hamidah, S. W. P., & Kristanto, T. (2021). Pengujian Black Box Menggunakan Teknik Equivalence Partitions Pada Aplikasi E-Learning Berbasis Web. Building of Informatics, Technology and Science (BITS), Vol. 3, No. 3, hlm. 269–274.
+3. Setiawan, D., Fadhillah, M. A., Wibawa, A., Sugiarto, I., Mulyana, A., & Kusyadi, I. (2020). Pengujian Black Box Pada Aplikasi Perpustakaan Berbasis Web Menggunakan Teknik Equivalence Partitioning. Jurnal Teknologi Sistem Informasi dan Aplikasi, Vol. 3, No. 2, hlm. 109–115.
+4. Ismiati, S., Aditiawan, F. P., & Nurlaili, A. L. (2024). Black Box Testing with the Equivalence Partitioning and Cause Effect Graph Method in Archive Information System. Jurnal Teknik Informatika (Jutif), Vol. 5, No. 4.
+5. Pangestika, A., & Widianti, L. W. (2025). Implementasi Pengujian Black Box Testing Menggunakan Teknik Equivalents Partitions Pada Aplikasi Tapera Digital Services Fitur Pendaftaran Pekerja Mandiri. Jurnal Sistem Informasi dan Bisnis Cerdas (SIBC), Vol. 18, No. 1.

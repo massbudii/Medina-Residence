@@ -1,0 +1,251 @@
+
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+      xmlns:w="urn:schemas-microsoft-com:office:word"
+      xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+    <meta charset="utf-8">
+    <title>Draft Pengujian Fitur Medina Residence</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>100</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+        body { font-family: "Calibri", "Arial", sans-serif; font-size: 11pt; line-height: 1.5; color: #000000; margin: 30px; }
+        h1 { font-size: 16pt; font-weight: bold; color: #000000; text-align: center; margin-bottom: 5px; }
+        h2 { font-size: 13pt; font-weight: bold; color: #000000; text-align: center; margin-top: 0; margin-bottom: 20px; }
+        h3 { font-size: 11pt; font-weight: bold; color: #000000; margin-top: 20px; margin-bottom: 8px; }
+        p { margin-bottom: 10px; text-align: justify; }
+        table { width: 100%; border-collapse: collapse; margin-top: 5px; margin-bottom: 20px; font-size: 10pt; }
+        th { background-color: #ffffff; color: #000000; font-weight: bold; padding: 8px 10px; border: 1px solid #000000; text-align: center; }
+        td { padding: 7px 10px; border: 1px solid #000000; vertical-align: top; color: #000000; }
+        .text-center { text-align: center; }
+    </style>
+</head>
+<body>
+
+    <h1>DRAFT HASIL PENGUJIAN FITUR DAN MENU APLIKASI</h1>
+    <h2>Sistem Informasi Monitoring Material Proyek Medina Residence</h2>
+
+    <p>Dokumen ini berisi draft tabel hasil pengujian fungsional (<i>Black Box Testing</i>) untuk seluruh menu dan fitur aplikasi Medina Residence (di luar fitur keamanan).</p>
+
+    <h3>1. Tabel Pengujian Modul Dashboard dan Profil Pengguna</h3>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 5%;">No</th>
+                <th style="width: 25%;">Nama Fitur / Menu</th>
+                <th style="width: 35%;">Skenario Pengujian</th>
+                <th style="width: 25%;">Hasil yang Diharapkan</th>
+                <th style="width: 10%;">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center">1</td>
+                <td>Halaman Dashboard</td>
+                <td>Akses menu Dashboard oleh Admin dan Mandor</td>
+                <td>Tampil kartu statistik total user, kawasan, supplier, material, transaksi, dan laporan secara akurat</td>
+                <td class="text-center">Berhasil</td>
+            </tr>
+            <tr>
+                <td class="text-center">2</td>
+                <td>Tampilan Profil</td>
+                <td>Akses menu Profil Pengguna</td>
+                <td>Tampil informasi formal nama, email, role, status akun, nomor HP, dan tanggal terdaftar</td>
+                <td class="text-center">Berhasil</td>
+            </tr>
+            <tr>
+                <td class="text-center">3</td>
+                <td>Edit Data Profil</td>
+                <td>Mengubah nama, email, dan nomor HP pada form profil</td>
+                <td>Data profil pengguna berhasil diperbarui dan tampil konfirmasi Toast sukses</td>
+                <td class="text-center">Berhasil</td>
+            </tr>
+            <tr>
+                <td class="text-center">4</td>
+                <td>Upload Foto Profil</td>
+                <td>Mengunggah file foto avatar baru (JPG/PNG maks 2MB)</td>
+                <td>Foto profil berhasil diunggah, tersimpan di folder uploads, dan foto di header topbar berubah otomatis</td>
+                <td class="text-center">Berhasil</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>2. Tabel Pengujian Modul Master Data (Khusus Admin)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 5%;">No</th>
+                <th style="width: 25%;">Nama Fitur / Menu</th>
+                <th style="width: 35%;">Skenario Pengujian</th>
+                <th style="width: 25%;">Hasil yang Diharapkan</th>
+                <th style="width: 10%;">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center">1</td>
+                <td>Master Data User</td>
+                <td>Klik menu Data User</td>
+                <td>Tampil tabel daftar seluruh pengguna (Admin dan Mandor) beserta status keaktifan</td>
+                <td class="text-center">Berhasil</td>
+            </tr>
+            <tr>
+                <td class="text-center">2</td>
+                <td>Tambah User Baru</td>
+                <td>Mengisi form nama, email, password, dan role lalu klik Simpan</td>
+                <td>Akun user baru berhasil tersimpan di database dan tampil di tabel data user</td>
+                <td class="text-center">Berhasil</td>
+            </tr>
+            <tr>
+                <td class="text-center">3</td>
+                <td>Edit Data User</td>
+                <td>Mengubah nama, email, atau role pengguna pada modal edit</td>
+                <td>Data pengguna berhasil diperbarui di database dan tabel ter-refresh</td>
+                <td class="text-center">Berhasil</td>
+            </tr>
+            <tr>
+                <td class="text-center">4</td>
+                <td>Nonaktifkan / Aktifkan User</td>
+                <td>Klik tombol status aktif/nonaktif pada baris user</td>
+                <td>Status akun pengguna berubah dari Aktif menjadi Nonaktif (atau sebaliknya)</td>
+                <td class="text-center">Berhasil</td>
+            </tr>
+            <tr>
+                <td class="text-center">5</td>
+                <td>Hapus Data User</td>
+                <td>Klik tombol Hapus dan konfirmasi modal hapus</td>
+                <td>Data akun pengguna terhapus dari sistem (dengan proteksi akun Admin Utama ID 1 tidak bisa dihapus)</td>
+                <td class="text-center">Berhasil</td>
+            </tr>
+            <tr>
+                <td class="text-center">6</td>
+                <td>Master Tipe Unit</td>
+                <td>Tambah, edit, dan hapus tipe unit bangunan</td>
+                <td>Data tipe unit perumahan berhasil ditambahkan, diubah, dan dihapus</td>
+                <td class="text-center">Berhasil</td>
+            </tr>
+            <tr>
+                <td class="text-center">7</td>
+                <td>Master Kawasan</td>
+                <td>Tambah, edit, dan hapus kawasan proyek</td>
+                <td>Data kawasan/blok proyek berhasil ditambahkan, diubah, dan dihapus</td>
+                <td class="text-center">Berhasil</td>
+            </tr>
+            <tr>
+                <td class="text-center">8</td>
+                <td>Master Supplier</td>
+                <td>Tambah, edit, dan hapus data supplier material</td>
+                <td>Data supplier penjual material berhasil ditambahkan, diubah, dan dihapus</td>
+                <td class="text-center">Berhasil</td>
+            </tr>
+            <tr>
+                <td class="text-center">9</td>
+                <td>Master Material</td>
+                <td>Tambah, edit, dan hapus data jenis material</td>
+                <td>Data material beserta satuan dan stok awal berhasil ditambahkan, diubah, dan dihapus</td>
+                <td class="text-center">Berhasil</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>3. Tabel Pengujian Modul Transaksi Material</h3>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 5%;">No</th>
+                <th style="width: 25%;">Nama Fitur / Menu</th>
+                <th style="width: 35%;">Skenario Pengujian</th>
+                <th style="width: 25%;">Hasil yang Diharapkan</th>
+                <th style="width: 10%;">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center">1</td>
+                <td>Transaksi Material Masuk</td>
+                <td>Input transaksi material masuk (pilih supplier, material, kawasan, jumlah, tanggal)</td>
+                <td>Transaksi material masuk berhasil dicatat, riwayat masuk bertambah, dan stok material otomatis bertambah</td>
+                <td class="text-center">Berhasil</td>
+            </tr>
+            <tr>
+                <td class="text-center">2</td>
+                <td>Transaksi Material Terpakai</td>
+                <td>Input penggunaan material oleh Mandor (pilih kawasan, material, jumlah pakai, tanggal)</td>
+                <td>Transaksi material terpakai berhasil dicatat, riwayat keluar bertambah, dan sisa stok material otomatis berkurang</td>
+                <td class="text-center">Berhasil</td>
+            </tr>
+            <tr>
+                <td class="text-center">3</td>
+                <td>Perhitungan Stok Berjalan</td>
+                <td>Membuka laporan/tabel filter per kawasan dan periode</td>
+                <td>Sistem menghitung otomatis sisa stok berjalan per kawasan (Stok Awal + Masuk - Terpakai)</td>
+                <td class="text-center">Berhasil</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>4. Tabel Pengujian Modul Pengajuan dan Persetujuan Laporan</h3>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 5%;">No</th>
+                <th style="width: 25%;">Nama Fitur / Menu</th>
+                <th style="width: 35%;">Skenario Pengujian</th>
+                <th style="width: 25%;">Hasil yang Diharapkan</th>
+                <th style="width: 10%;">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center">1</td>
+                <td>Filter Laporan Pekerjaan</td>
+                <td>Mandor/Admin memilih kawasan dan rentang tanggal (dari - sampai)</td>
+                <td>Sistem menampilkan rekapitulasi riwayat material masuk dan terpakai beserta stok berjalan secara akurat</td>
+                <td class="text-center">Berhasil</td>
+            </tr>
+            <tr>
+                <td class="text-center">2</td>
+                <td>Pengajuan Laporan</td>
+                <td>Mandor meng-klik tombol Ajukan Laporan</td>
+                <td>Laporan baru tercipta dengan status "Diajukan", dan notifikasi internal (AppNotification) terkirim ke Admin</td>
+                <td class="text-center">Berhasil</td>
+            </tr>
+            <tr>
+                <td class="text-center">3</td>
+                <td>Notifikasi Admin</td>
+                <td>Admin login dan mengecek lonceng notifikasi header</td>
+                <td>Tampil notifikasi "Pengajuan laporan baru" yang dapat diklik untuk menuju halaman persetujuan</td>
+                <td class="text-center">Berhasil</td>
+            </tr>
+            <tr>
+                <td class="text-center">4</td>
+                <td>Persetujuan Laporan (Approve)</td>
+                <td>Admin meng-klik tombol Disetujui (Approve) pada pengajuan laporan</td>
+                <td>Status laporan berubah menjadi "Disetujui", pemberitahuan terkirim ke Mandor, dan tombol Cetak PDF aktif</td>
+                <td class="text-center">Berhasil</td>
+            </tr>
+            <tr>
+                <td class="text-center">5</td>
+                <td>Penolakan Laporan (Reject)</td>
+                <td>Admin meng-klik tombol Ditolak (Reject) pada pengajuan laporan</td>
+                <td>Status laporan berubah menjadi "Ditolak" dan tercatat di riwayat</td>
+                <td class="text-center">Berhasil</td>
+            </tr>
+            <tr>
+                <td class="text-center">6</td>
+                <td>Cetak Laporan PDF</td>
+                <td>Meng-klik tombol Cetak PDF pada laporan yang telah disetujui</td>
+                <td>Sistem menghasilkan dokumen Laporan PDF Resmi yang rapi dan siap diunduh/dicetak</td>
+                <td class="text-center">Berhasil</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

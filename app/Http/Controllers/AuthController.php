@@ -15,12 +15,10 @@ class AuthController extends Controller
     {
         $request->validate([
             'email' => 'required|email|max:64',
-            'password' => ['required', 'string', 'min:6', 'regex:/^[A-Z](?=.*[0-9]).+$/'],
+            'password' => 'required|max:255',
         ], [
             'email.required' => 'Email wajib diisi',
             'password.required' => 'Password wajib diisi',
-            'password.min' => 'Password minimal 6 karakter',
-            'password.regex' => 'Password harus diawali huruf besar (kapital) dan mengandung kombinasi huruf serta angka (contoh: Admin123)',
         ]);
 
         // Key Throttle berdasarkan Email & IP Address

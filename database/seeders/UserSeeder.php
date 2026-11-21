@@ -10,31 +10,37 @@ class UserSeeder extends Seeder
 {
     public function run(): void
     {
-        // 
-        User::create([
-            'nama' => 'Admin Utama',
-            'email' => 'admin@gmail.com',
-            'password' => Hash::make('admin'),
-            'role' => 'admin',
-            'status' => 'aktif'
-        ]);
+        // Admin Utama
+        User::updateOrCreate(
+            ['email' => 'admin@gmail.com'],
+            [
+                'nama' => 'Admin Utama',
+                'password' => Hash::make('admin123'),
+                'role' => 'admin',
+                'status' => 'aktif',
+            ]
+        );
 
-        //  Mandor 1
-        User::create([
-            'nama' => 'Mandor 1',
-            'email' => 'mandor1@gmail.com',
-            'password' => Hash::make('password'),
-            'role' => 'mandor',
-            'status' => 'aktif'
-        ]);
+        // Mandor 1
+        User::updateOrCreate(
+            ['email' => 'mandor1@gmail.com'],
+            [
+                'nama' => 'Mandor 1',
+                'password' => Hash::make('password'),
+                'role' => 'mandor',
+                'status' => 'aktif',
+            ]
+        );
 
-        //  Mandor 2
-        User::create([
-            'nama' => 'Mandor 2',
-            'email' => 'mandor2@gmail.com',
-            'password' => Hash::make('password'),
-            'role' => 'mandor',
-            'status' => 'aktif'
-        ]);
+        // Mandor 2
+        User::updateOrCreate(
+            ['email' => 'mandor2@gmail.com'],
+            [
+                'nama' => 'Mandor 2',
+                'password' => Hash::make('password'),
+                'role' => 'mandor',
+                'status' => 'aktif',
+            ]
+        );
     }
 }

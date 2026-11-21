@@ -1,0 +1,121 @@
+
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+      xmlns:w="urn:schemas-microsoft-com:office:word"
+      xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+    <meta charset="utf-8">
+    <title>Draft Pengujian Fitur Medina Residence</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>100</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+        body { font-family: "Calibri", "Arial", sans-serif; font-size: 11pt; line-height: 1.5; color: #000000; margin: 30px; }
+        h1 { font-size: 16pt; font-weight: bold; color: #000000; text-align: center; margin-bottom: 5px; }
+        h2 { font-size: 13pt; font-weight: bold; color: #000000; text-align: center; margin-top: 0; margin-bottom: 20px; }
+        p { margin-bottom: 15px; text-align: justify; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; margin-bottom: 20px; font-size: 10pt; }
+        th { background-color: #ffffff; color: #000000; font-weight: bold; padding: 8px 10px; border: 1px solid #000000; text-align: center; }
+        td { padding: 8px 10px; border: 1px solid #000000; vertical-align: top; color: #000000; }
+        .text-center { text-align: center; }
+        .fw-bold { font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h1>DRAFT HASIL PENGUJIAN FITUR DAN MENU APLIKASI</h1>
+    <h2>Sistem Informasi Monitoring Material Proyek Medina Residence</h2>
+
+    <p>Dokumen ini berisi draft tabel hasil pengujian fungsional (<i>Black Box Testing</i>) terpadu untuk seluruh menu aplikasi Medina Residence.</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 5%;">No</th>
+                <th style="width: 20%;">Nama Menu</th>
+                <th style="width: 35%;">Skenario Pengujian</th>
+                <th style="width: 30%;">Hasil yang Diharapkan</th>
+                <th style="width: 10%;">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center">1</td>
+                <td class="fw-bold">Dashboard</td>
+                <td>Mengakses menu Dashboard untuk melihat ringkasan statistik sistem</td>
+                <td>Menampilkan kartu statistik total user, kawasan, supplier, material, transaksi, dan laporan secara akurat</td>
+                <td class="text-center">Berhasil</td>
+            </tr>
+            <tr>
+                <td class="text-center">2</td>
+                <td class="fw-bold">Profil Pengguna</td>
+                <td>Mengakses menu profil, memperbarui data diri (nama, email, no. HP), dan mengunggah foto avatar baru</td>
+                <td>Data profil berhasil diperbarui, foto tersimpan di folder uploads, dan avatar di topbar header ter-update otomatis</td>
+                <td class="text-center">Berhasil</td>
+            </tr>
+            <tr>
+                <td class="text-center">3</td>
+                <td class="fw-bold">Data User</td>
+                <td>Mengelola data pengguna (tambah user baru, edit data, ubah status aktif/nonaktif, dan hapus user)</td>
+                <td>Data user (Admin & Mandor) berhasil ditambahkan, diperbarui, diubah statusnya, serta dihapus (dengan proteksi Admin Utama ID 1)</td>
+                <td class="text-center">Berhasil</td>
+            </tr>
+            <tr>
+                <td class="text-center">4</td>
+                <td class="fw-bold">Data Tipe Unit</td>
+                <td>Mengelola master data tipe unit bangunan perumahan (tambah, edit, dan hapus)</td>
+                <td>Master data tipe unit bangunan berhasil ditambahkan, diubah, dan dihapus dari sistem</td>
+                <td class="text-center">Berhasil</td>
+            </tr>
+            <tr>
+                <td class="text-center">5</td>
+                <td class="fw-bold">Data Kawasan</td>
+                <td>Mengelola master data kawasan/blok lokasi proyek (tambah, edit, dan hapus)</td>
+                <td>Master data kawasan proyek berhasil ditambahkan, diubah, dan dihapus dari sistem</td>
+                <td class="text-center">Berhasil</td>
+            </tr>
+            <tr>
+                <td class="text-center">6</td>
+                <td class="fw-bold">Data Supplier</td>
+                <td>Mengelola master data pemasok/supplier material (tambah, edit, dan hapus)</td>
+                <td>Master data supplier material berhasil ditambahkan, diubah, dan dihapus dari sistem</td>
+                <td class="text-center">Berhasil</td>
+            </tr>
+            <tr>
+                <td class="text-center">7</td>
+                <td class="fw-bold">Data Material</td>
+                <td>Mengelola master data jenis material, satuan, dan jumlah stok awal (tambah, edit, dan hapus)</td>
+                <td>Master data jenis material beserta satuan dan stok awal berhasil ditambahkan, diubah, dan dihapus dari sistem</td>
+                <td class="text-center">Berhasil</td>
+            </tr>
+            <tr>
+                <td class="text-center">8</td>
+                <td class="fw-bold">Material Masuk</td>
+                <td>Menginput transaksi penerimaan material dari supplier ke kawasan proyek tertentu</td>
+                <td>Transaksi material masuk berhasil dicatat, riwayat masuk bertambah, dan jumlah stok material otomatis bertambah</td>
+                <td class="text-center">Berhasil</td>
+            </tr>
+            <tr>
+                <td class="text-center">9</td>
+                <td class="fw-bold">Material Terpakai</td>
+                <td>Menginput transaksi penggunaan material bangunan oleh mandor di kawasan proyek tertentu</td>
+                <td>Transaksi material terpakai berhasil dicatat, riwayat keluar bertambah, dan sisa stok material otomatis berkurang</td>
+                <td class="text-center">Berhasil</td>
+            </tr>
+            <tr>
+                <td class="text-center">10</td>
+                <td class="fw-bold">Pengajuan Laporan</td>
+                <td>Mengisi filter periode tanggal/kawasan, mengajukan laporan baru, meninjau notifikasi, melakukan persetujuan (Approve/Reject), dan mencetak PDF</td>
+                <td>Pengajuan laporan berhasil terkirim ke admin, notifikasi aktif, status berubah (Disetujui/Ditolak), dan dokumen PDF Resmi berhasil dicetak</td>
+                <td class="text-center">Berhasil</td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

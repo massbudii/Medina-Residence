@@ -1,0 +1,69 @@
+
+<html xmlns:o="urn:schemas-microsoft-com:office:office"
+      xmlns:w="urn:schemas-microsoft-com:office:word"
+      xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+    <meta charset="utf-8">
+    <title>Naskah Video Demo Medina Residence</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>100</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+        body { font-family: "Calibri", "Arial", sans-serif; font-size: 11pt; line-height: 1.5; color: #000000; margin: 30px; }
+        h1 { font-size: 16pt; font-weight: bold; color: #000000; text-align: center; margin-bottom: 5px; }
+        h2 { font-size: 13pt; font-weight: bold; color: #000000; text-align: center; margin-top: 0; margin-bottom: 20px; }
+        h3 { font-size: 11pt; font-weight: bold; color: #000000; margin-top: 20px; margin-bottom: 8px; border-bottom: 1px solid #000000; padding-bottom: 3px; }
+        p { margin-bottom: 10px; text-align: justify; }
+        .visual { background-color: #f8fafc; padding: 10px; border-left: 3px solid #000000; margin-bottom: 10px; font-style: italic; }
+        .audio { background-color: #ffffff; padding: 10px; border: 1px solid #cccccc; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+
+    <h1>NASKAH VIDEO DEMO APLIKASI DAN FITUR KEAMANAN</h1>
+    <h2>Sistem Informasi Monitoring Material Proyek Medina Residence</h2>
+    <p style="text-align: center;"><b>Target Durasi Video: 7 - 8 Menit (Rentang 5 - 10 Menit)</b></p>
+
+    <h3>1. SEGMENT 1: PENDAHULUAN DAN PEMBUKAAN (Durasi 00:00 - 00:45)</h3>
+    <p><b>Visual / Aksi Layar:</b> Rekam layar pada halaman awal Login aplikasi (<code>http://127.0.0.1:8000/login</code>). Gerakkan kursor secara perlahan menelusuri tampilan form login yang bersih dan rapi.</p>
+    <p><b>Audio / Narasi Dubbing:</b><br>
+    "Halo semuanya, selamat datang dalam video demonstrasi Sistem Informasi Monitoring Material Proyek Medina Residence. Aplikasi berbasis web ini dibangun menggunakan framework Laravel 12 dan database MySQL untuk mengelola pengadaan material, transaksi masuk-keluar barang, stok berjalan per kawasan, hingga persetujuan laporan pekerjaan. Dalam video ini, saya akan mendemokan seluruh fungsi utama aplikasi mencakup Dashboard, Profil Pengguna, CRUD Data, Pencarian, Upload Dokumen, Cetak Laporan PDF, serta 6 lapis fitur keamanan data yang telah diimplementasikan. Mari kita mulai."</p>
+
+    <h3>2. SEGMENT 2: DEMO FITUR KEAMANAN PART 1 (Durasi 00:45 - 02:30)</h3>
+    <p><b>Visual / Aksi Layar:</b> Masih di halaman Login. Skenario Input Validation: Tunjukkan validasi input form. Skenario Brute Force & Limiter: Ketik email <code>admin2@gmail.com</code> dan masukkan password salah ke-1, ke-2, dan ke-3. Tunjukkan sisa kesempatan dan penguncian form (disabled) serta Live Countdown Timer 30 detik yang aktif menghitung mundur.</p>
+    <p><b>Audio / Narasi Dubbing:</b><br>
+    "Pertama, kita akan mendemokan fitur keamanan Input Validation, Deteksi Brute Force, dan Login Attempt Limiter. Pada formulir aplikasi, seluruh masukan divalidasi dengan ketat. Untuk mencegah serangan tebak kata sandi berulang atau Brute Force Attack, sistem memantau percobaan login gagal berbasis kombinasi Email dan IP Address. Jika pengguna memasukkan kata sandi salah sebanyak tiga kali berturut-turut, sistem secara otomatis mengunci form masukan dan tombol login. Pengguna diwajibkan menunggu selama tiga puluh detik dengan hitung mundur waktu secara real-time sebelum dapat mencoba login kembali."</p>
+
+    <h3>3. SEGMENT 3: DEMO FITUR KEAMANAN PART 2 (Durasi 02:30 - 03:45)</h3>
+    <p><b>Visual / Aksi Layar:</b> Setelah countdown selesai, masukkan email <code>admin2@gmail.com</code> dan password benar <code>Admin123</code>. Buka phpMyAdmin / MySQL Database Client. Sorot tabel <code>users</code> (password BCRYPT <code>$2y$12$...</code> & email ter-enkripsi) dan tabel <code>suppliers</code> (no_hp & alamat_supplier ter-enkripsi).</p>
+    <p><b>Audio / Narasi Dubbing:</b><br>
+    "Setelah waktu lockout selesai, kita masukkan kredensial yang benar dan berhasil masuk ke dalam sistem. Sekarang kita periksa sisi basis data MySQL untuk membuktikan fitur Password Hashing dan Data Encryption. Kata sandi pengguna tidak disimpan dalam bentuk teks biasa, melainkan diacak secara satu arah menggunakan algoritma BCRYPT dengan Cost Factor 12. Selain itu, data sensitif seperti email pengguna, nomor HP supplier, dan alamat supplier dilindungi dengan enkripsi Crypt Laravel sehingga aman dari kebocoran data di database."</p>
+
+    <h3>4. SEGMENT 4: DEMO DASHBOARD, PROFIL, DAN UPLOAD DOKUMEN (Durasi 03:45 - 05:00)</h3>
+    <p><b>Visual / Aksi Layar:</b> Tunjukkan menu Dashboard statistik. Buka menu Profil Pengguna. Ubah nama/no HP, klik Upload Foto Profil Baru (pilih file foto avatar), simpan, dan tunjukkan foto avatar pada header topbar kanan atas berubah secara otomatis.</p>
+    <p><b>Audio / Narasi Dubbing:</b><br>
+    "Berikutnya adalah modul Dashboard dan Profil Pengguna. Halaman Dashboard menyajikan ringkasan statistik proyek secara visual dan real-time. Pada menu Profil Pengguna, pengguna dapat mengelola data diri serta melakukan Upload Dokumen Foto Profil baru. Saat foto avatar baru diunggah, sistem menyimpan file ke direktori uploads dan secara otomatis memperbarui tampilan foto pengguna pada bagian header topbar."</p>
+
+    <h3>5. SEGMENT 5: DEMO CRUD DATA DAN FITUR PENCARIAN (Durasi 05:00 - 06:15)</h3>
+    <p><b>Visual / Aksi Layar:</b> Buka menu Data User (Khusus Admin). Tunjukkan Tambah User Baru, Edit Data, Ubah Status Aktif/Nonaktif, dan Hapus Data. Buka Data Material/Supplier: Gunakan kolom Search Table untuk mencari nama material secara instan.</p>
+    <p><b>Audio / Narasi Dubbing:</b><br>
+    "Selanjutnya kita masuk ke modul Master Data untuk melihat operasi CRUD dan Fitur Pencarian. Admin dapat mengelola Data User, Tipe Unit, Kawasan, Supplier, dan Data Material. Kita dapat menambah data baru, mengedit informasi, mengubah status keaktifan akun, hingga menghapus data. Dilengkapi pula dengan Fitur Pencarian data yang cepat untuk mempermudah pencarian nama material atau supplier di antara ratusan data."</p>
+
+    <h3>6. SEGMENT 6: DEMO TRANSAKSI MATERIAL DAN CETAK LAPORAN PDF (Durasi 06:15 - 07:30)</h3>
+    <p><b>Visual / Aksi Layar:</b> Tunjukkan transaksi Material Masuk dan Material Terpakai per kawasan. Buka Pengajuan Laporan: Filter kawasan/tanggal, klik Ajukan Laporan, tinjau notifikasi Admin, klik Disetujui (Approve), dan klik Cetak Laporan PDF Resmi untuk mengunduh/membuka file PDF.</p>
+    <p><b>Audio / Narasi Dubbing:</b><br>
+    "Pada modul Transaksi Material, sistem mencatat transaksi Material Masuk dan Material Terpakai per kawasan secara presisi dengan perhitungan stok berjalan otomatis. Untuk modul Laporan, Mandor dapat filter periode tanggal dan mengajukan laporan. Admin menerima notifikasi dan memberikan persetujuan laporan. Setelah laporan disetujui, tombol Cetak Laporan aktif dan sistem menghasilkan dokumen Laporan PDF Resmi yang siap diunduh dan dicetak."</p>
+
+    <h3>7. SEGMENT 7: PENUTUP (Durasi 07:30 - 08:00)</h3>
+    <p><b>Visual / Aksi Layar:</b> Klik tombol Logout. Tampilan kembali ke Halaman Login awal.</p>
+    <p><b>Audio / Narasi Dubbing:</b><br>
+    "Demikianlah demonstrasi Sistem Informasi Monitoring Material Proyek Medina Residence. Seluruh fitur fungsional mulai dari Dashboard, Profil, CRUD, Pencarian, Upload Foto, hingga Cetak Laporan PDF beserta 6 lapis fitur keamanan data telah berhasil diuji dan berfungsi dengan seratus persen baik. Terima kasih atas perhatian Anda."</p>
+
+</body>
+</html>

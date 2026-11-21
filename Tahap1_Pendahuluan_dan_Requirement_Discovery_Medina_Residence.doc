@@ -1,0 +1,825 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+      xmlns:o="urn:schemas-microsoft-com:office:office"
+      xmlns:w="urn:schemas-microsoft-com:office:word"
+      xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+      xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="ProgId" content="Word.Document">
+    <meta name="Generator" content="Microsoft Word 15">
+    <meta name="Originator" content="Microsoft Word 15">
+    <title>BAB I dan BAB II (Tahap 1) - Mini Project SQA Medina Residence</title>
+    <!--[if gte mso 9]>
+    <xml>
+        <w:WordDocument>
+            <w:View>Print</w:View>
+            <w:Zoom>100</w:Zoom>
+            <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+    </xml>
+    <![endif]-->
+    <style>
+        @page WordSection1 {
+            size: 21.0cm 29.7cm;
+            margin: 3.0cm 3.0cm 3.0cm 4.0cm;
+            mso-header-margin: 1.5cm;
+            mso-footer-margin: 1.5cm;
+            mso-paper-source: 0;
+        }
+        div.WordSection1 {
+            page: WordSection1;
+        }
+        body {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 12pt;
+            line-height: 1.5;
+            color: #000000;
+        }
+        h1 {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 12pt;
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+            margin-top: 12pt;
+            margin-bottom: 6pt;
+            line-height: 1.5;
+        }
+        h2 {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 12pt;
+            font-weight: bold;
+            text-align: left;
+            margin-top: 14pt;
+            margin-bottom: 6pt;
+            line-height: 1.5;
+        }
+        h3 {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 12pt;
+            font-weight: bold;
+            text-align: left;
+            margin-top: 10pt;
+            margin-bottom: 4pt;
+            line-height: 1.5;
+        }
+        p {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 12pt;
+            margin-top: 0pt;
+            margin-bottom: 10pt;
+            text-align: justify;
+            text-indent: 1.25cm;
+            line-height: 1.5;
+        }
+        p.no-indent {
+            text-indent: 0cm;
+        }
+        p.table-title {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 12pt;
+            font-weight: bold;
+            text-align: left;
+            text-indent: 0cm;
+            margin-top: 12pt;
+            margin-bottom: 6pt;
+        }
+        ol, ul {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 12pt;
+            margin-top: 0pt;
+            margin-bottom: 10pt;
+            text-align: justify;
+            line-height: 1.5;
+        }
+        li {
+            margin-bottom: 4pt;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1pt solid #000000;
+            mso-border-alt: solid windowtext .5pt;
+            mso-yfti-tbllook: 1184;
+            mso-padding-alt: 4pt 6pt 4pt 6pt;
+            margin-top: 4pt;
+            margin-bottom: 14pt;
+            font-family: "Times New Roman", Times, serif;
+            font-size: 12pt;
+        }
+        th {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 12pt;
+            font-weight: bold;
+            background-color: #F2F2F2;
+            color: #000000;
+            border: 1pt solid #000000;
+            mso-border-alt: solid windowtext .5pt;
+            padding: 6pt 6pt;
+            text-align: center;
+            vertical-align: middle;
+        }
+        td {
+            font-family: "Times New Roman", Times, serif;
+            font-size: 12pt;
+            color: #000000;
+            border: 1pt solid #000000;
+            mso-border-alt: solid windowtext .5pt;
+            padding: 5pt 6pt;
+            vertical-align: top;
+            text-align: left;
+            line-height: 1.35;
+        }
+        .text-center {
+            text-align: center;
+        }
+        .fw-bold {
+            font-weight: bold;
+        }
+        .page-break {
+            page-break-before: always;
+        }
+    </style>
+</head>
+<body>
+<div class="WordSection1">
+
+    <!-- ==================== BAB I PENDAHULUAN ==================== -->
+    <h1>BAB I<br>PENDAHULUAN</h1>
+
+    <h2>1.1 Latar Belakang</h2>
+    <p>Kualitas perangkat lunak merupakan faktor krusial yang menentukan keandalan, keamanan, dan keberhasilan operasional sebuah sistem informasi dalam mendukung proses bisnis perusahaan. Pada sistem informasi manajemen persediaan konstruksi seperti aplikasi web <b>Medina Residence</b> di <b>PT. Medina Aqsa Arthatama</b>, keakuratan pengelolaan identitas pengguna, ketahanan gerbang autentikasi login, serta ketepatan kontrol akses berbasis peran (<i>Role-Based Access Control</i>) menjadi fondasi utama sebelum pengguna diizinkan mengelola data material proyek. Kesalahan validasi input, kelemahan pembatasan percobaan login, maupun celah pada hak akses pengelolaan pengguna dapat menyebabkan penyalahgunaan akun dan kompromi integritas data proyek (Pressman &amp; Maxim, 2020).</p>
+    <p>Melalui proyek <i>Mini Project: Software Quality Engineering Challenge</i> ini, Kelompok 5 berperan sebagai tim <i>Software Quality Assurance</i> (SQA) yang melaksanakan investigasi, pengujian, dan evaluasi kualitas secara menyeluruh terhadap aplikasi web Medina Residence yang telah berjalan. Proyek ini tidak bertujuan membangun aplikasi baru, melainkan menguji dan mengevaluasi sistem yang sudah tersedia berdasarkan fungsi, kebutuhan pengguna, karakteristik kualitas ISO/IEC 25010, serta perilaku aktual sistem ketika diberikan berbagai kondisi pengujian fungsional maupun nonfungsional dengan bukti pengujian yang nyata.</p>
+
+    <h2>1.2 Deskripsi Tugas</h2>
+    <p>Berdasarkan panduan <i>Mini Project: Software Quality Engineering Challenge</i> pada mata kuliah Penjamin Kualitas Perangkat Lunak (Semester VII), tugas kelompok ini dilaksanakan dalam waktu 1 (satu) minggu melalui kegiatan praktik, analisis, dan presentasi dengan tahapan sebagai berikut:</p>
+    <ol>
+        <li><b>Tahap 1 — Reverse Engineering and Requirement Discovery:</b> Melakukan pengamatan terhadap sistem untuk mengidentifikasi profil dan tujuan sistem, aktor yang terlibat, minimal 3 fitur utama objek pengujian, minimal 10 kebutuhan fungsional, minimal 5 kebutuhan nonfungsional, <i>Use Case Diagram</i>, <i>Activity Diagram</i>, serta <i>Requirement Traceability Matrix</i> (RTM).</li>
+        <li><b>Tahap 2 — Software Quality Evaluation:</b> Mengevaluasi minimal 5 karakteristik kualitas perangkat lunak berdasarkan standar <b>ISO/IEC 25010</b> menggunakan skala penilaian 1–5 beserta indikator dan bukti pengamatan nyata.</li>
+        <li><b>Tahap 3 — Advanced Functional Testing:</b> Merancang dan melaksanakan minimal 30 skenario pengujian fungsional pada 3 fitur utama dengan menerapkan teknik <i>Positive &amp; Negative Testing</i>, <i>Equivalence Partitioning</i>, <i>Boundary Value Analysis</i>, <i>Decision Table Testing</i>, <i>State Transition Testing</i>, dan <i>Exploratory Testing</i>.</li>
+        <li><b>Tahap 4 — Non-Functional Quality Testing:</b> Melaksanakan pengujian kualitas nonfungsional yang mencakup <i>Usability Testing</i>, <i>Compatibility Testing</i>, <i>Reliability Testing</i>, dan <i>Performance Observation</i> (pengukuran waktu respons sebanyak 5 kali pada setiap operasi normal).</li>
+        <li><b>Tahap 5 — Defect Investigation and Analysis:</b> Mengidentifikasi hasil pengujian berstatus <i>Fail</i>, menyusun laporan <i>defect</i> yang dapat direproduksi, menetapkan tingkat <i>Severity</i> dan <i>Priority</i>, serta menganalisis akar penyebab dan dampaknya.</li>
+        <li><b>Tahap 6 — Quality Improvement and Regression Testing:</b> Menyusun rekomendasi perbaikan untuk masalah kualitas utama beserta prioritas dan dampaknya, serta merancang skenario <i>Regression Testing</i>.</li>
+    </ol>
+
+    <h2>1.3 Objek Penelitian</h2>
+    <p>Objek sistem yang dipilih dan dievaluasi oleh Kelompok 5 adalah <b>Aplikasi Web Monitoring Material Masuk dan Keluar di PT. Medina Aqsa Arthatama (Medina Residence)</b>, yang termasuk ke dalam kategori <b>No. 8: Sistem Informasi Manajemen Persediaan</b>. Rincian profil dan spesifikasi teknis objek penelitian disajikan pada Tabel 1.1.</p>
+
+    <p class="table-title">Tabel 1.1 Profil dan Spesifikasi Teknis Objek Penelitian</p>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 6%;">No</th>
+                <th style="width: 30%;">Aspek Objek Sistem</th>
+                <th style="width: 64%;">Deskripsi dan Spesifikasi</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center">1</td>
+                <td class="fw-bold">Nama Sistem Informasi</td>
+                <td>Aplikasi Web Monitoring Material Masuk dan Keluar di PT. Medina Aqsa Arthatama (Medina Residence)</td>
+            </tr>
+            <tr>
+                <td class="text-center">2</td>
+                <td class="fw-bold">Kategori Objek Sistem</td>
+                <td>Sistem Informasi Manajemen Persediaan (Kategori Pilihan No. 8)</td>
+            </tr>
+            <tr>
+                <td class="text-center">3</td>
+                <td class="fw-bold">Platform &amp; Teknologi</td>
+                <td>Aplikasi Web Berbasis Laravel 12 (PHP 8.4), Basis Data MySQL (<i>db_medina</i>), Bootstrap 5, DataTables, dan SweetAlert2</td>
+            </tr>
+            <tr>
+                <td class="text-center">4</td>
+                <td class="fw-bold">Alamat Akses Pengujian</td>
+                <td>http://medina_residence.test (Lingkungan Server Lokal yang Sah)</td>
+            </tr>
+            <tr>
+                <td class="text-center">5</td>
+                <td class="fw-bold">Aktor / Peran Pengguna</td>
+                <td>1. <b>Admin</b> (Pengelola utama sistem, master data pengguna, dan verifikasi laporan)<br>2. <b>Mandor</b> (Pengawas lapangan pencatat transaksi material dan pengaju laporan)</td>
+            </tr>
+            <tr>
+                <td class="text-center">6</td>
+                <td class="fw-bold">Tiga Fitur Utama yang Diuji</td>
+                <td>1. <b>Fitur Autentikasi Login</b> (Rute: <i>/login</i> — 10 Skenario Uji)<br>2. <b>Fitur Pengelolaan Profil Pengguna</b> (Rute: <i>/profile</i> — 10 Skenario Uji)<br>3. <b>Fitur Manajemen Data User</b> (Rute: <i>/user/data-user</i> — 10 Skenario Uji)</td>
+            </tr>
+            <tr>
+                <td class="text-center">7</td>
+                <td class="fw-bold">Mekanisme Keamanan Sistem</td>
+                <td>Enkripsi data sensitif (<i>email</i> dan <i>no_hp</i>) dengan Laravel <i>Crypt</i> (AES-256-CBC), <i>Password Hashing</i> (Bcrypt), Validasi Regex Password, <i>Login Rate Limiter</i> (maksimal 3 kali gagal), dan <i>Login Guard</i> Foto Profil</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>1.4 Tujuan dan Ruang Lingkup Pengujian</h2>
+    <p>Tujuan dari pelaksanaan proyek ini adalah mengevaluasi kesesuaian fungsi, ketahanan validasi, serta kualitas nonfungsional aplikasi Medina Residence melalui 30 skenario pengujian sistematis. Adapun ruang lingkup pengujian difokuskan pada 3 (tiga) fitur utama dengan alokasi masing-masing 10 skenario pengujian:</p>
+    <ol>
+        <li><b>Fitur 1 — Autentikasi Login (TC-01 s.d. TC-10):</b> Menguji login kredensial valid Admin dan Mandor, mekanisme <i>Login Guard</i> pengalihan wajib isi profil, validasi kolom kosong, penolakan email tidak terdaftar dan kata sandi salah, pengujian batas percobaan gagal login (<i>Boundary Value Analysis</i>) hingga penguncian otomatis (<i>lockout</i>), serta penanganan login akun berstatus nonaktif.</li>
+        <li><b>Fitur 2 — Pengelolaan Profil Pengguna (TC-11 s.d. TC-20):</b> Menguji pembaruan identitas profil (Nama Lengkap, Alamat Email, Nomor HP), pengunggahan foto profil baru (validasi format gambar <i>jpeg, png, jpg, gif</i> dan batas ukuran maksimal 2 MB), validasi pembaruan kata sandi pada profil, pengujian celah <i>bypass Login Guard</i>, serta pengujian duplikasi email pada pembaruan profil.</li>
+        <li><b>Fitur 3 — Manajemen Data User (TC-21 s.d. TC-30):</b> Menguji penambahan pengguna baru, validasi aturan kata sandi kompleks (minimal 6 karakter, diawali huruf kapital, kombinasi huruf dan angka), pengubahan data pengguna, transisi status <i>Aktif</i> dan <i>Nonaktif</i>, aturan proteksi akun Admin Utama (<i>id = 1</i>), pengujian duplikasi email pengguna baru, serta pengujian kontrol akses peran (<i>Role-Based Access Control</i>) terhadap akses paksa dari akun Mandor.</li>
+    </ol>
+
+    <h2>1.5 Pembagian Anggota Kelompok dan Tanggung Jawab</h2>
+    <p>Sesuai ketentuan Bagian B dan Bagian I pada panduan tugas untuk kelompok dengan 5 anggota (<b>Kelompok 5</b>), pembagian tanggung jawab pekerjaan setiap anggota disajikan pada Tabel 1.2.</p>
+
+    <p class="table-title">Tabel 1.2 Pembagian Tanggung Jawab Anggota Kelompok 5</p>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 6%;">No</th>
+                <th style="width: 14%;">Peran Anggota</th>
+                <th style="width: 22%;">Nama Mahasiswa</th>
+                <th style="width: 14%;">NIM</th>
+                <th style="width: 44%;">Tanggung Jawab Pekerjaan dalam Proyek</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center">1</td>
+                <td class="fw-bold">Anggota 1</td>
+                <td><b>Budi Santoso</b></td>
+                <td class="text-center">2355201035</td>
+                <td><b>Analisis Sistem, Kebutuhan, Diagram, dan RTM:</b><br>Melakukan pengamatan sistem (<i>reverse engineering</i>), mengidentifikasi profil, aktor, 3 fitur utama, 10 kebutuhan fungsional, 6 kebutuhan nonfungsional, membuat <i>Use Case Diagram</i> dan <i>Activity Diagram</i>, serta menyusun <i>Requirement Traceability Matrix</i> (RTM).</td>
+            </tr>
+            <tr>
+                <td class="text-center">2</td>
+                <td class="fw-bold">Anggota 2</td>
+                <td><b>Ihsan Dwi Randa</b></td>
+                <td class="text-center">2355201024</td>
+                <td><b>Evaluasi Kualitas dan Pengujian Nonfungsional:</b><br>Menyusun indikator penilaian dan evaluasi kualitas berdasarkan model <b>ISO/IEC 25010</b> (skala 1–5) beserta analisis kelemahan utama, serta melaksanakan pengujian <i>Usability</i>, <i>Compatibility</i>, <i>Reliability</i>, dan <i>Performance Observation</i>.</td>
+            </tr>
+            <tr>
+                <td class="text-center">3</td>
+                <td class="fw-bold">Anggota 3</td>
+                <td><b>Mhd Alfin Rubama</b></td>
+                <td class="text-center">2355201042</td>
+                <td><b>Perancangan dan Pelaksanaan Functional Testing:</b><br>Merancang dan mengeksekusi 30 skenario pengujian fungsional (TC-01 s.d. TC-30) pada fitur Login, Profil Pengguna, dan Manajemen Data User dengan menerapkan 6 teknik pengujian fungsional.</td>
+            </tr>
+            <tr>
+                <td class="text-center">4</td>
+                <td class="fw-bold">Anggota 4</td>
+                <td><b>M. Rizky</b></td>
+                <td class="text-center">2355201041</td>
+                <td><b>Defect Investigation, Pengukuran, dan Quality Improvement:</b><br>Menginvestigasi seluruh skenario uji berstatus <i>Fail</i>, menyusun laporan <i>defect</i> lengkap (<i>Severity, Priority, Root Cause, Impact</i>), menganalisis hasil pengukuran waktu respons, dan menyusun rekomendasi peningkatan kualitas.</td>
+            </tr>
+            <tr>
+                <td class="text-center">5</td>
+                <td class="fw-bold">Anggota 5</td>
+                <td><b>Rahmat Rivaldo</b></td>
+                <td class="text-center">2355201023</td>
+                <td><b>Pelaksanaan Pengujian, Validasi Hasil, Dokumentasi Bukti, dan Regression Testing:</b><br>Membantu pelaksanaan pengujian, memvalidasi konsistensi hasil uji, mendokumentasikan bukti tangkapan layar (<i>screenshot</i>), serta menyusun rancangan skenario <i>Regression Testing</i>.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- ==================== BAB II TAHAP 1 ==================== -->
+    <div class="page-break"></div>
+    <h1>BAB II<br>TAHAP 1: REVERSE ENGINEERING AND REQUIREMENT DISCOVERY</h1>
+
+    <h2>2.1 Identifikasi Profil dan Tujuan Sistem</h2>
+    <p>Objek pengujian yang digunakan adalah aplikasi web bernama <b>Medina Residence</b> milik <b>PT. Medina Aqsa Arthatama</b>. Aplikasi Medina Residence merupakan sistem informasi berbasis web yang dibangun menggunakan kerangka kerja Laravel dan basis data MySQL untuk mengelola inventaris, distribusi, serta pelaporan penggunaan material bangunan pada proyek pembangunan perumahan Medina Residence.</p>
+    <p>Tujuan utama dari aplikasi Medina Residence adalah membantu pihak manajemen proyek dan pengawas lapangan dalam mencatat stok material masuk dari pemasok, memantau pemakaian material keluar di setiap kawasan pembangunan, mengelola data pengguna serta profil pengguna secara aman, dan menyediakan mekanisme pengajuan serta persetujuan laporan pemakaian material secara terpusat dan akurat. Pada aspek manajemen pengguna dan keamanan akses, sistem ini bertujuan memastikan hanya pengguna sah dan berstatus aktif yang dapat masuk ke sistem, mewajibkan kelengkapan identitas foto profil pengguna, serta memisahkan wewenang pengelolaan pengguna antara Admin dan Mandor.</p>
+
+    <h2>2.2 Identifikasi Pengguna atau Aktor yang Terlibat</h2>
+    <p>Aplikasi Medina Residence memiliki 2 (dua) kelompok pengguna sasaran (aktor) yang dibedakan berdasarkan hak akses peran (<i>role</i>) di dalam sistem. Rincian aktor dan hak aksesnya disajikan pada Tabel 2.1.</p>
+
+    <p class="table-title">Tabel 2.1 Identifikasi Pengguna atau Aktor yang Terlibat dalam Sistem</p>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 6%;">No</th>
+                <th style="width: 16%;">Nama Aktor</th>
+                <th style="width: 14%;">Kode Role</th>
+                <th style="width: 42%;">Deskripsi Peran dan Hak Akses dalam Sistem</th>
+                <th style="width: 22%;">Akun Pengujian</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center">1</td>
+                <td class="fw-bold">Admin</td>
+                <td class="text-center">admin</td>
+                <td>Pengelola utama sistem yang bertugas melakukan login, mengakses dashboard, memperbarui profil pribadi dan foto profil, mengelola penuh menu <b>Master Data User</b> (menambah, mengubah, mengaktifkan, menonaktifkan, dan menghapus pengguna), mengelola master proyek, serta memverifikasi laporan material.</td>
+                <td>1. admin@gmail.com<br>(Admin Utama, ID = 1, Status: Aktif)</td>
+            </tr>
+            <tr>
+                <td class="text-center">2</td>
+                <td class="fw-bold">Mandor</td>
+                <td class="text-center">mandor</td>
+                <td>Pengawas lapangan yang bertugas melakukan login ke sistem, wajib melengkapi profil dan foto profil saat pertama kali masuk (<i>Login Guard</i>), memperbarui profil pribadi, serta mencatat transaksi material dan mengajukan laporan tanpa memiliki hak akses terhadap menu <b>Master Data User</b>.</td>
+                <td>1. mandor1@gmail.com<br>(Status: Aktif, Foto Kosong)<br>2. mandor2@gmail.com / mandor3@gmail.com<br>(Uji Status Nonaktif)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>2.3 Identifikasi Minimal 3 Fitur Utama Objek Pengujian</h2>
+    <p>Berdasarkan hasil pengamatan (<i>reverse engineering</i>) pada aplikasi Medina Residence, ditetapkan 3 (tiga) fitur utama yang menjadi objek pengujian fungsional dan nonfungsional, di mana masing-masing fitur diuji dengan 10 skenario pengujian (total 30 skenario pengujian). Rincian ketiga fitur utama tersebut disajikan pada Tabel 2.2.</p>
+
+    <p class="table-title">Tabel 2.2 Identifikasi 3 Fitur Utama yang Menjadi Objek Pengujian</p>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 6%;">No</th>
+                <th style="width: 22%;">Nama Fitur Utama</th>
+                <th style="width: 22%;">Rute &amp; Controller</th>
+                <th style="width: 50%;">Fungsi, Alur Proses, dan Aturan Bisnis Sistem</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center">1</td>
+                <td class="fw-bold">Fitur 1:<br>Autentikasi Login</td>
+                <td>Rute:<br>GET /login<br>POST /login<br>GET /logout<br><br>Controller:<br><i>AuthController</i></td>
+                <td>1. Memvalidasi kolom wajib Email dan Password.<br>2. Mencocokkan email (terenkripsi di database) dan hash password.<br>3. Memeriksa status keaktifan akun (menolak login jika akun berstatus <i>nonaktif</i>).<br>4. Menerapkan <i>Rate Limiter</i>: membatasi gagal login maksimal 3 kali berturut-turut, menampilkan sisa kuota percobaan, dan mengunci formulir disertai hitung mundur saat gagal ke-3.<br>5. Menerapkan <i>Login Guard</i>: mengalihkan pengguna yang belum memiliki foto profil ke halaman <i>/profile</i> disertai peringatan wajib melengkapi profil.</td>
+            </tr>
+            <tr>
+                <td class="text-center">2</td>
+                <td class="fw-bold">Fitur 2:<br>Pengelolaan Profil Pengguna</td>
+                <td>Rute:<br>GET /profile<br>POST /profile/update<br><br>Controller:<br><i>ProfileController</i></td>
+                <td>1. Menampilkan kartu profil formal pengguna (Foto, Nama Lengkap, Email, Role, Status Akun, Nomor HP, dan Tanggal Terdaftar).<br>2. Memvalidasi pembaruan Nama Lengkap (wajib diisi) dan Alamat Email (wajib diisi dan berformat email valid), serta Nomor HP (opsional, disimpan terenkripsi).<br>3. Memvalidasi unggah Foto Profil baru: wajib berupa berkas gambar (<i>jpeg, png, jpg, gif</i>) dengan ukuran maksimal <b>2048 KB (2 MB)</b>.<br>4. Memvalidasi pembaruan Password Baru (opsional): minimal 6 karakter, diawali huruf kapital, dan mengandung kombinasi huruf serta angka.</td>
+            </tr>
+            <tr>
+                <td class="text-center">3</td>
+                <td class="fw-bold">Fitur 3:<br>Manajemen Data User</td>
+                <td>Rute:<br>GET /user/data-user<br>POST /user/data-user<br>PUT /user/user/{id}/update<br>DELETE /user/user/{id}/delete<br>POST /user/user/{id}/aktif<br>POST /user/user/{id}/nonaktif<br><br>Controller:<br><i>UserController</i></td>
+                <td>1. Menyediakan fitur tambah akun pengguna baru (Nama, Email, Password, Role) dengan status awal otomatis <i>aktif</i>.<br>2. Menerapkan aturan validasi Password: minimal 6 karakter, diawali huruf besar (kapital), dan mengandung kombinasi huruf serta angka (regex <i>/^[A-Z](?=.*[0-9]).+$/</i>).<br>3. Menyediakan fitur ubah data pengguna (dengan proteksi Admin Utama ID 1 hanya dapat diubah oleh Admin Utama sendiri).<br>4. Menyediakan fitur aktifkan dan nonaktifkan pengguna (melarang nonaktifkan diri sendiri, melarang nonaktifkan Admin Utama ID 1, dan mewajibkan minimal 1 Admin aktif).<br>5. Menyediakan fitur hapus pengguna khusus bagi Admin Utama (ID 1) dengan larangan menghapus diri sendiri atau Admin Utama.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>2.4 Kebutuhan Fungsional Sistem (Minimal 10 Kebutuhan Fungsional)</h2>
+    <p>Berdasarkan hasil pengamatan terhadap ketiga fitur utama pada aplikasi Medina Residence, disusun 10 (sepuluh) kebutuhan fungsional perangkat lunak yang disajikan pada Tabel 2.3.</p>
+
+    <p class="table-title">Tabel 2.3 Daftar Kebutuhan Fungsional Sistem (Functional Requirements)</p>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 10%;">Kode FR</th>
+                <th style="width: 22%;">Fitur Terkait</th>
+                <th style="width: 54%;">Deskripsi Kebutuhan Fungsional</th>
+                <th style="width: 14%;">Aktor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center fw-bold">FR-01</td>
+                <td>Fitur 1: Autentikasi Login</td>
+                <td>Sistem harus menerima proses login pengguna yang memasukkan kombinasi email dan kata sandi yang valid, berstatus <i>aktif</i>, serta sudah memiliki foto profil, kemudian mengarahkannya ke halaman <i>/dashboard</i> disertai notifikasi selamat datang sesuai perannya.</td>
+                <td class="text-center">Admin, Mandor</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">FR-02</td>
+                <td>Fitur 1: Autentikasi Login &amp; Fitur 2: Profil</td>
+                <td>Sistem harus menahan akses ke halaman dashboard bagi pengguna yang berhasil login namun belum melengkapi foto profil (<i>Login Guard</i>), serta mengarahkannya secara otomatis ke halaman <i>/profile</i> dengan pesan peringatan wajib melengkapi profil dan foto pengguna.</td>
+                <td class="text-center">Admin, Mandor</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">FR-03</td>
+                <td>Fitur 1: Autentikasi Login</td>
+                <td>Sistem harus menolak proses login dan menampilkan pesan validasi apabila pengguna mengosongkan kolom Email dan/atau kolom Password (baik kosong seluruhnya maupun kosong sebagian), atau ketika memasukkan email yang tidak terdaftar maupun kata sandi yang salah.</td>
+                <td class="text-center">Admin, Mandor</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">FR-04</td>
+                <td>Fitur 1: Autentikasi Login</td>
+                <td>Sistem harus membatasi percobaan gagal login maksimal 3 (tiga) kali berturut-turut per pengguna, menampilkan sisa kesempatan login pada kegagalan ke-1 dan ke-2, serta mengunci kolom input dan tombol <i>Log In</i> disertai hitung mundur waktu tunggu pada kegagalan ke-3.</td>
+                <td class="text-center">Admin, Mandor</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">FR-05</td>
+                <td>Fitur 1: Autentikasi Login</td>
+                <td>Sistem harus menolak percobaan login dari akun yang telah dinonaktifkan (status <i>nonaktif</i>) meskipun kredensial email dan kata sandi yang dimasukkan benar, serta menampilkan pemberitahuan bahwa akun dinonaktifkan tanpa mengurangi kuota percobaan login.</td>
+                <td class="text-center">Admin, Mandor</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">FR-06</td>
+                <td>Fitur 2: Pengelolaan Profil Pengguna</td>
+                <td>Sistem harus memungkinkan pengguna memperbarui data Nama Lengkap, Alamat Email, dan Nomor HP pada halaman Profil, menolak penyimpanan jika kolom wajib (Nama atau Email) dikosongkan, serta mencegah penggunaan alamat email yang sudah terdaftar milik pengguna lain.</td>
+                <td class="text-center">Admin, Mandor</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">FR-07</td>
+                <td>Fitur 2: Pengelolaan Profil Pengguna</td>
+                <td>Sistem harus menyediakan fitur unggah dan pembaruan foto profil dengan ketentuan wajib berupa berkas gambar berformat <i>jpeg, png, jpg,</i> atau <i>gif</i> dan memiliki ukuran berkas maksimal 2048 KB (2 MB).</td>
+                <td class="text-center">Admin, Mandor</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">FR-08</td>
+                <td>Fitur 2: Profil &amp; Fitur 3: Manajemen Data User</td>
+                <td>Sistem harus memvalidasi pembuatan atau pengubahan kata sandi (<i>password</i>) pada form Profil maupun Manajemen Data User dengan aturan wajib: minimal 6 karakter, diawali huruf besar (kapital), serta mengandung kombinasi huruf dan angka (contoh: <i>Admin123</i>).</td>
+                <td class="text-center">Admin, Mandor</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">FR-09</td>
+                <td>Fitur 3: Manajemen Data User</td>
+                <td>Sistem harus memungkinkan Admin menambah, mengubah, mengaktifkan, menonaktifkan, serta menghapus akun pengguna dengan aturan proteksi: melarang duplikasi email, melarang pengguna menghapus/menonaktifkan dirinya sendiri, serta melindungi akun Admin Utama (<i>id = 1</i>) dari penghapusan dan penonaktifan.</td>
+                <td class="text-center">Admin</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">FR-10</td>
+                <td>Fitur 3: Manajemen Data User</td>
+                <td>Sistem harus menerapkan kontrol akses berbasis peran (<i>Role-Based Access Control</i>) yang membatasi halaman dan seluruh fungsi Manajemen Data User (<i>/user/data-user</i>) hanya untuk peran <b>Admin</b> dan menolak akses langsung dari peran <b>Mandor</b>.</td>
+                <td class="text-center">Admin</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>2.5 Kebutuhan Nonfungsional Sistem (Minimal 5 Kebutuhan Nonfungsional)</h2>
+    <p>Selain kebutuhan fungsional, teridentifikasi 6 (enam) kebutuhan nonfungsional yang berkaitan dengan aspek keamanan, efisiensi performa, kemudahan penggunaan, kompatibilitas, dan keandalan sistem sebagaimana disajikan pada Tabel 2.4.</p>
+
+    <p class="table-title">Tabel 2.4 Daftar Kebutuhan Nonfungsional Sistem (Non-Functional Requirements)</p>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 12%;">Kode NFR</th>
+                <th style="width: 22%;">Aspek Kualitas (ISO/IEC 25010)</th>
+                <th style="width: 44%;">Deskripsi Kebutuhan Nonfungsional</th>
+                <th style="width: 22%;">Indikator / Target</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center fw-bold">NFR-01</td>
+                <td class="fw-bold">Security<br>(Confidentiality)</td>
+                <td>Data sensitif pengguna pada tabel <i>users</i> yang meliputi alamat <i>email</i> dan <i>no_hp</i> harus disimpan dalam bentuk terenkripsi (AES-256-CBC menggunakan Laravel <i>Crypt</i>), sedangkan <i>password</i> disimpan dalam bentuk <i>hash</i> Bcrypt.</td>
+                <td>100% kolom <i>email</i>, <i>no_hp</i>, dan <i>password</i> tidak tersimpan sebagai teks biasa (<i>plaintext</i>) di database.</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">NFR-02</td>
+                <td class="fw-bold">Security<br>(Access Control)</td>
+                <td>Sistem harus mampu menahan percobaan tebak kata sandi berulang melalui penguncian otomatis setelah 3 kali gagal login, serta mencegah akses langsung pengguna non-admin ke rute pengelolaan user.</td>
+                <td>Form login terkunci tepat pada gagal ke-3; akses lintas peran ditolak (HTTP 403).</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">NFR-03</td>
+                <td class="fw-bold">Performance Efficiency</td>
+                <td>Waktu respons (<i>response time</i>) sistem saat memuat halaman login, memproses autentikasi, membuka dan menyimpan profil, serta memuat daftar data user harus berjalan cepat dan stabil pada kondisi normal.</td>
+                <td>Rata-rata waktu respons &lt; 1.000 ms (1 detik) dari 5 kali pengukuran per operasi.</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">NFR-04</td>
+                <td class="fw-bold">Usability</td>
+                <td>Antarmuka pengguna pada halaman Login, Profil Pengguna, dan Manajemen Data User harus menampilkan label form, pesan kesalahan validasi, serta notifikasi konfirmasi (<i>SweetAlert2</i>) yang jelas dalam bahasa Indonesia.</td>
+                <td>Pengguna dapat memahami seluruh alur input dan pesan validasi tanpa hambatan.</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">NFR-05</td>
+                <td class="fw-bold">Compatibility</td>
+                <td>Tampilan dan fungsi pada halaman Login, Profil Pengguna, dan modal form Manajemen Data User harus berjalan secara konsisten pada minimal 2 peramban web (Google Chrome dan Microsoft Edge) serta 2 ukuran layar (Desktop dan Mobile).</td>
+                <td>Tata letak kartu, tabel, dan modal tetap proporsional serta berfungsi di kedua browser dan ukuran layar.</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">NFR-06</td>
+                <td class="fw-bold">Reliability</td>
+                <td>Sistem harus memberikan hasil validasi login, perhitungan sisa kuota percobaan, pembaruan foto profil, dan perubahan status aktif/nonaktif akun yang konsisten ketika proses pengujian diulang beberapa kali.</td>
+                <td>Konsistensi hasil pengujian berulang mencapai 100% tanpa kegagalan acak.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>2.6 Spesifikasi Use Case dan Alur Proses Utama Sistem</h2>
+    <p>Untuk melengkapi <i>Use Case Diagram</i> dan <i>Activity Diagram</i> pada Tahap 1, daftar spesifikasi <i>Use Case</i> yang menggambarkan interaksi antara aktor Admin dan Mandor pada ketiga fitur utama disajikan pada Tabel 2.5.</p>
+
+    <p class="table-title">Tabel 2.5 Spesifikasi Use Case pada Tiga Fitur Utama Objek Pengujian</p>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 10%;">Kode UC</th>
+                <th style="width: 24%;">Nama Use Case</th>
+                <th style="width: 16%;">Aktor Terlibat</th>
+                <th style="width: 50%;">Deskripsi Alur Proses Use Case</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center fw-bold">UC-01</td>
+                <td class="fw-bold">Melakukan Login Sistem</td>
+                <td class="text-center">Admin, Mandor</td>
+                <td>Pengguna memasukkan email dan password pada halaman <i>/login</i>. Sistem memeriksa kelengkapan input, kuota <i>Rate Limiter</i>, kecocokan kredensial, dan status keaktifan akun.</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">UC-02</td>
+                <td class="fw-bold">Verifikasi Rate Limiter &amp; Lockout</td>
+                <td class="text-center">Sistem (Include UC-01)</td>
+                <td>Setiap kegagalan login mengurangi kuota percobaan (maksimal 3 kali). Pada kegagalan ke-3, sistem menonaktifkan kolom input serta tombol <i>Log In</i> dan menampilkan hitung mundur waktu tunggu.</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">UC-03</td>
+                <td class="fw-bold">Pemeriksaan Login Guard Profil</td>
+                <td class="text-center">Sistem (Include UC-01)</td>
+                <td>Setelah kredensial dinyatakan valid, sistem memeriksa kolom <i>foto</i> pengguna. Jika kosong, pengguna dialihkan ke halaman <i>/profile</i>; jika sudah terisi, pengguna diarahkan ke <i>/dashboard</i>.</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">UC-04</td>
+                <td class="fw-bold">Memperbarui Identitas Profil</td>
+                <td class="text-center">Admin, Mandor</td>
+                <td>Pengguna mengubah Nama Lengkap, Alamat Email, dan Nomor HP pada halaman <i>/profile</i>, lalu sistem memvalidasi input dan menyimpan perubahan secara terenkripsi.</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">UC-05</td>
+                <td class="fw-bold">Mengunggah Foto Profil</td>
+                <td class="text-center">Admin, Mandor</td>
+                <td>Pengguna memilih berkas gambar (<i>jpeg, png, jpg, gif</i> maks. 2 MB) untuk memperbarui foto profil. Sistem menghapus foto lama dan menyimpan foto baru ke direktori <i>uploads/profile</i>.</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">UC-06</td>
+                <td class="fw-bold">Mengubah Password Profil</td>
+                <td class="text-center">Admin, Mandor</td>
+                <td>Pengguna mengisi kolom Password Baru (opsional) pada halaman Profil. Sistem memvalidasi aturan minimal 6 karakter, huruf awal kapital, dan kombinasi angka sebelum melakukan hashing.</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">UC-07</td>
+                <td class="fw-bold">Menambah Data User Baru</td>
+                <td class="text-center">Admin</td>
+                <td>Admin membuka modal Tambah User pada halaman <i>/user/data-user</i>, mengisi Nama, Email, Password (sesuai regex), dan Role, lalu sistem menyimpan user baru dengan status <i>aktif</i>.</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">UC-08</td>
+                <td class="fw-bold">Mengubah Data &amp; Role User</td>
+                <td class="text-center">Admin</td>
+                <td>Admin memperbarui Nama, Email, Role, atau Password opsional melalui modal Edit User, dengan aturan Admin Utama (ID 1) tidak dapat diedit oleh akun selain Admin Utama sendiri.</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">UC-09</td>
+                <td class="fw-bold">Mengaktifkan / Menonaktifkan User</td>
+                <td class="text-center">Admin</td>
+                <td>Admin mengubah status akun antara <i>Aktif</i> dan <i>Nonaktif</i>, dengan validasi proteksi tidak boleh menonaktifkan diri sendiri, tidak boleh menonaktifkan Admin Utama, dan minimal tersisa 1 Admin aktif.</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">UC-10</td>
+                <td class="fw-bold">Menghapus Akun User</td>
+                <td class="text-center">Admin Utama (ID = 1)</td>
+                <td>Admin Utama menghapus data pengguna melalui modal Konfirmasi Hapus, dengan proteksi sistem yang menolak penghapusan terhadap akun Admin Utama maupun akun diri sendiri.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>2.7 Requirement Traceability Matrix (RTM)</h2>
+    <p><i>Requirement Traceability Matrix</i> (RTM) berikut disusun untuk memetakan keterhubungan antara setiap Kebutuhan Fungsional (FR-01 s.d. FR-10) dan Kebutuhan Nonfungsional (NFR-01 s.d. NFR-06) terhadap 30 skenario pengujian fungsional (TC-01 s.d. TC-30) yang terbagi ke dalam 3 fitur utama (10 skenario Fitur Login, 10 skenario Fitur Profil Pengguna, dan 10 skenario Fitur Manajemen Data User). Tabel RTM disajikan secara lengkap pada Tabel 2.6.</p>
+
+    <p class="table-title">Tabel 2.6 Requirement Traceability Matrix (RTM) — 30 Skenario Pengujian pada 3 Fitur Utama</p>
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 9%;">ID Test Case</th>
+                <th style="width: 10%;">Kode FR / NFR</th>
+                <th style="width: 18%;">Fitur / Modul Uji</th>
+                <th style="width: 20%;">Teknik Pengujian yang Diterapkan</th>
+                <th style="width: 33%;">Skenario / Tujuan Pengujian</th>
+                <th style="width: 10%;">Status Hasil Uji</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- FITUR 1: LOGIN (TC-01 s.d. TC-10) -->
+            <tr>
+                <td class="text-center fw-bold">TC-01</td>
+                <td class="text-center">FR-01,<br>NFR-01</td>
+                <td>Fitur 1:<br>Autentikasi Login</td>
+                <td>Positive Testing<br>(Alur Normal)</td>
+                <td>Login dengan kredensial Admin yang valid dan sudah memiliki foto profil (Alur Normal)</td>
+                <td class="text-center fw-bold">Pass</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">TC-02</td>
+                <td class="text-center">FR-02</td>
+                <td>Fitur 1:<br>Autentikasi Login</td>
+                <td>Positive Testing &amp;<br>State Transition</td>
+                <td>Login dengan kredensial Mandor valid yang belum melengkapi foto profil (Alur Normal - Guard Profil)</td>
+                <td class="text-center fw-bold">Pass</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">TC-03</td>
+                <td class="text-center">FR-03</td>
+                <td>Fitur 1:<br>Autentikasi Login</td>
+                <td>Negative Testing<br>(Kolom Wajib Kosong)</td>
+                <td>Login dengan mengosongkan kolom Email dan Password (Kondisi Negatif - Kolom Wajib Kosong)</td>
+                <td class="text-center fw-bold">Pass</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">TC-04</td>
+                <td class="text-center">FR-03</td>
+                <td>Fitur 1:<br>Autentikasi Login</td>
+                <td>Negative Testing</td>
+                <td>Login dengan mengisi Email valid tetapi mengosongkan kolom Password (Kondisi Negatif)</td>
+                <td class="text-center fw-bold">Pass</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">TC-05</td>
+                <td class="text-center">FR-03</td>
+                <td>Fitur 1:<br>Autentikasi Login</td>
+                <td>Negative Testing &amp;<br>Equivalence Partitioning</td>
+                <td>Login menggunakan alamat Email yang tidak terdaftar di database (Kondisi Negatif)</td>
+                <td class="text-center fw-bold">Pass</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">TC-06</td>
+                <td class="text-center">FR-03,<br>FR-04</td>
+                <td>Fitur 1:<br>Autentikasi Login</td>
+                <td>Negative Testing &amp;<br>Equivalence Partitioning</td>
+                <td>Login dengan Email terdaftar namun Password salah pada percobaan ke-1 (Kondisi Negatif)</td>
+                <td class="text-center fw-bold">Pass</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">TC-07</td>
+                <td class="text-center">FR-04,<br>NFR-02</td>
+                <td>Fitur 1:<br>Autentikasi Login</td>
+                <td>Boundary Value Analysis<br>(Batas Maksimal - 1)</td>
+                <td>Login gagal 2 kali berturut-turut - Batas sebelum akun dikunci (Boundary Value Test: Maksimal - 1)</td>
+                <td class="text-center fw-bold">Pass</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">TC-08</td>
+                <td class="text-center">FR-04,<br>NFR-02</td>
+                <td>Fitur 1:<br>Autentikasi Login</td>
+                <td>Boundary Value Analysis<br>(Tepat Batas Maksimal)</td>
+                <td>Login gagal tepat 3 kali berturut-turut - Tepat batas Lockout disertai hitung mundur (Boundary Value Test: Batas Maksimal)</td>
+                <td class="text-center fw-bold">Pass</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">TC-09</td>
+                <td class="text-center">FR-03</td>
+                <td>Fitur 1:<br>Autentikasi Login</td>
+                <td>Negative Testing<br>(Kolom Kosong Sebagian)</td>
+                <td>Login dengan mengosongkan kolom Email tetapi mengisi kolom Password (Kondisi Negatif - Kolom Wajib Kosong Sebagian)</td>
+                <td class="text-center fw-bold">Pass</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">TC-10</td>
+                <td class="text-center">FR-05</td>
+                <td>Fitur 1:<br>Autentikasi Login</td>
+                <td>Negative Testing &amp;<br>Decision Table</td>
+                <td>Login menggunakan akun berstatus Nonaktif dengan kredensial yang benar (Kondisi Negatif - Status Akun)</td>
+                <td class="text-center fw-bold">Fail<br>(DEF-01)</td>
+            </tr>
+
+            <!-- FITUR 2: PROFIL PENGGUNA (TC-11 s.d. TC-20) -->
+            <tr>
+                <td class="text-center fw-bold">TC-11</td>
+                <td class="text-center">FR-06,<br>NFR-01</td>
+                <td>Fitur 2:<br>Profil Pengguna</td>
+                <td>Positive Testing<br>(Alur Normal)</td>
+                <td>Memperbarui data identitas profil (Nama Lengkap, Alamat Email, dan Nomor HP) dengan masukan valid tanpa mengubah foto maupun password</td>
+                <td class="text-center fw-bold">Pass</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">TC-12</td>
+                <td class="text-center">FR-07</td>
+                <td>Fitur 2:<br>Profil Pengguna</td>
+                <td>Positive Testing &amp;<br>Equivalence Partitioning</td>
+                <td>Mengunggah dan memperbarui foto profil baru menggunakan berkas gambar valid (.jpg / .png) dengan ukuran &lt;= 2 MB</td>
+                <td class="text-center fw-bold">Pass</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">TC-13</td>
+                <td class="text-center">FR-06</td>
+                <td>Fitur 2:<br>Profil Pengguna</td>
+                <td>Negative Testing<br>(Kolom Wajib Kosong)</td>
+                <td>Memperbarui profil dengan mengosongkan kolom wajib Nama Lengkap dan Alamat Email</td>
+                <td class="text-center fw-bold">Pass</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">TC-14</td>
+                <td class="text-center">FR-07</td>
+                <td>Fitur 2:<br>Profil Pengguna</td>
+                <td>Equivalence Partitioning<br>(Kelas Data Tidak Valid)</td>
+                <td>Mengunggah berkas foto profil dengan format ekstensi selain gambar (dokumen .pdf)</td>
+                <td class="text-center fw-bold">Pass</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">TC-15</td>
+                <td class="text-center">FR-07</td>
+                <td>Fitur 2:<br>Profil Pengguna</td>
+                <td>Boundary Value Analysis<br>(Di Atas Batas &gt; 2 MB)</td>
+                <td>Mengunggah berkas foto profil berformat gambar namun berukuran melebihi batas maksimal 2048 KB (&gt; 2 MB)</td>
+                <td class="text-center fw-bold">Pass</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">TC-16</td>
+                <td class="text-center">FR-08</td>
+                <td>Fitur 2:<br>Profil Pengguna</td>
+                <td>Positive Testing &amp;<br>Equivalence Partitioning</td>
+                <td>Memperbarui Password Baru pada halaman Profil dengan format valid (minimal 6 karakter, huruf awal kapital, kombinasi huruf dan angka: Mandor123)</td>
+                <td class="text-center fw-bold">Pass</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">TC-17</td>
+                <td class="text-center">FR-08</td>
+                <td>Fitur 2:<br>Profil Pengguna</td>
+                <td>Boundary Value Analysis<br>(Batas Minimum - 1 = 5 Karakter)</td>
+                <td>Memperbarui Password Baru pada halaman Profil dengan panjang 5 karakter (Mand1 - satu karakter di bawah batas minimal 6 karakter)</td>
+                <td class="text-center fw-bold">Pass</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">TC-18</td>
+                <td class="text-center">FR-08</td>
+                <td>Fitur 2:<br>Profil Pengguna</td>
+                <td>Equivalence Partitioning<br>(Pola Regex Tidak Valid)</td>
+                <td>Memperbarui Password Baru pada halaman Profil dengan panjang &gt;= 6 karakter tetapi tanpa huruf kapital awal (mandor123) atau tanpa angka (Mandorrr)</td>
+                <td class="text-center fw-bold">Pass</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">TC-19</td>
+                <td class="text-center">FR-02,<br>FR-07</td>
+                <td>Fitur 2:<br>Profil Pengguna</td>
+                <td>Exploratory Testing &amp;<br>State Transition</td>
+                <td>Percobaan melewati (bypass) Login Guard oleh akun yang belum memiliki foto profil dengan langsung menekan menu Dashboard di sidebar</td>
+                <td class="text-center fw-bold">Fail<br>(DEF-02)</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">TC-20</td>
+                <td class="text-center">FR-06</td>
+                <td>Fitur 2:<br>Profil Pengguna</td>
+                <td>Exploratory Testing<br>(Keunikan Data Email)</td>
+                <td>Memperbarui alamat Email pada halaman Profil menggunakan alamat email yang sudah terdaftar milik pengguna lain (admin@gmail.com)</td>
+                <td class="text-center fw-bold">Fail<br>(DEF-03)</td>
+            </tr>
+
+            <!-- FITUR 3: MANAJEMEN DATA USER (TC-21 s.d. TC-30) -->
+            <tr>
+                <td class="text-center fw-bold">TC-21</td>
+                <td class="text-center">FR-08,<br>FR-09</td>
+                <td>Fitur 3:<br>Manajemen Data User</td>
+                <td>Positive Testing<br>(Alur Normal)</td>
+                <td>Menambahkan data User baru oleh Admin dengan seluruh masukan valid (Nama, Email unik, Password: User123, Role: Mandor)</td>
+                <td class="text-center fw-bold">Pass</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">TC-22</td>
+                <td class="text-center">FR-09</td>
+                <td>Fitur 3:<br>Manajemen Data User</td>
+                <td>Negative Testing<br>(Kolom Wajib Kosong)</td>
+                <td>Menambahkan data User baru dengan mengosongkan seluruh kolom wajib (Nama, Email, Password, dan Role) pada modal Tambah User</td>
+                <td class="text-center fw-bold">Pass</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">TC-23</td>
+                <td class="text-center">FR-08</td>
+                <td>Fitur 3:<br>Manajemen Data User</td>
+                <td>Boundary Value Analysis<br>(5 Karakter vs 6 Karakter)</td>
+                <td>Pengujian nilai batas panjang Password pada form Tambah User: 5 karakter (User1 - ditolak) dan tepat pada batas 6 karakter (User12 - diterima)</td>
+                <td class="text-center fw-bold">Pass</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">TC-24</td>
+                <td class="text-center">FR-08</td>
+                <td>Fitur 3:<br>Manajemen Data User</td>
+                <td>Equivalence Partitioning<br>(Pola Regex Password)</td>
+                <td>Menambahkan data User baru dengan password yang tidak diawali huruf kapital (user123) atau tidak mengandung angka (Userrrr)</td>
+                <td class="text-center fw-bold">Pass</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">TC-25</td>
+                <td class="text-center">FR-09</td>
+                <td>Fitur 3:<br>Manajemen Data User</td>
+                <td>Positive Testing &amp;<br>Decision Table</td>
+                <td>Mengubah data User (Nama, Email, dan Role) oleh Admin melalui modal Edit User dengan mengosongkan kolom Password Opsional</td>
+                <td class="text-center fw-bold">Pass</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">TC-26</td>
+                <td class="text-center">FR-09</td>
+                <td>Fitur 3:<br>Manajemen Data User</td>
+                <td>State Transition Testing<br>(Aktif &lt;-&gt; Nonaktif)</td>
+                <td>Mengubah status akun User biasa dari Aktif menjadi Nonaktif, kemudian mengaktifkannya kembali dari Nonaktif menjadi Aktif</td>
+                <td class="text-center fw-bold">Pass</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">TC-27</td>
+                <td class="text-center">FR-09</td>
+                <td>Fitur 3:<br>Manajemen Data User</td>
+                <td>Decision Table Testing &amp;<br>State Transition Negative</td>
+                <td>Percobaan menonaktifkan akun Admin Utama (id = 1) atau menonaktifkan akun diri sendiri yang sedang login</td>
+                <td class="text-center fw-bold">Pass</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">TC-28</td>
+                <td class="text-center">FR-09</td>
+                <td>Fitur 3:<br>Manajemen Data User</td>
+                <td>Decision Table Testing<br>(Aturan Hapus User)</td>
+                <td>Penghapusan akun User biasa oleh Admin Utama (id = 1) serta pengujian proteksi penolakan hapus terhadap akun Admin Utama</td>
+                <td class="text-center fw-bold">Pass</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">TC-29</td>
+                <td class="text-center">FR-09</td>
+                <td>Fitur 3:<br>Manajemen Data User</td>
+                <td>Exploratory Testing<br>(Validasi Email Unik)</td>
+                <td>Menambahkan akun User baru menggunakan alamat Email yang sudah terdaftar pada akun pengguna lain di dalam database</td>
+                <td class="text-center fw-bold">Fail<br>(DEF-04)</td>
+            </tr>
+            <tr>
+                <td class="text-center fw-bold">TC-30</td>
+                <td class="text-center">FR-10,<br>NFR-02</td>
+                <td>Fitur 3:<br>Manajemen Data User</td>
+                <td>Exploratory Testing &amp;<br>Decision Table (RBAC)</td>
+                <td>Percobaan akses paksa (forced browsing) oleh pengguna ber-role Mandor ke URL /user/data-user dan manipulasi data pengguna</td>
+                <td class="text-center fw-bold">Fail<br>(DEF-05)</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>
